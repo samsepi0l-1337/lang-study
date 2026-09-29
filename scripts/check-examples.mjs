@@ -28,6 +28,8 @@ const required = [
   "examples/n8n/validate.mjs",
   "examples/supabase-starter/schema.sql",
   "examples/maker/index.html",
+  "examples/rust/src/lib.rs",
+  "examples/elixir/lib/lang_shelf.ex",
 ];
 
 let missing = 0;

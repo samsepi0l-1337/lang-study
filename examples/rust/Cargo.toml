@@ -1,0 +1,9 @@
+[package]
+name = "lang_shelf"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[[bin]]
+name = "lang_shelf"
+path = "src/main.rs"

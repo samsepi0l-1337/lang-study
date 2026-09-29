@@ -32,6 +32,8 @@ samsepi0l이 프로그래밍 언어를 소재로 정리한 실습 노트입니�
 | 24 | [n8n 워크플로](notes/24-n8n.md) | [`examples/n8n`](examples/n8n) |
 | 25 | [직접 설계하는 Supabase 스타터](notes/25-supabase-starter.md) | [`examples/supabase-starter`](examples/supabase-starter) |
 | 26 | [언어 선반이라는 제품](notes/26-maker.md) | [`examples/maker`](examples/maker) |
+| 27 | [Rust의 소유권과 빌림](notes/27-rust.md) | [`examples/rust`](examples/rust) |
+| 28 | [Elixir의 불변 데이터와 프로세스](notes/28-elixir.md) | [`examples/elixir`](examples/elixir) |
 
 ```bash
 npm install

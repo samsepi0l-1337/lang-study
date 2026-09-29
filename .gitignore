@@ -7,4 +7,7 @@ examples/python-collector/languages.json
 examples/**/node_modules/
 examples/**/.next/
 examples/**/dist/
+examples/rust/target/
+examples/elixir/_build/
+examples/elixir/deps/
 *.log

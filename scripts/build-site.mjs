@@ -13,6 +13,7 @@ const groups = [
   [13, 16, "서버"],
   [17, 21, "모바일과 연결"],
   [22, 26, "에이전트와 제품"],
+  [27, 28, "언어"],
 ];
 
 function parseFrontMatter(raw) {
