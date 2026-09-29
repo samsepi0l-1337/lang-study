@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>React로 언어 사전 만들기 · 언어 공부장</title>
+  <meta name="description" content="이름 검색과 선택 상태를 부모에 두고, 목록과 상세는 props로만 언어 데이터를 받습니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#content">본문으로</a>
+  <div class="shell">
+    <aside class="nav">
+      <a class="brand" href="../index.html"><strong>언어 공부장</strong><span>samsepi0l</span></a>
+      <input class="search" data-filter placeholder="노트 찾기" aria-label="노트 찾기">
+      <details class="toc" open>
+        <summary>목차</summary>
+        <div class="group">기초</div><ol><li data-item="1 Git과 GitHub 임시 저장소에서 커밋과 충돌 병합을 따라 하고 원격과 풀 리퀘스트는 개념으로 구분합니다. Git GitHub Python JavaScript TypeScript Go Rust"><a href="../notes/git-github.html"><small>01</small><span>Git과 GitHub</span></a></li><li data-item="2 SQL로 언어 데이터를 다루기 SQLite로 언어와 구현체와 릴리스를 거르고 묶고, 잘못된 연도는 트랜잭션으로 되돌립니다. SQL SQLite Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/sql.html"><small>02</small><span>SQL로 언어 데이터를 다루기</span></a></li><li data-item="3 Python으로 문서 수집기 만들기 표준 라이브러리만으로 로컬 HTML 픽스처를 읽어 언어 목록 JSON을 만듭니다. Python html.parser Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/python-collector.html"><small>03</small><span>Python으로 문서 수집기 만들기</span></a></li><li data-item="4 Gulp로 문서 파이프라인 만들기 Gulp의 스트림 태스크와 같은 HTML 변환을 Node 표준 모듈만으로도 확인합니다. Gulp Node.js Python JavaScript Go Rust SQL"><a href="../notes/gulp.html"><small>04</small><span>Gulp로 문서 파이프라인 만들기</span></a></li></ol><div class="group">브라우저와 React</div><ol><li data-item="5 브라우저 확장 프로그램 Manifest V3 팝업으로 오늘의 언어를 고르고, 루프백 데모에서만 언어 이름을 표시합니다. JavaScript Chrome Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/chrome-extension.html"><small>05</small><span>브라우저 확장 프로그램</span></a></li><li data-item="6 Canvas로 언어 지도 그리기 언어 카드의 좌표를 모델로 두고, 포인터로 옮긴 뒤 실행 취소로 직전 배치를 복원합니다. JavaScript Canvas Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/canvas-sketch.html"><small>06</small><span>Canvas로 언어 지도 그리기</span></a></li><li data-item="7 React로 언어 사전 만들기 이름 검색과 선택 상태를 부모에 두고, 목록과 상세는 props로만 언어 데이터를 받습니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-dictionary.html" aria-current="page"><small>07</small><span>React로 언어 사전 만들기</span></a></li><li data-item="8 React Hooks 언어 메모 화면에서 상태, 효과, ref, 메모, 디바운스 훅의 호출 순서와 의존성을 맞춥니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-hooks.html"><small>08</small><span>React Hooks</span></a></li></ol><div class="group">상태와 GraphQL</div><ol><li data-item="9 Redux로 상태 설계하기 언어 목록, 선택, 즐겨찾기를 스토어 하나와 순수 리듀서 전이로 고정합니다. Redux Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/redux.html"><small>09</small><span>Redux로 상태 설계하기</span></a></li><li data-item="10 Next.js로 언어 문서 사이트 App Router의 파일 경로로 언어 문서 목록과 상세를 나누고, 검색만 클라이언트 상태로 둡니다. Next.js Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell Next.js"><a href="../notes/nextjs.html"><small>10</small><span>Next.js로 언어 문서 사이트</span></a></li><li data-item="11 GraphQL 서버 언어 카탈로그를 스키마와 리졸버로 나누고, 포트를 열지 않은 채 graphql()로 쿼리와 뮤테이션을 실행합니다. GraphQL Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell GraphQL"><a href="../notes/graphql-server.html"><small>11</small><span>GraphQL 서버</span></a></li><li data-item="12 GraphQL 클라이언트 executeAgainst가 data를 반환하거나 errors를 던지고, normalize가 언어를 id 맵으로 접습니다. GraphQL Python Haskell GraphQL"><a href="../notes/graphql-client.html"><small>12</small><span>GraphQL 클라이언트</span></a></li></ol><div class="group">서버</div><ol><li data-item="13 NestJS로 언어 등록 API 모듈과 생성자 주입, DTO 검증으로 언어 열 개를 등록하는 HTTP API를 조립합니다. NestJS Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/nestjs.html"><small>13</small><span>NestJS로 언어 등록 API</span></a></li><li data-item="14 Go로 작은 HTTP 서버 표준 라이브러리와 뮤텍스로 언어 목록을 조회하고 추가하는 HTTP 서버를 테스트합니다. Go Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/go.html"><small>14</small><span>Go로 작은 HTTP 서버</span></a></li><li data-item="15 워크숍 좌석 예약 시작 시각과 이름, 좌석 수 규칙을 서비스에 두고 언어 워크숍 좌석을 예약합니다. JavaScript Rust Haskell"><a href="../notes/workshop-booking.html"><small>15</small><span>워크숍 좌석 예약</span></a></li><li data-item="16 코드 조각 피드 언어별 코드 조각을 id 커서로 나누고, 사용자 이름 단위로 추천을 토글합니다. JavaScript Python Go Rust"><a href="../notes/snippet-feed.html"><small>16</small><span>코드 조각 피드</span></a></li></ol><div class="group">모바일과 연결</div><ol><li data-item="17 Dart 언어의 기본 널 안전, final과 const, Future를 한 파일의 언어 카드 보고서로 확인합니다. Dart Kotlin Dart Haskell"><a href="../notes/dart.html"><small>17</small><span>Dart 언어의 기본</span></a></li><li data-item="18 Flutter로 언어 카드 메모리 속 즐겨찾기와 상세 경로를 Flutter 3 위젯으로 구성합니다. Flutter Rust Dart Haskell Flutter"><a href="../notes/flutter.html"><small>18</small><span>Flutter로 언어 카드</span></a></li><li data-item="19 React Native로 언어 카드 복습 규칙만 순수 함수로 두고, 언어 카드 화면은 네이티브 뷰로 분리합니다. React Native Rust Dart Haskell React"><a href="../notes/react-native.html"><small>19</small><span>React Native로 언어 카드</span></a></li><li data-item="20 실시간 스터디룸의 연결 두 탭이 코드 조각을 주고받도록 신호, SDP, ICE를 역할로 나눕니다. WebRTC "><a href="../notes/webrtc-room.html"><small>20</small><span>실시간 스터디룸의 연결</span></a></li><li data-item="21 TypeScript로 블록 잇기 언어 제안을 해시로 잇는 목록을 TypeScript로 만들고 변조를 검증으로 찾습니다. TypeScript TypeScript Dart"><a href="../notes/ts-chain.html"><small>21</small><span>TypeScript로 블록 잇기</span></a></li></ol><div class="group">에이전트와 제품</div><ol><li data-item="22 언어 튜터 서비스 구조 로컬 카탈로그에서 언어 설명을 고르고, 역할이 나뉜 메시지를 화면에 나누어 그립니다. LLM Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/llm-tutor.html"><small>22</small><span>언어 튜터 서비스 구조</span></a></li><li data-item="23 도구를 쓰는 에이전트 루프 목표를 받은 뒤 로컬 도구의 결과를 관찰로 쌓고, 최종 답이나 네 걸음에서 멈춥니다. 에이전트 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/ai-agents.html"><small>23</small><span>도구를 쓰는 에이전트 루프</span></a></li><li data-item="24 n8n 워크플로 웹훅으로 받은 언어 이름을 Set 노드가 카드의 제목과 요약으로 바꿉니다. n8n Rust Zig"><a href="../notes/n8n.html"><small>24</small><span>n8n 워크플로</span></a></li><li data-item="25 직접 설계하는 Supabase 스타터 프로필과 언어와 학습 노트를 RLS로 나누고, 서비스 롤은 서버에만 둡니다. Supabase Python Haskell SQL"><a href="../notes/supabase-starter.html"><small>25</small><span>직접 설계하는 Supabase 스타터</span></a></li><li data-item="26 언어 선반이라는 제품 언어 선반은 배우는 이유와 다음 연습을 남기는 기록이고, 지표는 주간 노트 수입니다. 제품 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/maker.html"><small>26</small><span>언어 선반이라는 제품</span></a></li></ol>
+      </details>
+    </aside>
+    <main class="main" id="content"><article class="sheet">
+      <div class="meta"><span class="pill">초급</span><span class="pill">40분</span><span class="pill">JavaScript</span><span class="pill">React</span></div>
+      <h1>React로 언어 사전 만들기</h1>
+<p>이 노트는 samsepi0l이 React 18로 언어 사전 한 화면을 만드는 방법을 정리한 것입니다. 데이터는 파일 안의 배열 열 개이고, 필드는 이름, 연도, 패러다임, 한 줄 설명입니다. 상태는 검색어와 선택한 이름뿐이며 둘 다 <code>useState</code>입니다. 브라우저는 JSX를 컴파일하지 않으므로 예제는 <code>createElement</code>를 호출합니다. JSX의 <code>&lt;SearchBox query={query} /&gt;</code>는 <code>h(SearchBox, { query: query })</code>와 같은 호출입니다.</p>
+<p>import map은 <code>https://esm.sh/react@18.3.1</code>과 <code>https://esm.sh/react-dom@18.3.1/client</code>만 가리킵니다. 루트는 <code>createRoot</code>로 만듭니다. 모듈 스크립트는 <code>file://</code>에서 막히는 경우가 많습니다. <code>examples/react-dictionary</code>에서 로컬 서버를 띄운 뒤 <code>http://127.0.0.1</code>로 엽니다.</p>
+<h2>이 장을 끝내면</h2>
+<ul>
+<li>검색어와 선택 이름을 부모 상태에 두고 자식은 props와 콜백만 받습니다.</li>
+<li>이름 부분 문자열로 목록을 거르고, 고른 행의 상세를 같은 배열에서 찾습니다.</li>
+<li>목록의 <code>key</code>로 인덱스 대신 언어 이름을 쓰는 이유를 설명합니다.</li>
+</ul>
+<h2>props는 부모가 내려 주는 값입니다</h2>
+<p><code>SearchBox</code>는 검색 문자열과 그 문자열을 바꾸는 함수를 받습니다. 입력의 <code>value</code>가 <code>query</code>이므로 이 입력은 제어 컴포넌트입니다. 자식이 부모 변수에 직접 대입하지 않습니다. <code>onChange</code>에서 <code>onQuery</code>를 호출하면 부모가 <code>setQuery</code>로 다시 렌더합니다.</p>
+<pre><code class="language-javascript">function SearchBox({ query, onQuery }) {
+  return h(&quot;label&quot;, null, &quot;이름 검색&quot;, h(&quot;input&quot;, {
+    value: query,
+    onChange: (event) =&gt; onQuery(event.target.value)
+  }));
+}
+</code></pre>
+<p><code>LanguageList</code>는 이미 걸러진 배열, 선택된 이름, 선택 콜백을 받습니다. <code>LanguageDetail</code>은 언어 객체 또는 <code>null</code>만 받습니다. 상세가 목록의 내부를 읽지 않습니다. 둘 다 부모를 통해서만 만납니다. 이 방향이 단방향 데이터 흐름입니다. 데이터는 아래로, 알림은 콜백으로 위로 갑니다.</p>
+<p>실수: 입력에 <code>value</code>만 주고 <code>onChange</code>를 빼면 상태가 갱신되지 않아 글자가 붙지 않습니다. 상태를 두지 않고 DOM만 읽으면 상세와 목록이 서로 다른 문자열을 보게 됩니다.</p>
+<h2>상태 둘이면 화면이 결정됩니다</h2>
+<p><code>App</code>의 상태는 <code>query</code>와 <code>selectedName</code>입니다. 첫 선택은 <code>null</code>이라 상세는 안내 문장입니다. 보이는 목록은 렌더 중에 계산하는 파생 값이라 따로 저장하지 않습니다.</p>
+<pre><code class="language-javascript">const visible = LANGUAGES.filter((lang) =&gt; {
+  return lang.name.toLowerCase().includes(query.trim().toLowerCase());
+});
+</code></pre>
+<p>비교 전에 <code>trim</code>과 <code>toLowerCase</code>를 하므로 <code>&quot;  go &quot;</code>도 Go에 맞습니다. 패러다임과 설명은 검색하지 않습니다. 선택 상세는 걸러진 배열이 아니라 원본 <code>LANGUAGES</code>에서 이름으로 찾습니다. 검색으로 행이 사라져도 이미 고른 설명은 남습니다.</p>
+<p>실수: 필터 결과를 <code>useState</code>에 넣고 <code>useEffect</code>로 검색어와 맞춥니다. 목록이 한 박자 늦고, 이 장에서 필요한 훅은 <code>useState</code>뿐입니다.</p>
+<h2>목록의 key는 이름입니다</h2>
+<p><code>map</code>으로 만든 각 <code>li</code>의 <code>key</code>는 <code>lang.name</code>입니다. 이 배열에서 이름은 유일합니다. React는 key로 렌더 사이의 같은 항목을 맞춥니다. 인덱스를 key로 쓰면 필터로 순서가 바뀔 때, 행 안에 둔 지역 상태가 다른 언어에 붙을 수 있습니다. 이 예제의 버튼은 지역 상태가 없어도 key는 데이터 신원에 둡니다.</p>
+<pre><code class="language-javascript">items.map((lang) =&gt; h(&quot;li&quot;, { key: lang.name }, h(&quot;button&quot;, {
+  type: &quot;button&quot;,
+  onClick: () =&gt; onSelect(lang.name),
+  &quot;aria-pressed&quot;: selectedName === lang.name
+}, lang.name)))
+</code></pre>
+<p>규칙은 부모가 <code>createElement</code>에 key를 넘기는 것입니다. 자식 컴포넌트 안에서 자기 key를 만들 수 없습니다. <code>aria-pressed</code>는 선택 여부이고, 스타일은 그 속성을 보고 테두리를 그립니다. 선택 여부를 버튼 바깥의 전역 변수에 두지 않습니다.</p>
+<p>실수: key를 배열 인덱스나 <code>Math.random()</code>으로 줍니다. 인덱스는 신원이 아니고, 난수는 매 렌더가 새 항목이라 입력이 포커스를 잃습니다.</p>
+<h2>예제</h2>
+<p><code>examples/react-dictionary/index.html</code></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ko&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;언어 사전&lt;/title&gt;
+  &lt;style&gt;
+    body { margin: 24px; color: #1c1917; font: 16px/1.5 sans-serif; }
+    main { max-width: 720px; }
+    h1 { margin: 0 0 12px; font-size: 22px; }
+    .layout { display: grid; grid-template-columns: 220px 1fr; gap: 16px; margin-top: 16px; }
+    input { margin-left: 8px; font: inherit; }
+    button { font: inherit; }
+    ul { margin: 0; padding-left: 18px; }
+    li { margin: 4px 0; }
+    button[aria-pressed=&quot;true&quot;] { outline: 2px solid #243e73; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+  &lt;!-- 브라우저는 JSX를 컴파일하지 않습니다. createElement로 그대로 실행합니다. --&gt;
+  &lt;script type=&quot;importmap&quot;&gt;
+  {
+    &quot;imports&quot;: {
+      &quot;react&quot;: &quot;https://esm.sh/react@18.3.1&quot;,
+      &quot;react-dom/client&quot;: &quot;https://esm.sh/react-dom@18.3.1/client&quot;
+    }
+  }
+  &lt;/script&gt;
+  &lt;script type=&quot;module&quot;&gt;
+    import React, { useState } from &quot;react&quot;;
+    import { createRoot } from &quot;react-dom/client&quot;;
+
+    const LANGUAGES = [
+      { name: &quot;Python&quot;, year: 1991, paradigm: &quot;다중 패러다임&quot;, summary: &quot;들여쓰기로 블록을 나타냅니다.&quot; },
+      { name: &quot;JavaScript&quot;, year: 1995, paradigm: &quot;다중 패러다임&quot;, summary: &quot;브라우저에서 동작하는 기본 언어입니다.&quot; },
+      { name: &quot;Go&quot;, year: 2009, paradigm: &quot;절차형&quot;, summary: &quot;고루틴으로 동시 작업을 나눕니다.&quot; },
+      { name: &quot;Rust&quot;, year: 2010, paradigm: &quot;시스템&quot;, summary: &quot;소유권으로 메모리 안전을 검사합니다.&quot; },
+      { name: &quot;TypeScript&quot;, year: 2012, paradigm: &quot;정적 타입&quot;, summary: &quot;JavaScript에 타입 표기를 더합니다.&quot; },
+      { name: &quot;Kotlin&quot;, year: 2011, paradigm: &quot;객체지향&quot;, summary: &quot;널 가능성을 타입으로 구분합니다.&quot; },
+      { name: &quot;Elixir&quot;, year: 2011, paradigm: &quot;함수형&quot;, summary: &quot;프로세스 단위로 실패를 격리합니다.&quot; },
+      { name: &quot;Zig&quot;, year: 2016, paradigm: &quot;시스템&quot;, summary: &quot;할당자를 호출자가 넘깁니다.&quot; },
+      { name: &quot;Dart&quot;, year: 2011, paradigm: &quot;객체지향&quot;, summary: &quot;UI를 염두에 둔 AOT 컴파일을 지원합니다.&quot; },
+      { name: &quot;Haskell&quot;, year: 1990, paradigm: &quot;순수 함수형&quot;, summary: &quot;부작용을 타입으로 분리합니다.&quot; }
+    ];
+
+    function h(type, props, ...children) {
+      return React.createElement(type, props, ...children);
+    }
+
+    function SearchBox({ query, onQuery }) {
+      return h(&quot;label&quot;, null, &quot;이름 검색&quot;, h(&quot;input&quot;, {
+        value: query,
+        onChange: (event) =&gt; onQuery(event.target.value)
+      }));
+    }
+
+    function LanguageList({ items, selectedName, onSelect }) {
+      if (items.length === 0) return h(&quot;p&quot;, null, &quot;일치하는 이름이 없습니다.&quot;);
+      return h(&quot;ul&quot;, null, items.map((lang) =&gt; h(&quot;li&quot;, { key: lang.name }, h(&quot;button&quot;, {
+        type: &quot;button&quot;,
+        onClick: () =&gt; onSelect(lang.name),
+        &quot;aria-pressed&quot;: selectedName === lang.name
+      }, lang.name))));
+    }
+
+    function LanguageDetail({ lang }) {
+      if (!lang) return h(&quot;p&quot;, null, &quot;이름을 고르면 설명이 나옵니다.&quot;);
+      return h(&quot;article&quot;, null,
+        h(&quot;h2&quot;, null, lang.name),
+        h(&quot;p&quot;, null, lang.year + &quot; · &quot; + lang.paradigm),
+        h(&quot;p&quot;, null, lang.summary)
+      );
+    }
+
+    function App() {
+      const [query, setQuery] = useState(&quot;&quot;);
+      const [selectedName, setSelectedName] = useState(null);
+      const visible = LANGUAGES.filter((lang) =&gt; {
+        return lang.name.toLowerCase().includes(query.trim().toLowerCase());
+      });
+      const selected = LANGUAGES.find((lang) =&gt; lang.name === selectedName) || null;
+      return h(&quot;main&quot;, null,
+        h(&quot;h1&quot;, null, &quot;언어 사전&quot;),
+        h(SearchBox, { query: query, onQuery: setQuery }),
+        h(&quot;div&quot;, { className: &quot;layout&quot; },
+          h(LanguageList, { items: visible, selectedName: selectedName, onSelect: setSelectedName }),
+          h(LanguageDetail, { lang: selected })
+        )
+      );
+    }
+
+    createRoot(document.querySelector(&quot;#root&quot;)).render(h(App));
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2>연습</h2>
+<ol>
+<li>이름뿐 아니라 패러다임도 검색에 포함합니다. 필터 함수는 <code>App</code> 안에 둡니다.</li>
+<li>선택한 이름이 <code>visible</code>에 없으면 상세를 비웁니다. <code>selectedName</code>을 지울지, 상세만 <code>null</code>로 계산할지 하나를 고르고 차이를 적습니다.</li>
+<li><code>key</code>를 배열 인덱스로 바꿉니다. 각 행이 자기 입력 상태를 가지면 필터 뒤에 그 상태가 어느 언어에 붙는지 설명합니다.</li>
+</ol>
+<h2>스스로 확인</h2>
+<ol>
+<li>검색 입력의 현재 글자는 어디에 있습니까?</li>
+</ol>
+<p><code>App</code>의 <code>query</code> 상태에 있습니다. <code>SearchBox</code>는 그 값을 props로 받아 표시만 합니다.</p>
+<ol start="2">
+<li>자식이 선택을 바꾸려면 어떻게 합니까?</li>
+</ol>
+<p>부모가 내려 준 <code>onSelect</code>를 호출합니다. 자식이 <code>selectedName</code>에 직접 대입하지 않습니다.</p>
+<ol start="3">
+<li>상세는 왜 <code>visible</code>이 아니라 <code>LANGUAGES</code>에서 찾습니까?</li>
+</ol>
+<p>선택은 검색 결과와 별도 상태이기 때문입니다. 걸러져 행이 없어도 고른 이름은 유효합니다.</p>
+<ol start="4">
+<li>파생 목록을 상태로 두지 않는 이유는 무엇입니까?</li>
+</ol>
+<p><code>query</code>만 있으면 렌더 중에 계산할 수 있기 때문입니다. 두 곳을 갱신하면 서로 어긋납니다.</p>
+<ol start="5">
+<li>인덱스를 key로 쓰면 어떤 문제가 있습니까?</li>
+</ol>
+<p>항목 순서가 바뀔 때 React가 다른 언어를 같은 행으로 여깁니다. 행에 붙은 지역 상태가 엉뚱한 이름에 남습니다.</p>
+
+      <nav class="pager">
+    <a href="canvas-sketch.html"><span>이전</span>Canvas로 언어 지도 그리기</a>
+    <a href="react-hooks.html"><span>다음</span>React Hooks</a>
+  </nav>
+      <footer class="colophon">samsepi0l · 언어 공부장</footer>
+    </article></main>
+  </div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

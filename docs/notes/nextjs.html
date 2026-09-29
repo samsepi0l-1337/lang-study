@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Next.js로 언어 문서 사이트 · 언어 공부장</title>
+  <meta name="description" content="App Router의 파일 경로로 언어 문서 목록과 상세를 나누고, 검색만 클라이언트 상태로 둡니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#content">본문으로</a>
+  <div class="shell">
+    <aside class="nav">
+      <a class="brand" href="../index.html"><strong>언어 공부장</strong><span>samsepi0l</span></a>
+      <input class="search" data-filter placeholder="노트 찾기" aria-label="노트 찾기">
+      <details class="toc" open>
+        <summary>목차</summary>
+        <div class="group">기초</div><ol><li data-item="1 Git과 GitHub 임시 저장소에서 커밋과 충돌 병합을 따라 하고 원격과 풀 리퀘스트는 개념으로 구분합니다. Git GitHub Python JavaScript TypeScript Go Rust"><a href="../notes/git-github.html"><small>01</small><span>Git과 GitHub</span></a></li><li data-item="2 SQL로 언어 데이터를 다루기 SQLite로 언어와 구현체와 릴리스를 거르고 묶고, 잘못된 연도는 트랜잭션으로 되돌립니다. SQL SQLite Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/sql.html"><small>02</small><span>SQL로 언어 데이터를 다루기</span></a></li><li data-item="3 Python으로 문서 수집기 만들기 표준 라이브러리만으로 로컬 HTML 픽스처를 읽어 언어 목록 JSON을 만듭니다. Python html.parser Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/python-collector.html"><small>03</small><span>Python으로 문서 수집기 만들기</span></a></li><li data-item="4 Gulp로 문서 파이프라인 만들기 Gulp의 스트림 태스크와 같은 HTML 변환을 Node 표준 모듈만으로도 확인합니다. Gulp Node.js Python JavaScript Go Rust SQL"><a href="../notes/gulp.html"><small>04</small><span>Gulp로 문서 파이프라인 만들기</span></a></li></ol><div class="group">브라우저와 React</div><ol><li data-item="5 브라우저 확장 프로그램 Manifest V3 팝업으로 오늘의 언어를 고르고, 루프백 데모에서만 언어 이름을 표시합니다. JavaScript Chrome Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/chrome-extension.html"><small>05</small><span>브라우저 확장 프로그램</span></a></li><li data-item="6 Canvas로 언어 지도 그리기 언어 카드의 좌표를 모델로 두고, 포인터로 옮긴 뒤 실행 취소로 직전 배치를 복원합니다. JavaScript Canvas Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/canvas-sketch.html"><small>06</small><span>Canvas로 언어 지도 그리기</span></a></li><li data-item="7 React로 언어 사전 만들기 이름 검색과 선택 상태를 부모에 두고, 목록과 상세는 props로만 언어 데이터를 받습니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-dictionary.html"><small>07</small><span>React로 언어 사전 만들기</span></a></li><li data-item="8 React Hooks 언어 메모 화면에서 상태, 효과, ref, 메모, 디바운스 훅의 호출 순서와 의존성을 맞춥니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-hooks.html"><small>08</small><span>React Hooks</span></a></li></ol><div class="group">상태와 GraphQL</div><ol><li data-item="9 Redux로 상태 설계하기 언어 목록, 선택, 즐겨찾기를 스토어 하나와 순수 리듀서 전이로 고정합니다. Redux Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/redux.html"><small>09</small><span>Redux로 상태 설계하기</span></a></li><li data-item="10 Next.js로 언어 문서 사이트 App Router의 파일 경로로 언어 문서 목록과 상세를 나누고, 검색만 클라이언트 상태로 둡니다. Next.js Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell Next.js"><a href="../notes/nextjs.html" aria-current="page"><small>10</small><span>Next.js로 언어 문서 사이트</span></a></li><li data-item="11 GraphQL 서버 언어 카탈로그를 스키마와 리졸버로 나누고, 포트를 열지 않은 채 graphql()로 쿼리와 뮤테이션을 실행합니다. GraphQL Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell GraphQL"><a href="../notes/graphql-server.html"><small>11</small><span>GraphQL 서버</span></a></li><li data-item="12 GraphQL 클라이언트 executeAgainst가 data를 반환하거나 errors를 던지고, normalize가 언어를 id 맵으로 접습니다. GraphQL Python Haskell GraphQL"><a href="../notes/graphql-client.html"><small>12</small><span>GraphQL 클라이언트</span></a></li></ol><div class="group">서버</div><ol><li data-item="13 NestJS로 언어 등록 API 모듈과 생성자 주입, DTO 검증으로 언어 열 개를 등록하는 HTTP API를 조립합니다. NestJS Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/nestjs.html"><small>13</small><span>NestJS로 언어 등록 API</span></a></li><li data-item="14 Go로 작은 HTTP 서버 표준 라이브러리와 뮤텍스로 언어 목록을 조회하고 추가하는 HTTP 서버를 테스트합니다. Go Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/go.html"><small>14</small><span>Go로 작은 HTTP 서버</span></a></li><li data-item="15 워크숍 좌석 예약 시작 시각과 이름, 좌석 수 규칙을 서비스에 두고 언어 워크숍 좌석을 예약합니다. JavaScript Rust Haskell"><a href="../notes/workshop-booking.html"><small>15</small><span>워크숍 좌석 예약</span></a></li><li data-item="16 코드 조각 피드 언어별 코드 조각을 id 커서로 나누고, 사용자 이름 단위로 추천을 토글합니다. JavaScript Python Go Rust"><a href="../notes/snippet-feed.html"><small>16</small><span>코드 조각 피드</span></a></li></ol><div class="group">모바일과 연결</div><ol><li data-item="17 Dart 언어의 기본 널 안전, final과 const, Future를 한 파일의 언어 카드 보고서로 확인합니다. Dart Kotlin Dart Haskell"><a href="../notes/dart.html"><small>17</small><span>Dart 언어의 기본</span></a></li><li data-item="18 Flutter로 언어 카드 메모리 속 즐겨찾기와 상세 경로를 Flutter 3 위젯으로 구성합니다. Flutter Rust Dart Haskell Flutter"><a href="../notes/flutter.html"><small>18</small><span>Flutter로 언어 카드</span></a></li><li data-item="19 React Native로 언어 카드 복습 규칙만 순수 함수로 두고, 언어 카드 화면은 네이티브 뷰로 분리합니다. React Native Rust Dart Haskell React"><a href="../notes/react-native.html"><small>19</small><span>React Native로 언어 카드</span></a></li><li data-item="20 실시간 스터디룸의 연결 두 탭이 코드 조각을 주고받도록 신호, SDP, ICE를 역할로 나눕니다. WebRTC "><a href="../notes/webrtc-room.html"><small>20</small><span>실시간 스터디룸의 연결</span></a></li><li data-item="21 TypeScript로 블록 잇기 언어 제안을 해시로 잇는 목록을 TypeScript로 만들고 변조를 검증으로 찾습니다. TypeScript TypeScript Dart"><a href="../notes/ts-chain.html"><small>21</small><span>TypeScript로 블록 잇기</span></a></li></ol><div class="group">에이전트와 제품</div><ol><li data-item="22 언어 튜터 서비스 구조 로컬 카탈로그에서 언어 설명을 고르고, 역할이 나뉜 메시지를 화면에 나누어 그립니다. LLM Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/llm-tutor.html"><small>22</small><span>언어 튜터 서비스 구조</span></a></li><li data-item="23 도구를 쓰는 에이전트 루프 목표를 받은 뒤 로컬 도구의 결과를 관찰로 쌓고, 최종 답이나 네 걸음에서 멈춥니다. 에이전트 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/ai-agents.html"><small>23</small><span>도구를 쓰는 에이전트 루프</span></a></li><li data-item="24 n8n 워크플로 웹훅으로 받은 언어 이름을 Set 노드가 카드의 제목과 요약으로 바꿉니다. n8n Rust Zig"><a href="../notes/n8n.html"><small>24</small><span>n8n 워크플로</span></a></li><li data-item="25 직접 설계하는 Supabase 스타터 프로필과 언어와 학습 노트를 RLS로 나누고, 서비스 롤은 서버에만 둡니다. Supabase Python Haskell SQL"><a href="../notes/supabase-starter.html"><small>25</small><span>직접 설계하는 Supabase 스타터</span></a></li><li data-item="26 언어 선반이라는 제품 언어 선반은 배우는 이유와 다음 연습을 남기는 기록이고, 지표는 주간 노트 수입니다. 제품 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/maker.html"><small>26</small><span>언어 선반이라는 제품</span></a></li></ol>
+      </details>
+    </aside>
+    <main class="main" id="content"><article class="sheet">
+      <div class="meta"><span class="pill">중급</span><span class="pill">40분</span><span class="pill">Next.js</span></div>
+      <h1>Next.js로 언어 문서 사이트</h1>
+<p>이 노트는 samsepi0l이 Next.js App Router로 언어 문서 사이트의 경로를 정리한 것입니다. 주소는 라우트 표가 아니라 <code>app</code> 디렉터리의 파일이 만듭니다. 목록은 <code>/</code>이고 상세는 <code>/languages/python</code> 같은 경로입니다. 데이터는 모듈 안의 배열이며 네트워크 요청은 하지 않습니다. 의존성은 <code>next</code> 14.2.35, <code>react</code> 18.3.1, <code>react-dom</code> 18.3.1입니다.</p>
+<h2>이 장을 끝내면</h2>
+<ul>
+<li><code>page.js</code>와 <code>layout.js</code>가 경로가 되는 방식과, <code>data.js</code>가 경로가 아닌 이유를 구분합니다.</li>
+<li>서버 컴포넌트와 <code>&quot;use client&quot;</code>의 경계를 설명하고, 함수 대신 평범한 배열만 넘깁니다.</li>
+<li><code>next/link</code>의 <code>Link</code>로 목록과 상세를 연결합니다.</li>
+</ul>
+<h2>파일 경로가 주소입니다</h2>
+<p><code>app/layout.js</code>는 모든 페이지를 감쌉니다. <code>&lt;html&gt;</code>과 <code>&lt;body&gt;</code>는 루트 레이아웃에 둡니다. <code>metadata</code>는 문서 제목과 설명입니다. <code>app/page.js</code>는 <code>/</code>입니다. 서버에서 언어 배열의 길이를 문장으로 만듭니다.</p>
+<p><code>app/languages/[slug]/page.js</code>는 <code>/languages/python</code>처럼 슬러그마다 한 페이지입니다. 폴더 이름 <code>[slug]</code>가 동적 조각입니다. Next.js 14에서 페이지 인자는 <code>{ params }</code> 동기 객체이고 <code>params.slug</code>는 문자열입니다. 이 프로젝트는 next 14에 고정하므로 params를 Promise로 받지 않습니다. Next.js 15의 비동기 params와 섞지 않습니다.</p>
+<p><code>generateStaticParams</code>는 빌드 때 열 개 슬러그를 알려 줍니다. 없는 슬러그는 이 예제에서 안내 문단을 그립니다. 상태 코드를 404로 바꾸려면 <code>next/navigation</code>의 <code>notFound</code>를 쓰는데, 그 호출은 넣지 않았습니다. <code>app/languages/data.js</code>와 <code>app/components/Search.js</code>는 <code>page.js</code>가 아니므로 주소가 되지 않습니다. <code>getLanguage(slug)</code>는 찾으면 언어를, 없으면 <code>null</code>을 반환합니다.</p>
+<p><code>year</code>는 이 노트가 고정한 최초 공개 연도입니다. 패러다임은 화면용 한글 표기입니다.</p>
+<h2>서버가 그리고, 검색만 브라우저 상태입니다</h2>
+<p>기본은 서버 컴포넌트입니다. <code>layout.js</code>, <code>page.js</code>, <code>[slug]/page.js</code>에는 <code>&quot;use client&quot;</code>가 없습니다. 이 페이지들은 서버에서 렌더합니다. <code>data.js</code>는 컴포넌트가 아니라 언어 배열과 <code>getLanguage</code>를 내보내는 모듈입니다. 네트워크 <code>fetch</code>는 쓰지 않습니다.</p>
+<p>상태와 입력 이벤트는 클라이언트 컴포넌트에만 둡니다. <code>Search.js</code> 첫 줄의 <code>&quot;use client&quot;</code>가 경계입니다. 지시문 앞에 import를 두지 않습니다. 이 파일이 가져오는 <code>useState</code>와 <code>Link</code>는 브라우저 번들에 포함됩니다.</p>
+<p>서버 컴포넌트는 클라이언트 컴포넌트를 import할 수 있습니다. <code>app/page.js</code>가 <code>Search</code>에 <code>languages</code>를 넘깁니다. 그 값은 평범한 객체 배열이라 직렬화됩니다. <code>getLanguage</code> 같은 함수는 직렬화되지 않으므로 넘기지 않습니다. 검색어는 <code>useState</code>에만 있습니다. 이 입력 밖으로 공유할 필요가 없기 때문입니다. 빈 검색은 열 개를 모두 보여주고, 글자가 있으면 이름, 슬러그, 패러다임을 소문자로 비교합니다.</p>
+<h2>Link는 앱 안의 경로로 이동합니다</h2>
+<p><code>&lt;a href&gt;</code>는 브라우저가 문서를 통째로 다시 요청합니다. <code>Link</code>는 이 Next 앱 안의 경로로 전환합니다. 목록 항목의 href는 <code>/languages/</code> 뒤에 슬러그를 붙입니다. 상세의 목록 링크와 헤더 제목은 <code>href=&quot;/&quot;</code>입니다. 헤더의 <code>Link</code>는 서버 컴포넌트인 레이아웃에 두었습니다. <code>Link</code>는 클라이언트 전용 API가 아닙니다.</p>
+<h2>예제</h2>
+<p><code>examples/nextjs</code>에서 <code>npm install</code>을 한 뒤 <code>npm run dev</code>로 개발 서버를 띄웁니다. <code>npm run build</code>와 <code>npm start</code>가 있고, 빌드는 <code>generateStaticParams</code>의 열 개 슬러그를 정적 페이지로 만듭니다.</p>
+<p><code>examples/nextjs/package.json</code></p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;language-docs&quot;,
+  &quot;private&quot;: true,
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;next dev&quot;,
+    &quot;build&quot;: &quot;next build&quot;,
+    &quot;start&quot;: &quot;next start&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;next&quot;: &quot;14.2.35&quot;,
+    &quot;react&quot;: &quot;18.3.1&quot;,
+    &quot;react-dom&quot;: &quot;18.3.1&quot;
+  }
+}
+</code></pre>
+<p><code>examples/nextjs/next.config.js</code></p>
+<pre><code class="language-javascript">/** @type {import(&#39;next&#39;).NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+};
+
+module.exports = nextConfig;
+</code></pre>
+<p><code>examples/nextjs/app/layout.js</code></p>
+<pre><code class="language-javascript">import Link from &quot;next/link&quot;;
+
+export const metadata = {
+  title: &quot;언어 문서&quot;,
+  description: &quot;열 가지 프로그래밍 언어의 패러다임과 공개 연도&quot;,
+};
+
+export default function RootLayout({ children }) {
+  return (
+    &lt;html lang=&quot;ko&quot;&gt;
+      &lt;body&gt;
+        &lt;header&gt;
+          &lt;Link href=&quot;/&quot;&gt;언어 문서&lt;/Link&gt;
+        &lt;/header&gt;
+        {children}
+      &lt;/body&gt;
+    &lt;/html&gt;
+  );
+}
+</code></pre>
+<p><code>examples/nextjs/app/page.js</code></p>
+<pre><code class="language-javascript">import Search from &quot;./components/Search&quot;;
+import { languages } from &quot;./languages/data&quot;;
+
+export default function HomePage() {
+  return (
+    &lt;main&gt;
+      &lt;h1&gt;언어 문서&lt;/h1&gt;
+      &lt;p&gt;
+        등록된 언어는 {languages.length}개입니다. 검색은 브라우저 상태에서 이름, 슬러그,
+        패러다임을 거릅니다.
+      &lt;/p&gt;
+      &lt;Search languages={languages} /&gt;
+    &lt;/main&gt;
+  );
+}
+</code></pre>
+<p><code>examples/nextjs/app/languages/data.js</code></p>
+<pre><code class="language-javascript">export const languages = [
+  { slug: &quot;python&quot;, name: &quot;Python&quot;, year: 1991, paradigm: &quot;다중 패러다임&quot;, summary: &quot;들여쓰기로 블록을 나누고, 동적 타입으로 스크립트와 데이터 처리를 작성합니다.&quot; },
+  { slug: &quot;javascript&quot;, name: &quot;JavaScript&quot;, year: 1995, paradigm: &quot;다중 패러다임&quot;, summary: &quot;브라우저와 서버 런타임에서 이벤트 루프와 비동기 호출을 다룹니다.&quot; },
+  { slug: &quot;go&quot;, name: &quot;Go&quot;, year: 2009, paradigm: &quot;명령형&quot;, summary: &quot;고루틴과 채널로 동시성을 표현하고, 문법은 작게 유지합니다.&quot; },
+  { slug: &quot;rust&quot;, name: &quot;Rust&quot;, year: 2010, paradigm: &quot;다중 패러다임&quot;, summary: &quot;소유권과 빌림으로 메모리 안전을 컴파일 시점에 검사합니다.&quot; },
+  { slug: &quot;typescript&quot;, name: &quot;TypeScript&quot;, year: 2012, paradigm: &quot;다중 패러다임&quot;, summary: &quot;JavaScript에 정적 타입을 얹고, 기존 파일부터 점진적으로 도입합니다.&quot; },
+  { slug: &quot;kotlin&quot;, name: &quot;Kotlin&quot;, year: 2011, paradigm: &quot;객체지향&quot;, summary: &quot;널 가능 타입을 타입 시스템에서 구분하고 JVM 바이트코드로 컴파일합니다.&quot; },
+  { slug: &quot;elixir&quot;, name: &quot;Elixir&quot;, year: 2011, paradigm: &quot;함수형&quot;, summary: &quot;BEAM 프로세스와 패턴 매칭으로 동시성과 분기를 작성합니다.&quot; },
+  { slug: &quot;zig&quot;, name: &quot;Zig&quot;, year: 2016, paradigm: &quot;명령형&quot;, summary: &quot;호출자가 넘긴 할당자를 쓰고, comptime으로 컴파일 시점 코드를 실행합니다.&quot; },
+  { slug: &quot;dart&quot;, name: &quot;Dart&quot;, year: 2011, paradigm: &quot;객체지향&quot;, summary: &quot;널 안전과 AOT 컴파일로 클라이언트 UI를 작성합니다.&quot; },
+  { slug: &quot;haskell&quot;, name: &quot;Haskell&quot;, year: 1990, paradigm: &quot;함수형&quot;, summary: &quot;순수 함수가 기본이고, 효과는 타입으로 구분합니다.&quot; },
+];
+
+export function getLanguage(slug) {
+  return languages.find((language) =&gt; language.slug === slug) ?? null;
+}
+</code></pre>
+<p><code>examples/nextjs/app/components/Search.js</code></p>
+<pre><code class="language-javascript">&quot;use client&quot;;
+
+import { useState } from &quot;react&quot;;
+import Link from &quot;next/link&quot;;
+
+export default function Search({ languages }) {
+  const [keyword, setKeyword] = useState(&quot;&quot;);
+  const query = keyword.trim().toLowerCase();
+  const visible = languages.filter((language) =&gt; {
+    const haystack = `${language.name} ${language.slug} ${language.paradigm}`.toLowerCase();
+    return query === &quot;&quot; || haystack.includes(query);
+  });
+
+  return (
+    &lt;section&gt;
+      &lt;label htmlFor=&quot;language-search&quot;&gt;언어 검색&lt;/label&gt;
+      &lt;input
+        id=&quot;language-search&quot;
+        value={keyword}
+        onChange={(event) =&gt; setKeyword(event.target.value)}
+        placeholder=&quot;이름, 슬러그, 패러다임&quot;
+      /&gt;
+      &lt;ul&gt;
+        {visible.map((language) =&gt; (
+          &lt;li key={language.slug}&gt;
+            &lt;Link href={`/languages/${language.slug}`}&gt;{language.name}&lt;/Link&gt;
+            {&quot; · &quot;}
+            {language.paradigm}
+            {&quot; · &quot;}
+            {language.year}
+          &lt;/li&gt;
+        ))}
+      &lt;/ul&gt;
+      {visible.length === 0 ? &lt;p&gt;일치하는 언어가 없습니다.&lt;/p&gt; : null}
+    &lt;/section&gt;
+  );
+}
+</code></pre>
+<p><code>examples/nextjs/app/languages/[slug]/page.js</code></p>
+<pre><code class="language-javascript">import Link from &quot;next/link&quot;;
+import { getLanguage, languages } from &quot;../data&quot;;
+
+export function generateStaticParams() {
+  return languages.map((language) =&gt; ({ slug: language.slug }));
+}
+
+export default function LanguagePage({ params }) {
+  const language = getLanguage(params.slug);
+
+  if (!language) {
+    return (
+      &lt;main&gt;
+        &lt;h1&gt;없는 문서&lt;/h1&gt;
+        &lt;p&gt;요청한 슬러그에 해당하는 언어가 없습니다.&lt;/p&gt;
+        &lt;Link href=&quot;/&quot;&gt;목록으로&lt;/Link&gt;
+      &lt;/main&gt;
+    );
+  }
+
+  return (
+    &lt;main&gt;
+      &lt;p&gt;
+        &lt;Link href=&quot;/&quot;&gt;목록&lt;/Link&gt;
+      &lt;/p&gt;
+      &lt;h1&gt;{language.name}&lt;/h1&gt;
+      &lt;p&gt;{language.summary}&lt;/p&gt;
+      &lt;dl&gt;
+        &lt;dt&gt;슬러그&lt;/dt&gt;
+        &lt;dd&gt;{language.slug}&lt;/dd&gt;
+        &lt;dt&gt;패러다임&lt;/dt&gt;
+        &lt;dd&gt;{language.paradigm}&lt;/dd&gt;
+        &lt;dt&gt;공개 연도&lt;/dt&gt;
+        &lt;dd&gt;{language.year}&lt;/dd&gt;
+      &lt;/dl&gt;
+    &lt;/main&gt;
+  );
+}
+</code></pre>
+<h2>연습</h2>
+<ol>
+<li><code>app/paradigms/[name]/page.js</code>를 추가합니다. 패러다임이 같은 언어만 서버 컴포넌트로 그리고, <code>generateStaticParams</code>에는 데이터에 있는 패러다임만 넣습니다.</li>
+<li>검색어를 주소 쿼리로 옮기면 새로고침 뒤에도 남습니다. 서버가 읽어야 하는지, 지금처럼 클라이언트 상태로 충분한지 한 문장으로 정합니다. 함수를 props로 넘기지 않습니다.</li>
+<li>없는 슬러그를 404로 바꿉니다. <code>notFound</code>를 호출하고, 있는 슬러그 열 개는 계속 문서를 보여 주는지 확인합니다.</li>
+</ol>
+<h2>스스로 확인</h2>
+<ol>
+<li><code>data.js</code>가 <code>/languages/data</code>로 열리지 않는 이유는 무엇입니까?</li>
+</ol>
+<p>라우트는 <code>page.js</code>만 만듭니다. <code>data.js</code>는 같은 폴더의 모듈입니다.</p>
+<ol start="2">
+<li><code>Search</code>에 <code>getLanguage</code>를 넘기면 왜 안 됩니까?</li>
+</ol>
+<p>서버 컴포넌트에서 클라이언트 컴포넌트로 가는 props는 직렬화되어야 합니다. 함수는 직렬화되지 않고, 언어 배열은 평범한 데이터라서 넘길 수 있습니다.</p>
+<ol start="3">
+<li><code>&quot;use client&quot;</code>를 <code>layout.js</code>에 붙이면 무엇이 바뀝니까?</li>
+</ol>
+<p>루트 레이아웃이 클라이언트 경계가 됩니다. 이 예제는 검색 파일에만 지시문을 두어 목록 길이와 상세 문서를 서버 컴포넌트로 남깁니다.</p>
+<ol start="4">
+<li>Next.js 14에서 <code>LanguagePage</code>의 <code>params</code>는 어떤 모양입니까?</li>
+</ol>
+<p><code>{ params }</code>로 받는 동기 객체이고 <code>params.slug</code>가 문자열입니다. 의존성이 next 14이므로 Promise로 기다리지 않습니다.</p>
+<ol start="5">
+<li><code>Link</code> 대신 <code>&lt;a&gt;</code>를 쓰면 무엇이 다릅니까?</li>
+</ol>
+<p><code>&lt;a&gt;</code>는 문서 전체를 다시 요청합니다. <code>Link</code>는 <code>/languages/${slug}</code> 또는 <code>/</code>로 앱 안에서 전환합니다.</p>
+
+      <nav class="pager">
+    <a href="redux.html"><span>이전</span>Redux로 상태 설계하기</a>
+    <a href="graphql-server.html"><span>다음</span>GraphQL 서버</a>
+  </nav>
+      <footer class="colophon">samsepi0l · 언어 공부장</footer>
+    </article></main>
+  </div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

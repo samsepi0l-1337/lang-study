@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GraphQL 서버 · 언어 공부장</title>
+  <meta name="description" content="언어 카탈로그를 스키마와 리졸버로 나누고, 포트를 열지 않은 채 graphql()로 쿼리와 뮤테이션을 실행합니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#content">본문으로</a>
+  <div class="shell">
+    <aside class="nav">
+      <a class="brand" href="../index.html"><strong>언어 공부장</strong><span>samsepi0l</span></a>
+      <input class="search" data-filter placeholder="노트 찾기" aria-label="노트 찾기">
+      <details class="toc" open>
+        <summary>목차</summary>
+        <div class="group">기초</div><ol><li data-item="1 Git과 GitHub 임시 저장소에서 커밋과 충돌 병합을 따라 하고 원격과 풀 리퀘스트는 개념으로 구분합니다. Git GitHub Python JavaScript TypeScript Go Rust"><a href="../notes/git-github.html"><small>01</small><span>Git과 GitHub</span></a></li><li data-item="2 SQL로 언어 데이터를 다루기 SQLite로 언어와 구현체와 릴리스를 거르고 묶고, 잘못된 연도는 트랜잭션으로 되돌립니다. SQL SQLite Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/sql.html"><small>02</small><span>SQL로 언어 데이터를 다루기</span></a></li><li data-item="3 Python으로 문서 수집기 만들기 표준 라이브러리만으로 로컬 HTML 픽스처를 읽어 언어 목록 JSON을 만듭니다. Python html.parser Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/python-collector.html"><small>03</small><span>Python으로 문서 수집기 만들기</span></a></li><li data-item="4 Gulp로 문서 파이프라인 만들기 Gulp의 스트림 태스크와 같은 HTML 변환을 Node 표준 모듈만으로도 확인합니다. Gulp Node.js Python JavaScript Go Rust SQL"><a href="../notes/gulp.html"><small>04</small><span>Gulp로 문서 파이프라인 만들기</span></a></li></ol><div class="group">브라우저와 React</div><ol><li data-item="5 브라우저 확장 프로그램 Manifest V3 팝업으로 오늘의 언어를 고르고, 루프백 데모에서만 언어 이름을 표시합니다. JavaScript Chrome Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/chrome-extension.html"><small>05</small><span>브라우저 확장 프로그램</span></a></li><li data-item="6 Canvas로 언어 지도 그리기 언어 카드의 좌표를 모델로 두고, 포인터로 옮긴 뒤 실행 취소로 직전 배치를 복원합니다. JavaScript Canvas Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/canvas-sketch.html"><small>06</small><span>Canvas로 언어 지도 그리기</span></a></li><li data-item="7 React로 언어 사전 만들기 이름 검색과 선택 상태를 부모에 두고, 목록과 상세는 props로만 언어 데이터를 받습니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-dictionary.html"><small>07</small><span>React로 언어 사전 만들기</span></a></li><li data-item="8 React Hooks 언어 메모 화면에서 상태, 효과, ref, 메모, 디바운스 훅의 호출 순서와 의존성을 맞춥니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-hooks.html"><small>08</small><span>React Hooks</span></a></li></ol><div class="group">상태와 GraphQL</div><ol><li data-item="9 Redux로 상태 설계하기 언어 목록, 선택, 즐겨찾기를 스토어 하나와 순수 리듀서 전이로 고정합니다. Redux Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/redux.html"><small>09</small><span>Redux로 상태 설계하기</span></a></li><li data-item="10 Next.js로 언어 문서 사이트 App Router의 파일 경로로 언어 문서 목록과 상세를 나누고, 검색만 클라이언트 상태로 둡니다. Next.js Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell Next.js"><a href="../notes/nextjs.html"><small>10</small><span>Next.js로 언어 문서 사이트</span></a></li><li data-item="11 GraphQL 서버 언어 카탈로그를 스키마와 리졸버로 나누고, 포트를 열지 않은 채 graphql()로 쿼리와 뮤테이션을 실행합니다. GraphQL Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell GraphQL"><a href="../notes/graphql-server.html" aria-current="page"><small>11</small><span>GraphQL 서버</span></a></li><li data-item="12 GraphQL 클라이언트 executeAgainst가 data를 반환하거나 errors를 던지고, normalize가 언어를 id 맵으로 접습니다. GraphQL Python Haskell GraphQL"><a href="../notes/graphql-client.html"><small>12</small><span>GraphQL 클라이언트</span></a></li></ol><div class="group">서버</div><ol><li data-item="13 NestJS로 언어 등록 API 모듈과 생성자 주입, DTO 검증으로 언어 열 개를 등록하는 HTTP API를 조립합니다. NestJS Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/nestjs.html"><small>13</small><span>NestJS로 언어 등록 API</span></a></li><li data-item="14 Go로 작은 HTTP 서버 표준 라이브러리와 뮤텍스로 언어 목록을 조회하고 추가하는 HTTP 서버를 테스트합니다. Go Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/go.html"><small>14</small><span>Go로 작은 HTTP 서버</span></a></li><li data-item="15 워크숍 좌석 예약 시작 시각과 이름, 좌석 수 규칙을 서비스에 두고 언어 워크숍 좌석을 예약합니다. JavaScript Rust Haskell"><a href="../notes/workshop-booking.html"><small>15</small><span>워크숍 좌석 예약</span></a></li><li data-item="16 코드 조각 피드 언어별 코드 조각을 id 커서로 나누고, 사용자 이름 단위로 추천을 토글합니다. JavaScript Python Go Rust"><a href="../notes/snippet-feed.html"><small>16</small><span>코드 조각 피드</span></a></li></ol><div class="group">모바일과 연결</div><ol><li data-item="17 Dart 언어의 기본 널 안전, final과 const, Future를 한 파일의 언어 카드 보고서로 확인합니다. Dart Kotlin Dart Haskell"><a href="../notes/dart.html"><small>17</small><span>Dart 언어의 기본</span></a></li><li data-item="18 Flutter로 언어 카드 메모리 속 즐겨찾기와 상세 경로를 Flutter 3 위젯으로 구성합니다. Flutter Rust Dart Haskell Flutter"><a href="../notes/flutter.html"><small>18</small><span>Flutter로 언어 카드</span></a></li><li data-item="19 React Native로 언어 카드 복습 규칙만 순수 함수로 두고, 언어 카드 화면은 네이티브 뷰로 분리합니다. React Native Rust Dart Haskell React"><a href="../notes/react-native.html"><small>19</small><span>React Native로 언어 카드</span></a></li><li data-item="20 실시간 스터디룸의 연결 두 탭이 코드 조각을 주고받도록 신호, SDP, ICE를 역할로 나눕니다. WebRTC "><a href="../notes/webrtc-room.html"><small>20</small><span>실시간 스터디룸의 연결</span></a></li><li data-item="21 TypeScript로 블록 잇기 언어 제안을 해시로 잇는 목록을 TypeScript로 만들고 변조를 검증으로 찾습니다. TypeScript TypeScript Dart"><a href="../notes/ts-chain.html"><small>21</small><span>TypeScript로 블록 잇기</span></a></li></ol><div class="group">에이전트와 제품</div><ol><li data-item="22 언어 튜터 서비스 구조 로컬 카탈로그에서 언어 설명을 고르고, 역할이 나뉜 메시지를 화면에 나누어 그립니다. LLM Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/llm-tutor.html"><small>22</small><span>언어 튜터 서비스 구조</span></a></li><li data-item="23 도구를 쓰는 에이전트 루프 목표를 받은 뒤 로컬 도구의 결과를 관찰로 쌓고, 최종 답이나 네 걸음에서 멈춥니다. 에이전트 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/ai-agents.html"><small>23</small><span>도구를 쓰는 에이전트 루프</span></a></li><li data-item="24 n8n 워크플로 웹훅으로 받은 언어 이름을 Set 노드가 카드의 제목과 요약으로 바꿉니다. n8n Rust Zig"><a href="../notes/n8n.html"><small>24</small><span>n8n 워크플로</span></a></li><li data-item="25 직접 설계하는 Supabase 스타터 프로필과 언어와 학습 노트를 RLS로 나누고, 서비스 롤은 서버에만 둡니다. Supabase Python Haskell SQL"><a href="../notes/supabase-starter.html"><small>25</small><span>직접 설계하는 Supabase 스타터</span></a></li><li data-item="26 언어 선반이라는 제품 언어 선반은 배우는 이유와 다음 연습을 남기는 기록이고, 지표는 주간 노트 수입니다. 제품 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/maker.html"><small>26</small><span>언어 선반이라는 제품</span></a></li></ol>
+      </details>
+    </aside>
+    <main class="main" id="content"><article class="sheet">
+      <div class="meta"><span class="pill">중급</span><span class="pill">40분</span><span class="pill">GraphQL</span></div>
+      <h1>GraphQL 서버</h1>
+<p>이 노트는 samsepi0l이 언어 카탈로그의 GraphQL 서버를 <code>graphql</code> 패키지만으로 정리한 것입니다. 스키마가 필드와 널 여부를 먼저 정하고, 리졸버는 메모리 배열을 읽거나 고칩니다. 테스트는 HTTP 포트를 열지 않고 <code>run(query, variables)</code>만 호출합니다.</p>
+<p>시드 id는 <code>python</code>, <code>javascript</code>, <code>go</code>, <code>rust</code>, <code>typescript</code>, <code>kotlin</code>, <code>elixir</code>, <code>zig</code>, <code>dart</code>, <code>haskell</code>입니다. <code>year</code>는 이 노트가 고정한 최초 공개 연도입니다.</p>
+<h2>이 장을 끝내면</h2>
+<ul>
+<li><code>Language</code>, <code>Query</code>, <code>Mutation</code>에서 널 허용이 응답 모양을 어떻게 바꾸는지 설명합니다.</li>
+<li>변수, 리졸버 인자, 메모리 db 갱신, <code>errors</code> 배열을 구분합니다.</li>
+<li>쿼리 둘과 뮤테이션 하나를 포트 없이 실행합니다.</li>
+</ul>
+<h2>스키마가 응답의 모양을 고정합니다</h2>
+<p><code>buildSchema</code>에 넣는 타입은 세 개입니다. <code>Language</code>의 <code>id</code>, <code>name</code>, <code>paradigm</code>, <code>year</code>는 모두 <code>!</code>라서 널이 아닙니다. <code>languages(paradigm: String)</code>의 반환은 <code>[Language!]!</code>입니다. 목록과 원소 모두 널이 아니고, 일치가 없어도 <code>null</code>이 아니라 <code>[]</code>입니다. 인자 <code>paradigm</code>은 생략할 수 있습니다.</p>
+<p>인자가 <code>null</code> 또는 <code>undefined</code>이면 열 개를 모두 반환합니다. 문자열이면 패러다임이 완전히 같은 언어만, 시드 순서대로 반환합니다. <code>함수형</code>은 Elixir와 Haskell입니다. 빈 문자열은 값이 있는 조건이라 일치가 없으면 빈 배열입니다.</p>
+<p><code>language(id: ID!)</code>는 id가 필수이고 반환은 널을 허용합니다. 없는 id는 오류가 아니라 <code>null</code>입니다. <code>addLanguage</code>는 <code>name</code>, <code>paradigm</code>, <code>year</code>가 필수이고 반환 <code>Language</code>는 널이 아닙니다. 다른 타입은 추가하지 않습니다. 테스트가 필드 타입 문자열을 확인합니다.</p>
+<h2>리졸버는 db 배열을 직접 고칩니다</h2>
+<p><code>db.languages</code>는 프로세스 메모리의 배열입니다. 요청마다 새 배열을 만들지 않습니다. 뮤테이션이 <code>push</code>하고, 같은 프로세스의 다음 <code>run</code>이 그 변화를 봅니다. 프로세스가 끝나면 사라집니다.</p>
+<p><code>graphql</code>은 루트 객체의 함수를 <code>(args, context, info)</code>로 호출합니다. 이 예제는 첫 인자만 씁니다. <code>addLanguage</code>는 이름의 앞뒤 공백을 빼고 소문자로 만든 뒤 공백을 <code>-</code>로 바꿔 id로 씁니다. <code>Lua</code>는 <code>lua</code>가 됩니다. 같은 id가 있으면 예외를 던집니다. 반환 타입이 널을 허용하지 않으므로 그 필드는 <code>null</code>이 되고, 오류는 <code>errors</code>에 남습니다. 배열 길이는 늘지 않습니다.</p>
+<p><code>run(query, variables)</code>는 <code>graphql({ schema, source, rootValue, variableValues })</code>의 결과를 반환합니다. 변수는 쿼리 문자열 밖의 값입니다. <code>$paradigm</code> 같은 선언과 객체 키를 맞춥니다. 문자열을 이어 붙이면 따옴표가 문서를 깨뜨립니다.</p>
+<h2>포트는 직접 실행할 때만 엽니다</h2>
+<p><code>start</code>는 <code>POST /graphql</code>만 받습니다. 본문은 <code>{ query, variables }</code> JSON입니다. <code>query</code>가 문자열이 아니거나 JSON이 깨지면 HTTP 400입니다. <code>graphql()</code>이 돌려준 결과는 검증 오류가 있어도 HTTP 200이고, 본문에 <code>errors</code>가 있을 수 있습니다. GraphiQL은 붙이지 않습니다. 다른 경로는 404입니다.</p>
+<p><code>import.meta.url</code>이 이 파일의 실행 경로와 같을 때만 8787을 엽니다. <code>server.test.js</code>는 <code>run</code>, <code>schema</code>, <code>db</code>만 import하므로 listen하지 않습니다. 테스트가 포트를 잡으면 환경과 프로세스 수명에 묶입니다.</p>
+<h2>예제</h2>
+<p><code>examples/graphql-server</code>에서 <code>npm install</code> 한 뒤 <code>node server.test.js</code>를 실행합니다. <code>node server.js</code>는 <code>POST http://127.0.0.1:8787/graphql</code>만 엽니다.</p>
+<p><code>examples/graphql-server/package.json</code></p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;language-graphql-server&quot;,
+  &quot;private&quot;: true,
+  &quot;type&quot;: &quot;module&quot;,
+  &quot;dependencies&quot;: {
+    &quot;graphql&quot;: &quot;16.14.2&quot;
+  }
+}
+</code></pre>
+<p><code>examples/graphql-server/server.js</code></p>
+<pre><code class="language-javascript">import { createServer } from &quot;node:http&quot;;
+import path from &quot;node:path&quot;;
+import { pathToFileURL } from &quot;node:url&quot;;
+import { buildSchema, graphql } from &quot;graphql&quot;;
+
+export const db = {
+  languages: [
+    { id: &quot;python&quot;, name: &quot;Python&quot;, paradigm: &quot;다중 패러다임&quot;, year: 1991 },
+    { id: &quot;javascript&quot;, name: &quot;JavaScript&quot;, paradigm: &quot;다중 패러다임&quot;, year: 1995 },
+    { id: &quot;go&quot;, name: &quot;Go&quot;, paradigm: &quot;명령형&quot;, year: 2009 },
+    { id: &quot;rust&quot;, name: &quot;Rust&quot;, paradigm: &quot;다중 패러다임&quot;, year: 2010 },
+    { id: &quot;typescript&quot;, name: &quot;TypeScript&quot;, paradigm: &quot;다중 패러다임&quot;, year: 2012 },
+    { id: &quot;kotlin&quot;, name: &quot;Kotlin&quot;, paradigm: &quot;객체지향&quot;, year: 2011 },
+    { id: &quot;elixir&quot;, name: &quot;Elixir&quot;, paradigm: &quot;함수형&quot;, year: 2011 },
+    { id: &quot;zig&quot;, name: &quot;Zig&quot;, paradigm: &quot;명령형&quot;, year: 2016 },
+    { id: &quot;dart&quot;, name: &quot;Dart&quot;, paradigm: &quot;객체지향&quot;, year: 2011 },
+    { id: &quot;haskell&quot;, name: &quot;Haskell&quot;, paradigm: &quot;함수형&quot;, year: 1990 },
+  ],
+};
+
+export const schema = buildSchema(`
+  type Language {
+    id: ID!
+    name: String!
+    paradigm: String!
+    year: Int!
+  }
+
+  type Query {
+    languages(paradigm: String): [Language!]!
+    language(id: ID!): Language
+  }
+
+  type Mutation {
+    addLanguage(name: String!, paradigm: String!, year: Int!): Language!
+  }
+`);
+
+function languages({ paradigm }) {
+  if (paradigm == null) return db.languages;
+  return db.languages.filter((language) =&gt; language.paradigm === paradigm);
+}
+
+function language({ id }) {
+  return db.languages.find((item) =&gt; item.id === id) ?? null;
+}
+
+function addLanguage({ name, paradigm, year }) {
+  const id = name.trim().toLowerCase().replace(/\s+/g, &quot;-&quot;);
+  if (db.languages.some((item) =&gt; item.id === id)) {
+    throw new Error(`이미 있는 id입니다: ${id}`);
+  }
+  const created = { id, name, paradigm, year };
+  db.languages.push(created);
+  return created;
+}
+
+const rootValue = { languages, language, addLanguage };
+
+export function run(query, variables) {
+  return graphql({
+    schema,
+    source: query,
+    rootValue,
+    variableValues: variables,
+  });
+}
+
+export function start(port = 8787) {
+  const server = createServer(async (req, res) =&gt; {
+    if (req.method !== &quot;POST&quot; || req.url !== &quot;/graphql&quot;) {
+      res.writeHead(404, { &quot;content-type&quot;: &quot;application/json; charset=utf-8&quot; });
+      res.end(JSON.stringify({ errors: [{ message: &quot;POST /graphql only&quot; }] }));
+      return;
+    }
+    try {
+      const chunks = [];
+      for await (const chunk of req) chunks.push(chunk);
+      const raw = Buffer.concat(chunks).toString(&quot;utf8&quot;);
+      const body = JSON.parse(raw || &quot;{}&quot;);
+      if (typeof body.query !== &quot;string&quot;) {
+        res.writeHead(400, { &quot;content-type&quot;: &quot;application/json; charset=utf-8&quot; });
+        res.end(JSON.stringify({ errors: [{ message: &quot;query 문자열이 필요합니다&quot; }] }));
+        return;
+      }
+      const result = await run(body.query, body.variables);
+      res.writeHead(200, { &quot;content-type&quot;: &quot;application/json; charset=utf-8&quot; });
+      res.end(JSON.stringify(result));
+    } catch (error) {
+      res.writeHead(400, { &quot;content-type&quot;: &quot;application/json; charset=utf-8&quot; });
+      res.end(JSON.stringify({ errors: [{ message: String(error.message ?? error) }] }));
+    }
+  });
+  return server.listen(port);
+}
+
+// 이 파일을 직접 실행할 때만 포트를 엽니다. import 되면 listen 하지 않습니다.
+const entry = process.argv[1] ? pathToFileURL(path.resolve(process.argv[1])).href : &quot;&quot;;
+if (import.meta.url === entry) {
+  start(8787);
+  console.log(&quot;POST http://127.0.0.1:8787/graphql&quot;);
+}
+</code></pre>
+<p><code>examples/graphql-server/server.test.js</code></p>
+<pre><code class="language-javascript">import { db, run, schema } from &quot;./server.js&quot;;
+
+function assert(condition, message) {
+  if (!condition) throw new Error(message);
+}
+
+const languageFields = schema.getType(&quot;Language&quot;).getFields();
+assert(String(languageFields.id.type) === &quot;ID!&quot;, &quot;id&quot;);
+assert(String(languageFields.name.type) === &quot;String!&quot;, &quot;name&quot;);
+assert(String(languageFields.paradigm.type) === &quot;String!&quot;, &quot;paradigm&quot;);
+assert(String(languageFields.year.type) === &quot;Int!&quot;, &quot;year&quot;);
+
+const queryFields = schema.getQueryType().getFields();
+assert(String(queryFields.languages.type) === &quot;[Language!]!&quot;, &quot;languages&quot;);
+assert(String(queryFields.languages.args[0].type) === &quot;String&quot;, &quot;paradigm 인자&quot;);
+assert(String(queryFields.language.type) === &quot;Language&quot;, &quot;language&quot;);
+assert(String(queryFields.language.args[0].type) === &quot;ID!&quot;, &quot;id 인자&quot;);
+
+const addField = schema.getMutationType().getFields().addLanguage;
+assert(String(addField.type) === &quot;Language!&quot;, &quot;addLanguage&quot;);
+const addArgs = Object.fromEntries(addField.args.map((arg) =&gt; [arg.name, String(arg.type)]));
+assert(addArgs.name === &quot;String!&quot; &amp;&amp; addArgs.paradigm === &quot;String!&quot; &amp;&amp; addArgs.year === &quot;Int!&quot;, &quot;뮤테이션 인자&quot;);
+
+const listed = await run(
+  `query Languages($paradigm: String) {
+    languages(paradigm: $paradigm) { id name paradigm year }
+  }`,
+  { paradigm: &quot;함수형&quot; },
+);
+if (listed.errors) throw new Error(listed.errors.map((error) =&gt; error.message).join(&quot;\n&quot;));
+assert(
+  listed.data.languages.map((language) =&gt; language.id).join(&quot;,&quot;) === &quot;elixir,haskell&quot;,
+  &quot;함수형 언어만, 시드 순서&quot;,
+);
+
+const one = await run(
+  `query One($id: ID!) {
+    language(id: $id) { id name year }
+  }`,
+  { id: &quot;zig&quot; },
+);
+if (one.errors) throw new Error(one.errors.map((error) =&gt; error.message).join(&quot;\n&quot;));
+assert(one.data.language.name === &quot;Zig&quot; &amp;&amp; one.data.language.year === 2016, &quot;zig&quot;);
+
+const before = db.languages.length;
+const added = await run(
+  `mutation Add($name: String!, $paradigm: String!, $year: Int!) {
+    addLanguage(name: $name, paradigm: $paradigm, year: $year) { id name paradigm year }
+  }`,
+  { name: &quot;Lua&quot;, paradigm: &quot;다중 패러다임&quot;, year: 1993 },
+);
+if (added.errors) throw new Error(added.errors.map((error) =&gt; error.message).join(&quot;\n&quot;));
+assert(added.data.addLanguage.id === &quot;lua&quot;, &quot;생성된 id&quot;);
+assert(db.languages.length === before + 1 &amp;&amp; db.languages.at(-1).name === &quot;Lua&quot;, &quot;db에 반영&quot;);
+
+const duplicate = await run(
+  `mutation Add($name: String!, $paradigm: String!, $year: Int!) {
+    addLanguage(name: $name, paradigm: $paradigm, year: $year) { id }
+  }`,
+  { name: &quot;Lua&quot;, paradigm: &quot;다중 패러다임&quot;, year: 1993 },
+);
+assert(duplicate.errors?.some((error) =&gt; error.message.includes(&quot;lua&quot;)), &quot;중복 id 오류&quot;);
+assert(db.languages.length === before + 1, &quot;중복은 db를 늘리지 않습니다&quot;);
+
+console.log(&quot;server.test.js passed&quot;);
+</code></pre>
+<h2>연습</h2>
+<ol>
+<li><code>renameLanguage(id: ID!, name: String!): Language</code>를 추가합니다. id는 바꾸지 않고 이름만 바꿉니다. 없는 id는 <code>errors</code>에 들어가게 하고 테스트가 그 배열을 확인합니다.</li>
+<li>패러다임 비교를 대소문자 무시로 바꿀지 정합니다. 지금의 완전 일치 테스트는 깨지 않게 두고, <code>함수형</code>이 Elixir와 Haskell만 남기는지 유지합니다.</li>
+<li><code>server.test.js</code>에서는 <code>start</code>를 호출하지 않습니다. 서버를 직접 실행했을 때만 <code>POST /graphql</code>이 JSON을 반환하는지 따로 확인합니다.</li>
+</ol>
+<h2>스스로 확인</h2>
+<ol>
+<li><code>languages</code>의 결과가 비어 있을 때 왜 <code>null</code>이 아닙니까?</li>
+</ol>
+<p>반환 타입이 <code>[Language!]!</code>라서 목록은 항상 배열입니다. 원소가 없으면 <code>[]</code>입니다.</p>
+<ol start="2">
+<li><code>language(id: &quot;cobol&quot;)</code>의 <code>data</code>와 <code>errors</code>는 어떻게 됩니까?</li>
+</ol>
+<p>반환 타입이 널을 허용하므로 <code>data.language</code>는 <code>null</code>입니다. 못 찾은 것만으로는 <code>errors</code>가 생기지 않습니다.</p>
+<ol start="3">
+<li><code>addLanguage</code>가 예외를 던지면 포트를 열지 않아도 어떻게 알 수 있습니까?</li>
+</ol>
+<p><code>run</code>이 <code>graphql()</code>의 결과 객체를 반환합니다. 리졸버 예외는 <code>errors</code>의 <code>message</code>로 들어오고 <code>data.addLanguage</code>는 <code>null</code>입니다.</p>
+<ol start="4">
+<li>테스트가 8787을 listen하면 안 되는 이유는 무엇입니까?</li>
+</ol>
+<p>테스트는 함수 호출만으로 쿼리와 뮤테이션을 확인해야 합니다. <code>node server.js</code>로 직접 실행할 때만 <code>start</code>가 호출됩니다.</p>
+<ol start="5">
+<li>클라이언트가 id를 넘기지 않는 이유는 무엇입니까?</li>
+</ol>
+<p>뮤테이션 인자는 <code>name</code>, <code>paradigm</code>, <code>year</code>입니다. id는 서버가 이름에서 만들고, 같은 id면 예외로 중복을 막습니다.</p>
+
+      <nav class="pager">
+    <a href="nextjs.html"><span>이전</span>Next.js로 언어 문서 사이트</a>
+    <a href="graphql-client.html"><span>다음</span>GraphQL 클라이언트</a>
+  </nav>
+      <footer class="colophon">samsepi0l · 언어 공부장</footer>
+    </article></main>
+  </div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

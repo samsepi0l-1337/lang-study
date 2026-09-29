@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>언어 공부장</title>
+  <meta name="description" content="samsepi0l이 프로그래밍 언어를 소재로 정리한 실습 노트">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#content">본문으로</a>
+  <div class="shell">
+    <aside class="nav">
+      <a class="brand" href="index.html"><strong>언어 공부장</strong><span>samsepi0l</span></a>
+      <input class="search" data-filter placeholder="노트 찾기" aria-label="노트 찾기">
+      <details class="toc" open>
+        <summary>목차</summary>
+        <div class="group">기초</div><ol><li data-item="1 Git과 GitHub 임시 저장소에서 커밋과 충돌 병합을 따라 하고 원격과 풀 리퀘스트는 개념으로 구분합니다. Git GitHub Python JavaScript TypeScript Go Rust"><a href="notes/git-github.html"><small>01</small><span>Git과 GitHub</span></a></li><li data-item="2 SQL로 언어 데이터를 다루기 SQLite로 언어와 구현체와 릴리스를 거르고 묶고, 잘못된 연도는 트랜잭션으로 되돌립니다. SQL SQLite Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="notes/sql.html"><small>02</small><span>SQL로 언어 데이터를 다루기</span></a></li><li data-item="3 Python으로 문서 수집기 만들기 표준 라이브러리만으로 로컬 HTML 픽스처를 읽어 언어 목록 JSON을 만듭니다. Python html.parser Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="notes/python-collector.html"><small>03</small><span>Python으로 문서 수집기 만들기</span></a></li><li data-item="4 Gulp로 문서 파이프라인 만들기 Gulp의 스트림 태스크와 같은 HTML 변환을 Node 표준 모듈만으로도 확인합니다. Gulp Node.js Python JavaScript Go Rust SQL"><a href="notes/gulp.html"><small>04</small><span>Gulp로 문서 파이프라인 만들기</span></a></li></ol><div class="group">브라우저와 React</div><ol><li data-item="5 브라우저 확장 프로그램 Manifest V3 팝업으로 오늘의 언어를 고르고, 루프백 데모에서만 언어 이름을 표시합니다. JavaScript Chrome Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="notes/chrome-extension.html"><small>05</small><span>브라우저 확장 프로그램</span></a></li><li data-item="6 Canvas로 언어 지도 그리기 언어 카드의 좌표를 모델로 두고, 포인터로 옮긴 뒤 실행 취소로 직전 배치를 복원합니다. JavaScript Canvas Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="notes/canvas-sketch.html"><small>06</small><span>Canvas로 언어 지도 그리기</span></a></li><li data-item="7 React로 언어 사전 만들기 이름 검색과 선택 상태를 부모에 두고, 목록과 상세는 props로만 언어 데이터를 받습니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="notes/react-dictionary.html"><small>07</small><span>React로 언어 사전 만들기</span></a></li><li data-item="8 React Hooks 언어 메모 화면에서 상태, 효과, ref, 메모, 디바운스 훅의 호출 순서와 의존성을 맞춥니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="notes/react-hooks.html"><small>08</small><span>React Hooks</span></a></li></ol><div class="group">상태와 GraphQL</div><ol><li data-item="9 Redux로 상태 설계하기 언어 목록, 선택, 즐겨찾기를 스토어 하나와 순수 리듀서 전이로 고정합니다. Redux Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="notes/redux.html"><small>09</small><span>Redux로 상태 설계하기</span></a></li><li data-item="10 Next.js로 언어 문서 사이트 App Router의 파일 경로로 언어 문서 목록과 상세를 나누고, 검색만 클라이언트 상태로 둡니다. Next.js Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell Next.js"><a href="notes/nextjs.html"><small>10</small><span>Next.js로 언어 문서 사이트</span></a></li><li data-item="11 GraphQL 서버 언어 카탈로그를 스키마와 리졸버로 나누고, 포트를 열지 않은 채 graphql()로 쿼리와 뮤테이션을 실행합니다. GraphQL Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell GraphQL"><a href="notes/graphql-server.html"><small>11</small><span>GraphQL 서버</span></a></li><li data-item="12 GraphQL 클라이언트 executeAgainst가 data를 반환하거나 errors를 던지고, normalize가 언어를 id 맵으로 접습니다. GraphQL Python Haskell GraphQL"><a href="notes/graphql-client.html"><small>12</small><span>GraphQL 클라이언트</span></a></li></ol><div class="group">서버</div><ol><li data-item="13 NestJS로 언어 등록 API 모듈과 생성자 주입, DTO 검증으로 언어 열 개를 등록하는 HTTP API를 조립합니다. NestJS Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="notes/nestjs.html"><small>13</small><span>NestJS로 언어 등록 API</span></a></li><li data-item="14 Go로 작은 HTTP 서버 표준 라이브러리와 뮤텍스로 언어 목록을 조회하고 추가하는 HTTP 서버를 테스트합니다. Go Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="notes/go.html"><small>14</small><span>Go로 작은 HTTP 서버</span></a></li><li data-item="15 워크숍 좌석 예약 시작 시각과 이름, 좌석 수 규칙을 서비스에 두고 언어 워크숍 좌석을 예약합니다. JavaScript Rust Haskell"><a href="notes/workshop-booking.html"><small>15</small><span>워크숍 좌석 예약</span></a></li><li data-item="16 코드 조각 피드 언어별 코드 조각을 id 커서로 나누고, 사용자 이름 단위로 추천을 토글합니다. JavaScript Python Go Rust"><a href="notes/snippet-feed.html"><small>16</small><span>코드 조각 피드</span></a></li></ol><div class="group">모바일과 연결</div><ol><li data-item="17 Dart 언어의 기본 널 안전, final과 const, Future를 한 파일의 언어 카드 보고서로 확인합니다. Dart Kotlin Dart Haskell"><a href="notes/dart.html"><small>17</small><span>Dart 언어의 기본</span></a></li><li data-item="18 Flutter로 언어 카드 메모리 속 즐겨찾기와 상세 경로를 Flutter 3 위젯으로 구성합니다. Flutter Rust Dart Haskell Flutter"><a href="notes/flutter.html"><small>18</small><span>Flutter로 언어 카드</span></a></li><li data-item="19 React Native로 언어 카드 복습 규칙만 순수 함수로 두고, 언어 카드 화면은 네이티브 뷰로 분리합니다. React Native Rust Dart Haskell React"><a href="notes/react-native.html"><small>19</small><span>React Native로 언어 카드</span></a></li><li data-item="20 실시간 스터디룸의 연결 두 탭이 코드 조각을 주고받도록 신호, SDP, ICE를 역할로 나눕니다. WebRTC "><a href="notes/webrtc-room.html"><small>20</small><span>실시간 스터디룸의 연결</span></a></li><li data-item="21 TypeScript로 블록 잇기 언어 제안을 해시로 잇는 목록을 TypeScript로 만들고 변조를 검증으로 찾습니다. TypeScript TypeScript Dart"><a href="notes/ts-chain.html"><small>21</small><span>TypeScript로 블록 잇기</span></a></li></ol><div class="group">에이전트와 제품</div><ol><li data-item="22 언어 튜터 서비스 구조 로컬 카탈로그에서 언어 설명을 고르고, 역할이 나뉜 메시지를 화면에 나누어 그립니다. LLM Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="notes/llm-tutor.html"><small>22</small><span>언어 튜터 서비스 구조</span></a></li><li data-item="23 도구를 쓰는 에이전트 루프 목표를 받은 뒤 로컬 도구의 결과를 관찰로 쌓고, 최종 답이나 네 걸음에서 멈춥니다. 에이전트 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="notes/ai-agents.html"><small>23</small><span>도구를 쓰는 에이전트 루프</span></a></li><li data-item="24 n8n 워크플로 웹훅으로 받은 언어 이름을 Set 노드가 카드의 제목과 요약으로 바꿉니다. n8n Rust Zig"><a href="notes/n8n.html"><small>24</small><span>n8n 워크플로</span></a></li><li data-item="25 직접 설계하는 Supabase 스타터 프로필과 언어와 학습 노트를 RLS로 나누고, 서비스 롤은 서버에만 둡니다. Supabase Python Haskell SQL"><a href="notes/supabase-starter.html"><small>25</small><span>직접 설계하는 Supabase 스타터</span></a></li><li data-item="26 언어 선반이라는 제품 언어 선반은 배우는 이유와 다음 연습을 남기는 기록이고, 지표는 주간 노트 수입니다. 제품 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="notes/maker.html"><small>26</small><span>언어 선반이라는 제품</span></a></li></ol>
+      </details>
+    </aside>
+    <main class="main" id="content"><article class="sheet hero">
+    <h1>언어 공부장</h1>
+    <p class="lede">samsepi0l이 프로그래밍 언어를 소재로 정리한 실습 노트입니다. 각 장은 개념 설명, 직접 실행하는 예제, 연습으로 구성되어 있습니다.</p>
+    <h2 class="group-title">기초</h2><div class="cards"><a class="card" href="notes/git-github.html" data-item="1 Git과 GitHub 임시 저장소에서 커밋과 충돌 병합을 따라 하고 원격과 풀 리퀘스트는 개념으로 구분합니다. Git GitHub Python JavaScript TypeScript Go Rust">
+      <div class="meta"><span class="pill">01</span><span class="pill">초급</span><span class="pill">40분</span></div>
+      <h2>Git과 GitHub</h2>
+      <p>임시 저장소에서 커밋과 충돌 병합을 따라 하고 원격과 풀 리퀘스트는 개념으로 구분합니다.</p>
+    </a>
+<a class="card" href="notes/sql.html" data-item="2 SQL로 언어 데이터를 다루기 SQLite로 언어와 구현체와 릴리스를 거르고 묶고, 잘못된 연도는 트랜잭션으로 되돌립니다. SQL SQLite Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL">
+      <div class="meta"><span class="pill">02</span><span class="pill">초급</span><span class="pill">45분</span></div>
+      <h2>SQL로 언어 데이터를 다루기</h2>
+      <p>SQLite로 언어와 구현체와 릴리스를 거르고 묶고, 잘못된 연도는 트랜잭션으로 되돌립니다.</p>
+    </a>
+<a class="card" href="notes/python-collector.html" data-item="3 Python으로 문서 수집기 만들기 표준 라이브러리만으로 로컬 HTML 픽스처를 읽어 언어 목록 JSON을 만듭니다. Python html.parser Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL">
+      <div class="meta"><span class="pill">03</span><span class="pill">초급</span><span class="pill">40분</span></div>
+      <h2>Python으로 문서 수집기 만들기</h2>
+      <p>표준 라이브러리만으로 로컬 HTML 픽스처를 읽어 언어 목록 JSON을 만듭니다.</p>
+    </a>
+<a class="card" href="notes/gulp.html" data-item="4 Gulp로 문서 파이프라인 만들기 Gulp의 스트림 태스크와 같은 HTML 변환을 Node 표준 모듈만으로도 확인합니다. Gulp Node.js Python JavaScript Go Rust SQL">
+      <div class="meta"><span class="pill">04</span><span class="pill">초급</span><span class="pill">40분</span></div>
+      <h2>Gulp로 문서 파이프라인 만들기</h2>
+      <p>Gulp의 스트림 태스크와 같은 HTML 변환을 Node 표준 모듈만으로도 확인합니다.</p>
+    </a></div>
+<h2 class="group-title">브라우저와 React</h2><div class="cards"><a class="card" href="notes/chrome-extension.html" data-item="5 브라우저 확장 프로그램 Manifest V3 팝업으로 오늘의 언어를 고르고, 루프백 데모에서만 언어 이름을 표시합니다. JavaScript Chrome Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell">
+      <div class="meta"><span class="pill">05</span><span class="pill">초급</span><span class="pill">45분</span></div>
+      <h2>브라우저 확장 프로그램</h2>
+      <p>Manifest V3 팝업으로 오늘의 언어를 고르고, 루프백 데모에서만 언어 이름을 표시합니다.</p>
+    </a>
+<a class="card" href="notes/canvas-sketch.html" data-item="6 Canvas로 언어 지도 그리기 언어 카드의 좌표를 모델로 두고, 포인터로 옮긴 뒤 실행 취소로 직전 배치를 복원합니다. JavaScript Canvas Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell">
+      <div class="meta"><span class="pill">06</span><span class="pill">초급</span><span class="pill">40분</span></div>
+      <h2>Canvas로 언어 지도 그리기</h2>
+      <p>언어 카드의 좌표를 모델로 두고, 포인터로 옮긴 뒤 실행 취소로 직전 배치를 복원합니다.</p>
+    </a>
+<a class="card" href="notes/react-dictionary.html" data-item="7 React로 언어 사전 만들기 이름 검색과 선택 상태를 부모에 두고, 목록과 상세는 props로만 언어 데이터를 받습니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React">
+      <div class="meta"><span class="pill">07</span><span class="pill">초급</span><span class="pill">40분</span></div>
+      <h2>React로 언어 사전 만들기</h2>
+      <p>이름 검색과 선택 상태를 부모에 두고, 목록과 상세는 props로만 언어 데이터를 받습니다.</p>
+    </a>
+<a class="card" href="notes/react-hooks.html" data-item="8 React Hooks 언어 메모 화면에서 상태, 효과, ref, 메모, 디바운스 훅의 호출 순서와 의존성을 맞춥니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React">
+      <div class="meta"><span class="pill">08</span><span class="pill">중급</span><span class="pill">50분</span></div>
+      <h2>React Hooks</h2>
+      <p>언어 메모 화면에서 상태, 효과, ref, 메모, 디바운스 훅의 호출 순서와 의존성을 맞춥니다.</p>
+    </a></div>
+<h2 class="group-title">상태와 GraphQL</h2><div class="cards"><a class="card" href="notes/redux.html" data-item="9 Redux로 상태 설계하기 언어 목록, 선택, 즐겨찾기를 스토어 하나와 순수 리듀서 전이로 고정합니다. Redux Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell">
+      <div class="meta"><span class="pill">09</span><span class="pill">중급</span><span class="pill">40분</span></div>
+      <h2>Redux로 상태 설계하기</h2>
+      <p>언어 목록, 선택, 즐겨찾기를 스토어 하나와 순수 리듀서 전이로 고정합니다.</p>
+    </a>
+<a class="card" href="notes/nextjs.html" data-item="10 Next.js로 언어 문서 사이트 App Router의 파일 경로로 언어 문서 목록과 상세를 나누고, 검색만 클라이언트 상태로 둡니다. Next.js Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell Next.js">
+      <div class="meta"><span class="pill">10</span><span class="pill">중급</span><span class="pill">40분</span></div>
+      <h2>Next.js로 언어 문서 사이트</h2>
+      <p>App Router의 파일 경로로 언어 문서 목록과 상세를 나누고, 검색만 클라이언트 상태로 둡니다.</p>
+    </a>
+<a class="card" href="notes/graphql-server.html" data-item="11 GraphQL 서버 언어 카탈로그를 스키마와 리졸버로 나누고, 포트를 열지 않은 채 graphql()로 쿼리와 뮤테이션을 실행합니다. GraphQL Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell GraphQL">
+      <div class="meta"><span class="pill">11</span><span class="pill">중급</span><span class="pill">40분</span></div>
+      <h2>GraphQL 서버</h2>
+      <p>언어 카탈로그를 스키마와 리졸버로 나누고, 포트를 열지 않은 채 graphql()로 쿼리와 뮤테이션을 실행합니다.</p>
+    </a>
+<a class="card" href="notes/graphql-client.html" data-item="12 GraphQL 클라이언트 executeAgainst가 data를 반환하거나 errors를 던지고, normalize가 언어를 id 맵으로 접습니다. GraphQL Python Haskell GraphQL">
+      <div class="meta"><span class="pill">12</span><span class="pill">중급</span><span class="pill">40분</span></div>
+      <h2>GraphQL 클라이언트</h2>
+      <p>executeAgainst가 data를 반환하거나 errors를 던지고, normalize가 언어를 id 맵으로 접습니다.</p>
+    </a></div>
+<h2 class="group-title">서버</h2><div class="cards"><a class="card" href="notes/nestjs.html" data-item="13 NestJS로 언어 등록 API 모듈과 생성자 주입, DTO 검증으로 언어 열 개를 등록하는 HTTP API를 조립합니다. NestJS Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell">
+      <div class="meta"><span class="pill">13</span><span class="pill">고급</span><span class="pill">50분</span></div>
+      <h2>NestJS로 언어 등록 API</h2>
+      <p>모듈과 생성자 주입, DTO 검증으로 언어 열 개를 등록하는 HTTP API를 조립합니다.</p>
+    </a>
+<a class="card" href="notes/go.html" data-item="14 Go로 작은 HTTP 서버 표준 라이브러리와 뮤텍스로 언어 목록을 조회하고 추가하는 HTTP 서버를 테스트합니다. Go Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell">
+      <div class="meta"><span class="pill">14</span><span class="pill">중급</span><span class="pill">45분</span></div>
+      <h2>Go로 작은 HTTP 서버</h2>
+      <p>표준 라이브러리와 뮤텍스로 언어 목록을 조회하고 추가하는 HTTP 서버를 테스트합니다.</p>
+    </a>
+<a class="card" href="notes/workshop-booking.html" data-item="15 워크숍 좌석 예약 시작 시각과 이름, 좌석 수 규칙을 서비스에 두고 언어 워크숍 좌석을 예약합니다. JavaScript Rust Haskell">
+      <div class="meta"><span class="pill">15</span><span class="pill">중급</span><span class="pill">40분</span></div>
+      <h2>워크숍 좌석 예약</h2>
+      <p>시작 시각과 이름, 좌석 수 규칙을 서비스에 두고 언어 워크숍 좌석을 예약합니다.</p>
+    </a>
+<a class="card" href="notes/snippet-feed.html" data-item="16 코드 조각 피드 언어별 코드 조각을 id 커서로 나누고, 사용자 이름 단위로 추천을 토글합니다. JavaScript Python Go Rust">
+      <div class="meta"><span class="pill">16</span><span class="pill">중급</span><span class="pill">45분</span></div>
+      <h2>코드 조각 피드</h2>
+      <p>언어별 코드 조각을 id 커서로 나누고, 사용자 이름 단위로 추천을 토글합니다.</p>
+    </a></div>
+<h2 class="group-title">모바일과 연결</h2><div class="cards"><a class="card" href="notes/dart.html" data-item="17 Dart 언어의 기본 널 안전, final과 const, Future를 한 파일의 언어 카드 보고서로 확인합니다. Dart Kotlin Dart Haskell">
+      <div class="meta"><span class="pill">17</span><span class="pill">중급</span><span class="pill">40분</span></div>
+      <h2>Dart 언어의 기본</h2>
+      <p>널 안전, final과 const, Future를 한 파일의 언어 카드 보고서로 확인합니다.</p>
+    </a>
+<a class="card" href="notes/flutter.html" data-item="18 Flutter로 언어 카드 메모리 속 즐겨찾기와 상세 경로를 Flutter 3 위젯으로 구성합니다. Flutter Rust Dart Haskell Flutter">
+      <div class="meta"><span class="pill">18</span><span class="pill">중급</span><span class="pill">40분</span></div>
+      <h2>Flutter로 언어 카드</h2>
+      <p>메모리 속 즐겨찾기와 상세 경로를 Flutter 3 위젯으로 구성합니다.</p>
+    </a>
+<a class="card" href="notes/react-native.html" data-item="19 React Native로 언어 카드 복습 규칙만 순수 함수로 두고, 언어 카드 화면은 네이티브 뷰로 분리합니다. React Native Rust Dart Haskell React">
+      <div class="meta"><span class="pill">19</span><span class="pill">초급</span><span class="pill">40분</span></div>
+      <h2>React Native로 언어 카드</h2>
+      <p>복습 규칙만 순수 함수로 두고, 언어 카드 화면은 네이티브 뷰로 분리합니다.</p>
+    </a>
+<a class="card" href="notes/webrtc-room.html" data-item="20 실시간 스터디룸의 연결 두 탭이 코드 조각을 주고받도록 신호, SDP, ICE를 역할로 나눕니다. WebRTC ">
+      <div class="meta"><span class="pill">20</span><span class="pill">중급</span><span class="pill">40분</span></div>
+      <h2>실시간 스터디룸의 연결</h2>
+      <p>두 탭이 코드 조각을 주고받도록 신호, SDP, ICE를 역할로 나눕니다.</p>
+    </a>
+<a class="card" href="notes/ts-chain.html" data-item="21 TypeScript로 블록 잇기 언어 제안을 해시로 잇는 목록을 TypeScript로 만들고 변조를 검증으로 찾습니다. TypeScript TypeScript Dart">
+      <div class="meta"><span class="pill">21</span><span class="pill">중급</span><span class="pill">40분</span></div>
+      <h2>TypeScript로 블록 잇기</h2>
+      <p>언어 제안을 해시로 잇는 목록을 TypeScript로 만들고 변조를 검증으로 찾습니다.</p>
+    </a></div>
+<h2 class="group-title">에이전트와 제품</h2><div class="cards"><a class="card" href="notes/llm-tutor.html" data-item="22 언어 튜터 서비스 구조 로컬 카탈로그에서 언어 설명을 고르고, 역할이 나뉜 메시지를 화면에 나누어 그립니다. LLM Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell">
+      <div class="meta"><span class="pill">22</span><span class="pill">초급</span><span class="pill">40분</span></div>
+      <h2>언어 튜터 서비스 구조</h2>
+      <p>로컬 카탈로그에서 언어 설명을 고르고, 역할이 나뉜 메시지를 화면에 나누어 그립니다.</p>
+    </a>
+<a class="card" href="notes/ai-agents.html" data-item="23 도구를 쓰는 에이전트 루프 목표를 받은 뒤 로컬 도구의 결과를 관찰로 쌓고, 최종 답이나 네 걸음에서 멈춥니다. 에이전트 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell">
+      <div class="meta"><span class="pill">23</span><span class="pill">중급</span><span class="pill">45분</span></div>
+      <h2>도구를 쓰는 에이전트 루프</h2>
+      <p>목표를 받은 뒤 로컬 도구의 결과를 관찰로 쌓고, 최종 답이나 네 걸음에서 멈춥니다.</p>
+    </a>
+<a class="card" href="notes/n8n.html" data-item="24 n8n 워크플로 웹훅으로 받은 언어 이름을 Set 노드가 카드의 제목과 요약으로 바꿉니다. n8n Rust Zig">
+      <div class="meta"><span class="pill">24</span><span class="pill">초급</span><span class="pill">35분</span></div>
+      <h2>n8n 워크플로</h2>
+      <p>웹훅으로 받은 언어 이름을 Set 노드가 카드의 제목과 요약으로 바꿉니다.</p>
+    </a>
+<a class="card" href="notes/supabase-starter.html" data-item="25 직접 설계하는 Supabase 스타터 프로필과 언어와 학습 노트를 RLS로 나누고, 서비스 롤은 서버에만 둡니다. Supabase Python Haskell SQL">
+      <div class="meta"><span class="pill">25</span><span class="pill">중급</span><span class="pill">50분</span></div>
+      <h2>직접 설계하는 Supabase 스타터</h2>
+      <p>프로필과 언어와 학습 노트를 RLS로 나누고, 서비스 롤은 서버에만 둡니다.</p>
+    </a>
+<a class="card" href="notes/maker.html" data-item="26 언어 선반이라는 제품 언어 선반은 배우는 이유와 다음 연습을 남기는 기록이고, 지표는 주간 노트 수입니다. 제품 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell">
+      <div class="meta"><span class="pill">26</span><span class="pill">중급</span><span class="pill">40분</span></div>
+      <h2>언어 선반이라는 제품</h2>
+      <p>언어 선반은 배우는 이유와 다음 연습을 남기는 기록이고, 지표는 주간 노트 수입니다.</p>
+    </a></div>
+    <footer class="colophon">예제 코드는 <code>examples/</code> 디렉터리에 있습니다. 이 저장소의 글과 코드는 공부용으로 새로 작성한 자료입니다.</footer>
+  </article></main>
+  </div>
+  <script src="assets/site.js"></script>
+</body>
+</html>

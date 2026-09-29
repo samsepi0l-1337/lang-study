@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Go로 작은 HTTP 서버 · 언어 공부장</title>
+  <meta name="description" content="표준 라이브러리와 뮤텍스로 언어 목록을 조회하고 추가하는 HTTP 서버를 테스트합니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#content">본문으로</a>
+  <div class="shell">
+    <aside class="nav">
+      <a class="brand" href="../index.html"><strong>언어 공부장</strong><span>samsepi0l</span></a>
+      <input class="search" data-filter placeholder="노트 찾기" aria-label="노트 찾기">
+      <details class="toc" open>
+        <summary>목차</summary>
+        <div class="group">기초</div><ol><li data-item="1 Git과 GitHub 임시 저장소에서 커밋과 충돌 병합을 따라 하고 원격과 풀 리퀘스트는 개념으로 구분합니다. Git GitHub Python JavaScript TypeScript Go Rust"><a href="../notes/git-github.html"><small>01</small><span>Git과 GitHub</span></a></li><li data-item="2 SQL로 언어 데이터를 다루기 SQLite로 언어와 구현체와 릴리스를 거르고 묶고, 잘못된 연도는 트랜잭션으로 되돌립니다. SQL SQLite Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/sql.html"><small>02</small><span>SQL로 언어 데이터를 다루기</span></a></li><li data-item="3 Python으로 문서 수집기 만들기 표준 라이브러리만으로 로컬 HTML 픽스처를 읽어 언어 목록 JSON을 만듭니다. Python html.parser Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/python-collector.html"><small>03</small><span>Python으로 문서 수집기 만들기</span></a></li><li data-item="4 Gulp로 문서 파이프라인 만들기 Gulp의 스트림 태스크와 같은 HTML 변환을 Node 표준 모듈만으로도 확인합니다. Gulp Node.js Python JavaScript Go Rust SQL"><a href="../notes/gulp.html"><small>04</small><span>Gulp로 문서 파이프라인 만들기</span></a></li></ol><div class="group">브라우저와 React</div><ol><li data-item="5 브라우저 확장 프로그램 Manifest V3 팝업으로 오늘의 언어를 고르고, 루프백 데모에서만 언어 이름을 표시합니다. JavaScript Chrome Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/chrome-extension.html"><small>05</small><span>브라우저 확장 프로그램</span></a></li><li data-item="6 Canvas로 언어 지도 그리기 언어 카드의 좌표를 모델로 두고, 포인터로 옮긴 뒤 실행 취소로 직전 배치를 복원합니다. JavaScript Canvas Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/canvas-sketch.html"><small>06</small><span>Canvas로 언어 지도 그리기</span></a></li><li data-item="7 React로 언어 사전 만들기 이름 검색과 선택 상태를 부모에 두고, 목록과 상세는 props로만 언어 데이터를 받습니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-dictionary.html"><small>07</small><span>React로 언어 사전 만들기</span></a></li><li data-item="8 React Hooks 언어 메모 화면에서 상태, 효과, ref, 메모, 디바운스 훅의 호출 순서와 의존성을 맞춥니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-hooks.html"><small>08</small><span>React Hooks</span></a></li></ol><div class="group">상태와 GraphQL</div><ol><li data-item="9 Redux로 상태 설계하기 언어 목록, 선택, 즐겨찾기를 스토어 하나와 순수 리듀서 전이로 고정합니다. Redux Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/redux.html"><small>09</small><span>Redux로 상태 설계하기</span></a></li><li data-item="10 Next.js로 언어 문서 사이트 App Router의 파일 경로로 언어 문서 목록과 상세를 나누고, 검색만 클라이언트 상태로 둡니다. Next.js Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell Next.js"><a href="../notes/nextjs.html"><small>10</small><span>Next.js로 언어 문서 사이트</span></a></li><li data-item="11 GraphQL 서버 언어 카탈로그를 스키마와 리졸버로 나누고, 포트를 열지 않은 채 graphql()로 쿼리와 뮤테이션을 실행합니다. GraphQL Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell GraphQL"><a href="../notes/graphql-server.html"><small>11</small><span>GraphQL 서버</span></a></li><li data-item="12 GraphQL 클라이언트 executeAgainst가 data를 반환하거나 errors를 던지고, normalize가 언어를 id 맵으로 접습니다. GraphQL Python Haskell GraphQL"><a href="../notes/graphql-client.html"><small>12</small><span>GraphQL 클라이언트</span></a></li></ol><div class="group">서버</div><ol><li data-item="13 NestJS로 언어 등록 API 모듈과 생성자 주입, DTO 검증으로 언어 열 개를 등록하는 HTTP API를 조립합니다. NestJS Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/nestjs.html"><small>13</small><span>NestJS로 언어 등록 API</span></a></li><li data-item="14 Go로 작은 HTTP 서버 표준 라이브러리와 뮤텍스로 언어 목록을 조회하고 추가하는 HTTP 서버를 테스트합니다. Go Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/go.html" aria-current="page"><small>14</small><span>Go로 작은 HTTP 서버</span></a></li><li data-item="15 워크숍 좌석 예약 시작 시각과 이름, 좌석 수 규칙을 서비스에 두고 언어 워크숍 좌석을 예약합니다. JavaScript Rust Haskell"><a href="../notes/workshop-booking.html"><small>15</small><span>워크숍 좌석 예약</span></a></li><li data-item="16 코드 조각 피드 언어별 코드 조각을 id 커서로 나누고, 사용자 이름 단위로 추천을 토글합니다. JavaScript Python Go Rust"><a href="../notes/snippet-feed.html"><small>16</small><span>코드 조각 피드</span></a></li></ol><div class="group">모바일과 연결</div><ol><li data-item="17 Dart 언어의 기본 널 안전, final과 const, Future를 한 파일의 언어 카드 보고서로 확인합니다. Dart Kotlin Dart Haskell"><a href="../notes/dart.html"><small>17</small><span>Dart 언어의 기본</span></a></li><li data-item="18 Flutter로 언어 카드 메모리 속 즐겨찾기와 상세 경로를 Flutter 3 위젯으로 구성합니다. Flutter Rust Dart Haskell Flutter"><a href="../notes/flutter.html"><small>18</small><span>Flutter로 언어 카드</span></a></li><li data-item="19 React Native로 언어 카드 복습 규칙만 순수 함수로 두고, 언어 카드 화면은 네이티브 뷰로 분리합니다. React Native Rust Dart Haskell React"><a href="../notes/react-native.html"><small>19</small><span>React Native로 언어 카드</span></a></li><li data-item="20 실시간 스터디룸의 연결 두 탭이 코드 조각을 주고받도록 신호, SDP, ICE를 역할로 나눕니다. WebRTC "><a href="../notes/webrtc-room.html"><small>20</small><span>실시간 스터디룸의 연결</span></a></li><li data-item="21 TypeScript로 블록 잇기 언어 제안을 해시로 잇는 목록을 TypeScript로 만들고 변조를 검증으로 찾습니다. TypeScript TypeScript Dart"><a href="../notes/ts-chain.html"><small>21</small><span>TypeScript로 블록 잇기</span></a></li></ol><div class="group">에이전트와 제품</div><ol><li data-item="22 언어 튜터 서비스 구조 로컬 카탈로그에서 언어 설명을 고르고, 역할이 나뉜 메시지를 화면에 나누어 그립니다. LLM Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/llm-tutor.html"><small>22</small><span>언어 튜터 서비스 구조</span></a></li><li data-item="23 도구를 쓰는 에이전트 루프 목표를 받은 뒤 로컬 도구의 결과를 관찰로 쌓고, 최종 답이나 네 걸음에서 멈춥니다. 에이전트 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/ai-agents.html"><small>23</small><span>도구를 쓰는 에이전트 루프</span></a></li><li data-item="24 n8n 워크플로 웹훅으로 받은 언어 이름을 Set 노드가 카드의 제목과 요약으로 바꿉니다. n8n Rust Zig"><a href="../notes/n8n.html"><small>24</small><span>n8n 워크플로</span></a></li><li data-item="25 직접 설계하는 Supabase 스타터 프로필과 언어와 학습 노트를 RLS로 나누고, 서비스 롤은 서버에만 둡니다. Supabase Python Haskell SQL"><a href="../notes/supabase-starter.html"><small>25</small><span>직접 설계하는 Supabase 스타터</span></a></li><li data-item="26 언어 선반이라는 제품 언어 선반은 배우는 이유와 다음 연습을 남기는 기록이고, 지표는 주간 노트 수입니다. 제품 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/maker.html"><small>26</small><span>언어 선반이라는 제품</span></a></li></ol>
+      </details>
+    </aside>
+    <main class="main" id="content"><article class="sheet">
+      <div class="meta"><span class="pill">중급</span><span class="pill">45분</span><span class="pill">Go</span></div>
+      <h1>Go로 작은 HTTP 서버</h1>
+<p>이 노트는 samsepi0l이 같은 언어 등록부를 Go 표준 라이브러리로 정리한 것입니다. <code>GET /languages</code>와 <code>POST /languages</code>만 있습니다. 시드는 Python, JavaScript, Go, Rust, TypeScript, Kotlin, Elixir, Zig, Dart, Haskell이고, JSON 필드도 <code>id</code>, <code>name</code>, <code>paradigm</code>, <code>year</code>, <code>summary</code>로 같습니다.</p>
+<p>외부 프레임워크와 외부 모듈은 쓰지 않습니다. 모듈 경로는 <code>github.com/samsepi0l-1337/lang-study/examples/go</code>입니다. 경로는 import 이름이지, 컴파일할 때 그 원격 저장소가 필요하다는 뜻이 아닙니다. 수신 주소는 <code>PORT</code>이고 기본값은 8090입니다. 테스트는 그 포트를 열지 않습니다.</p>
+<h2>이 장을 끝내면</h2>
+<ul>
+<li><code>package main</code>, 구조체, 포인터 메서드가 이 서버에서 맡는 역할을 구분합니다.</li>
+<li>클라이언트 오류를 <code>error</code> 값으로 돌려 상태 코드와 연결합니다.</li>
+<li>요청 고루틴이 공유하는 슬라이스를 뮤텍스로 지키고, 고루틴을 더 만들지 않는 이유를 설명합니다.</li>
+</ul>
+<h2>패키지는 실행 파일 하나와 같습니다</h2>
+<p>모든 파일이 <code>package main</code>입니다. <code>languages.go</code>가 타입과 저장소를, <code>main.go</code>가 라우트와 프로세스를, <code>languages_test.go</code>가 <code>httptest</code>를 담습니다. 같은 패키지이므로 테스트가 <code>newMux</code>와 <code>NewStore</code>를 직접 호출합니다. 테스트 패키지를 <code>main_test</code>로 두면 이름 첫 글자가 소문자인 함수는 보이지 않습니다.</p>
+<p><code>go.mod</code>의 <code>go 1.22</code>는 <code>GET /languages</code>처럼 메서드와 경로를 한 패턴으로 적는 <code>ServeMux</code>를 쓰기 위한 하한입니다. 내부 import가 없으므로 <code>go.sum</code>도 없습니다.</p>
+<h2>구조체는 저장과 입력을 나눕니다</h2>
+<p><code>Language</code>는 저장되는 행입니다. <code>json</code> 태그가 응답 필드를 정합니다. <code>LanguageInput</code>에는 <code>id</code>가 없습니다. 번호를 서버가 정하기 위해서입니다. 디코더는 <code>DisallowUnknownFields</code>라서 본문에 <code>id</code>가 있으면 디코드 자체가 실패하고 400이 됩니다. 알 수 없는 필드를 무시하면 클라이언트가 번호를 보냈다는 사실을 놓칩니다.</p>
+<p>시드의 패러다임은 공부장에서의 짧은 분류입니다. Python, JavaScript, Rust, TypeScript, Kotlin은 다중 패러다임, Go와 Zig은 명령형, Elixir는 함수형, Dart는 객체지향, Haskell은 순수 함수형입니다. Rust의 연도는 2015입니다.</p>
+<h2>메서드는 포인터로 같은 잠금을 만집니다</h2>
+<p><code>List</code>와 <code>Add</code>의 리시버는 <code>*Store</code>입니다. <code>Add</code>가 <code>nextID</code>와 슬라이스를 바꾸기 때문만이 아닙니다. <code>sync.Mutex</code>를 값으로 복사하면 잠금이 복제본에 걸려 공유가 깨집니다. <code>go vet</code>도 락 복사를 지적합니다. 읽기 전용인 <code>List</code>도 같은 포인터 리시버로 그 뮤텍스를 잡습니다.</p>
+<p><code>List</code>는 락 안에서 <code>make</code>한 뒤 <code>copy</code>합니다. nil 슬라이스를 JSON으로 인코딩하면 <code>null</code>이 되므로, 길이 0이어도 배열로 보이게 비어 있지 않은 헤더를 만듭니다. 지금 시드는 비어 있지 않지만, 반환값을 호출자가 고쳐도 다음 <code>GET</code>이 바뀌지 않아야 합니다. 테스트가 첫 항목 이름을 바꾼 뒤 다시 조회하는 이유가 이것입니다.</p>
+<p><code>Add</code>는 공백을 자른 뒤 글자 수를 봅니다. <code>len</code>은 바이트입니다. <code>가</code> 40자는 120바이트라서 <code>len</code>으로 40을 넘는지 보면 올바른 한글 이름이 거절됩니다. <code>utf8.RuneCountInString</code>으로 룬을 셉니다. 이름과 패러다임은 1룬 이상 40룬 이하, 요약은 1룬 이상 200룬 이하, 연도는 1950부터 2100입니다. 중복 검사는 <code>strings.EqualFold</code>이고 락 안에서 합니다. 락 밖에서 검사하면 그 사이에 같은 이름이 들어갈 수 있습니다.</p>
+<h2>오류는 값이고 상태 코드는 핸들러가 고릅니다</h2>
+<p><code>Add</code>는 <code>(Language, error)</code>를 반환합니다. 영 값과 <code>ErrInvalid</code>, 영 값과 <code>ErrDuplicate</code>, 또는 행과 <code>nil</code>입니다. 클라이언트의 잘못된 입력에 <code>panic</code>을 쓰지 않습니다. 패닉은 핸들러의 복구 경로가 없으면 그 연결의 처리를 떨어뜨립니다.</p>
+<p>핸들러는 <code>errors.Is</code>로 센티널을 구분합니다. 이 저장소는 오류를 감싸지 않습니다. 그래도 <code>==</code> 대신 <code>errors.Is</code>를 쓰는 이유는, 나중에 <code>fmt.Errorf</code>에 <code>%w</code>를 붙여도 같은 분기가 남게 하기 위해서입니다. 잘못된 JSON과 범위 오류는 400, 중복은 409, 성공은 201입니다. 500은 지금 분기에서 나오지 않는 나머지 오류를 위한 자리입니다.</p>
+<h2>고루틴은 서버가 이미 만듭니다</h2>
+<p><code>net/http</code>는 연결을 받아들이면 그 연결을 읽는 고루틴을 만듭니다. 핸들러는 그 고루틴 위에서 실행됩니다. HTTP/1.1에서 한 연결의 요청은 그 고루틴에서 순서대로 처리되고, 다른 연결의 <code>List</code>와 <code>Add</code>는 겹칠 수 있습니다. 그래서 슬라이스와 <code>nextID</code>를 뮤텍스로 직렬화합니다. 락은 읽고 쓰는 동안만 잡고 <code>defer</code>로 풀어, 오류로 <code>return</code>해도 잠금이 남지 않게 합니다.</p>
+<p>이 코드는 <code>go</code> 키워드로 고루틴을 만들지 않습니다. 직접 만든 고루틴은 누가 끝내는지, 패닉을 어디서 받는지, 결과를 어디로 보내는지를 작성자가 책임집니다. 백그라운드 루프를 추가하면 프로세스를 끌 때 그 루프를 멈추는 코드가 필요합니다. 요청 처리가 끝나면 할 일도 끝나는 서버에는 그 책임이 없습니다.</p>
+<h2>예제</h2>
+<p>파일은 <code>examples/go/go.mod</code>, <code>languages.go</code>, <code>main.go</code>, <code>languages_test.go</code>입니다.</p>
+<p><code>examples/go/languages.go</code>의 두 구조체입니다. 입력 구조체에는 id가 없습니다.</p>
+<pre><code class="language-go">type Language struct {
+	ID       int    `json:&quot;id&quot;`
+	Name     string `json:&quot;name&quot;`
+	Paradigm string `json:&quot;paradigm&quot;`
+	Year     int    `json:&quot;year&quot;`
+	Summary  string `json:&quot;summary&quot;`
+}
+
+type LanguageInput struct {
+	Name     string `json:&quot;name&quot;`
+	Paradigm string `json:&quot;paradigm&quot;`
+	Year     int    `json:&quot;year&quot;`
+	Summary  string `json:&quot;summary&quot;`
+}
+</code></pre>
+<p><code>examples/go/languages.go</code>의 <code>Add</code>입니다. 범위 검사는 락 앞이고, 중복 검사는 락 안입니다.</p>
+<pre><code class="language-go">func (s *Store) Add(in LanguageInput) (Language, error) {
+	name := strings.TrimSpace(in.Name)
+	paradigm := strings.TrimSpace(in.Paradigm)
+	summary := strings.TrimSpace(in.Summary)
+	if name == &quot;&quot; || utf8.RuneCountInString(name) &gt; 40 ||
+		paradigm == &quot;&quot; || utf8.RuneCountInString(paradigm) &gt; 40 ||
+		summary == &quot;&quot; || utf8.RuneCountInString(summary) &gt; 200 ||
+		in.Year &lt; 1950 || in.Year &gt; 2100 {
+		return Language{}, ErrInvalid
+	}
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	for _, row := range s.items {
+		if strings.EqualFold(row.Name, name) {
+			return Language{}, ErrDuplicate
+		}
+	}
+	created := Language{
+		ID:       s.nextID,
+		Name:     name,
+		Paradigm: paradigm,
+		Year:     in.Year,
+		Summary:  summary,
+	}
+	s.nextID++
+	s.items = append(s.items, created)
+	return created, nil
+}
+</code></pre>
+<p><code>examples/go/main.go</code>는 패턴 문자열로 메서드를 구분합니다. <code>listenAddr</code>만 <code>PORT</code>를 읽고, 테스트는 <code>newMux</code>에 <code>httptest.ResponseRecorder</code>를 넘깁니다.</p>
+<pre><code class="language-go">	mux.HandleFunc(&quot;GET /languages&quot;, func(w http.ResponseWriter, r *http.Request) {
+		writeJSON(w, http.StatusOK, store.List())
+	})
+	mux.HandleFunc(&quot;POST /languages&quot;, func(w http.ResponseWriter, r *http.Request) {
+		var in LanguageInput
+		dec := json.NewDecoder(r.Body)
+		dec.DisallowUnknownFields()
+		if err := dec.Decode(&amp;in); err != nil {
+			writeJSON(w, http.StatusBadRequest, map[string]string{&quot;error&quot;: &quot;JSON 본문을 해석할 수 없습니다&quot;})
+			return
+		}
+		created, err := store.Add(in)
+		if errors.Is(err, ErrInvalid) {
+			writeJSON(w, http.StatusBadRequest, map[string]string{&quot;error&quot;: err.Error()})
+			return
+		}
+		if errors.Is(err, ErrDuplicate) {
+			writeJSON(w, http.StatusConflict, map[string]string{&quot;error&quot;: err.Error()})
+			return
+		}
+		if err != nil {
+			writeJSON(w, http.StatusInternalServerError, map[string]string{&quot;error&quot;: &quot;저장에 실패했습니다&quot;})
+			return
+		}
+		writeJSON(w, http.StatusCreated, created)
+	})
+	return mux
+</code></pre>
+<p><code>examples/go</code>에서 <code>go test</code>를 실행합니다. 테스트는 열 개 조회, 복사본 격리, OCaml 추가와 id 11, 대소문자 중복, 깨진 JSON, 룬 40자와 41자를 확인합니다. 서버를 직접 띄울 때만 포트가 필요합니다.</p>
+<pre><code class="language-bash">go test
+PORT=8090 go run .
+</code></pre>
+<h2>연습</h2>
+<ol>
+<li><code>{}</code>를 <code>POST /languages</code>로 보내 400을 확인합니다. 이름, 패러다임, 요약, 연도 중 어느 조건이 <code>ErrInvalid</code>에 걸리는지 <code>Add</code>에서 가리킵니다.</li>
+<li><code>가</code> 40룬이 201이고 41룬이 400인지 재현합니다. 같은 40룬을 <code>len</code>으로 재면 바이트가 120이라 잘못 거절된다는 점을 숫자로 적습니다.</li>
+<li><code>GET</code>으로 받은 첫 항목의 <code>Name</code>만 바꾼 뒤 다시 <code>GET</code>합니다. 저장소가 Python으로 남는 이유가 <code>make</code>와 <code>copy</code>인 지점을 표시합니다.</li>
+</ol>
+<h2>스스로 확인</h2>
+<ol>
+<li>값 리시버로 락을 잡으면 무엇이 잘못됩니까?</li>
+</ol>
+<p>리시버가 <code>Store</code> 값이면 뮤텍스가 복사됩니다. 복사된 락을 잠그면 다른 고루틴이 원본 락으로 지키는 슬라이스와 동기화되지 않습니다. 그래서 변경이 없는 <code>List</code>도 포인터 리시버를 사용합니다.</p>
+<ol start="2">
+<li>한글 이름에 len을 쓰면 어떤 거절이 납니까?</li>
+</ol>
+<p><code>len</code>은 바이트 수입니다. UTF-8에서 <code>가</code>는 3바이트이므로 룬 40자가 길이 제한 40을 넘습니다. <code>utf8.RuneCountInString</code>이 글자 수에 해당하는 룬을 셉니다. 테스트 <code>TestKoreanNameUsesRuneCount</code>가 그 차이를 고정합니다.</p>
+<ol start="3">
+<li>errors.Is는 이 코드에서 무엇을 구분합니까?</li>
+</ol>
+<p><code>ErrInvalid</code>와 <code>ErrDuplicate</code>를 구분합니다. 지금 <code>Add</code>는 오류를 감싸지 않지만, <code>errors.Is</code>는 감싼 뒤에도 같은 센티널을 찾습니다. 두 오류의 상태 코드는 400과 409로 다릅니다.</p>
+<ol start="4">
+<li>go test가 PORT 없이 핸들러를 호출하는 이유는 무엇입니까?</li>
+</ol>
+<p><code>httptest.NewRequest</code>와 <code>NewRecorder</code>가 <code>ServeHTTP</code>를 직접 호출하기 때문입니다. <code>main</code>의 <code>ListenAndServe</code>는 테스트에서 실행되지 않습니다. 포트 충돌과 환경 변수가 목록 규칙 테스트를 좌우하지 않습니다.</p>
+<ol start="5">
+<li>다른 연결의 요청이 겹치는데도 go 키워드가 없는 이유는 무엇입니까?</li>
+</ol>
+<p>연결을 처리하는 고루틴은 <code>net/http</code>가 이미 만듭니다. 공유 상태는 뮤텍스로 충분합니다. 추가로 띄운 고루틴은 종료와 패닉과 결과 전달을 이 프로그램이 맡게 되므로, 요청 안에서 끝나는 일에는 만들지 않습니다.</p>
+
+      <nav class="pager">
+    <a href="nestjs.html"><span>이전</span>NestJS로 언어 등록 API</a>
+    <a href="workshop-booking.html"><span>다음</span>워크숍 좌석 예약</a>
+  </nav>
+      <footer class="colophon">samsepi0l · 언어 공부장</footer>
+    </article></main>
+  </div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

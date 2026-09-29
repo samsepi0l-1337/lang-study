@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TypeScript로 블록 잇기 · 언어 공부장</title>
+  <meta name="description" content="언어 제안을 해시로 잇는 목록을 TypeScript로 만들고 변조를 검증으로 찾습니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#content">본문으로</a>
+  <div class="shell">
+    <aside class="nav">
+      <a class="brand" href="../index.html"><strong>언어 공부장</strong><span>samsepi0l</span></a>
+      <input class="search" data-filter placeholder="노트 찾기" aria-label="노트 찾기">
+      <details class="toc" open>
+        <summary>목차</summary>
+        <div class="group">기초</div><ol><li data-item="1 Git과 GitHub 임시 저장소에서 커밋과 충돌 병합을 따라 하고 원격과 풀 리퀘스트는 개념으로 구분합니다. Git GitHub Python JavaScript TypeScript Go Rust"><a href="../notes/git-github.html"><small>01</small><span>Git과 GitHub</span></a></li><li data-item="2 SQL로 언어 데이터를 다루기 SQLite로 언어와 구현체와 릴리스를 거르고 묶고, 잘못된 연도는 트랜잭션으로 되돌립니다. SQL SQLite Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/sql.html"><small>02</small><span>SQL로 언어 데이터를 다루기</span></a></li><li data-item="3 Python으로 문서 수집기 만들기 표준 라이브러리만으로 로컬 HTML 픽스처를 읽어 언어 목록 JSON을 만듭니다. Python html.parser Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/python-collector.html"><small>03</small><span>Python으로 문서 수집기 만들기</span></a></li><li data-item="4 Gulp로 문서 파이프라인 만들기 Gulp의 스트림 태스크와 같은 HTML 변환을 Node 표준 모듈만으로도 확인합니다. Gulp Node.js Python JavaScript Go Rust SQL"><a href="../notes/gulp.html"><small>04</small><span>Gulp로 문서 파이프라인 만들기</span></a></li></ol><div class="group">브라우저와 React</div><ol><li data-item="5 브라우저 확장 프로그램 Manifest V3 팝업으로 오늘의 언어를 고르고, 루프백 데모에서만 언어 이름을 표시합니다. JavaScript Chrome Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/chrome-extension.html"><small>05</small><span>브라우저 확장 프로그램</span></a></li><li data-item="6 Canvas로 언어 지도 그리기 언어 카드의 좌표를 모델로 두고, 포인터로 옮긴 뒤 실행 취소로 직전 배치를 복원합니다. JavaScript Canvas Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/canvas-sketch.html"><small>06</small><span>Canvas로 언어 지도 그리기</span></a></li><li data-item="7 React로 언어 사전 만들기 이름 검색과 선택 상태를 부모에 두고, 목록과 상세는 props로만 언어 데이터를 받습니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-dictionary.html"><small>07</small><span>React로 언어 사전 만들기</span></a></li><li data-item="8 React Hooks 언어 메모 화면에서 상태, 효과, ref, 메모, 디바운스 훅의 호출 순서와 의존성을 맞춥니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-hooks.html"><small>08</small><span>React Hooks</span></a></li></ol><div class="group">상태와 GraphQL</div><ol><li data-item="9 Redux로 상태 설계하기 언어 목록, 선택, 즐겨찾기를 스토어 하나와 순수 리듀서 전이로 고정합니다. Redux Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/redux.html"><small>09</small><span>Redux로 상태 설계하기</span></a></li><li data-item="10 Next.js로 언어 문서 사이트 App Router의 파일 경로로 언어 문서 목록과 상세를 나누고, 검색만 클라이언트 상태로 둡니다. Next.js Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell Next.js"><a href="../notes/nextjs.html"><small>10</small><span>Next.js로 언어 문서 사이트</span></a></li><li data-item="11 GraphQL 서버 언어 카탈로그를 스키마와 리졸버로 나누고, 포트를 열지 않은 채 graphql()로 쿼리와 뮤테이션을 실행합니다. GraphQL Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell GraphQL"><a href="../notes/graphql-server.html"><small>11</small><span>GraphQL 서버</span></a></li><li data-item="12 GraphQL 클라이언트 executeAgainst가 data를 반환하거나 errors를 던지고, normalize가 언어를 id 맵으로 접습니다. GraphQL Python Haskell GraphQL"><a href="../notes/graphql-client.html"><small>12</small><span>GraphQL 클라이언트</span></a></li></ol><div class="group">서버</div><ol><li data-item="13 NestJS로 언어 등록 API 모듈과 생성자 주입, DTO 검증으로 언어 열 개를 등록하는 HTTP API를 조립합니다. NestJS Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/nestjs.html"><small>13</small><span>NestJS로 언어 등록 API</span></a></li><li data-item="14 Go로 작은 HTTP 서버 표준 라이브러리와 뮤텍스로 언어 목록을 조회하고 추가하는 HTTP 서버를 테스트합니다. Go Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/go.html"><small>14</small><span>Go로 작은 HTTP 서버</span></a></li><li data-item="15 워크숍 좌석 예약 시작 시각과 이름, 좌석 수 규칙을 서비스에 두고 언어 워크숍 좌석을 예약합니다. JavaScript Rust Haskell"><a href="../notes/workshop-booking.html"><small>15</small><span>워크숍 좌석 예약</span></a></li><li data-item="16 코드 조각 피드 언어별 코드 조각을 id 커서로 나누고, 사용자 이름 단위로 추천을 토글합니다. JavaScript Python Go Rust"><a href="../notes/snippet-feed.html"><small>16</small><span>코드 조각 피드</span></a></li></ol><div class="group">모바일과 연결</div><ol><li data-item="17 Dart 언어의 기본 널 안전, final과 const, Future를 한 파일의 언어 카드 보고서로 확인합니다. Dart Kotlin Dart Haskell"><a href="../notes/dart.html"><small>17</small><span>Dart 언어의 기본</span></a></li><li data-item="18 Flutter로 언어 카드 메모리 속 즐겨찾기와 상세 경로를 Flutter 3 위젯으로 구성합니다. Flutter Rust Dart Haskell Flutter"><a href="../notes/flutter.html"><small>18</small><span>Flutter로 언어 카드</span></a></li><li data-item="19 React Native로 언어 카드 복습 규칙만 순수 함수로 두고, 언어 카드 화면은 네이티브 뷰로 분리합니다. React Native Rust Dart Haskell React"><a href="../notes/react-native.html"><small>19</small><span>React Native로 언어 카드</span></a></li><li data-item="20 실시간 스터디룸의 연결 두 탭이 코드 조각을 주고받도록 신호, SDP, ICE를 역할로 나눕니다. WebRTC "><a href="../notes/webrtc-room.html"><small>20</small><span>실시간 스터디룸의 연결</span></a></li><li data-item="21 TypeScript로 블록 잇기 언어 제안을 해시로 잇는 목록을 TypeScript로 만들고 변조를 검증으로 찾습니다. TypeScript TypeScript Dart"><a href="../notes/ts-chain.html" aria-current="page"><small>21</small><span>TypeScript로 블록 잇기</span></a></li></ol><div class="group">에이전트와 제품</div><ol><li data-item="22 언어 튜터 서비스 구조 로컬 카탈로그에서 언어 설명을 고르고, 역할이 나뉜 메시지를 화면에 나누어 그립니다. LLM Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/llm-tutor.html"><small>22</small><span>언어 튜터 서비스 구조</span></a></li><li data-item="23 도구를 쓰는 에이전트 루프 목표를 받은 뒤 로컬 도구의 결과를 관찰로 쌓고, 최종 답이나 네 걸음에서 멈춥니다. 에이전트 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/ai-agents.html"><small>23</small><span>도구를 쓰는 에이전트 루프</span></a></li><li data-item="24 n8n 워크플로 웹훅으로 받은 언어 이름을 Set 노드가 카드의 제목과 요약으로 바꿉니다. n8n Rust Zig"><a href="../notes/n8n.html"><small>24</small><span>n8n 워크플로</span></a></li><li data-item="25 직접 설계하는 Supabase 스타터 프로필과 언어와 학습 노트를 RLS로 나누고, 서비스 롤은 서버에만 둡니다. Supabase Python Haskell SQL"><a href="../notes/supabase-starter.html"><small>25</small><span>직접 설계하는 Supabase 스타터</span></a></li><li data-item="26 언어 선반이라는 제품 언어 선반은 배우는 이유와 다음 연습을 남기는 기록이고, 지표는 주간 노트 수입니다. 제품 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/maker.html"><small>26</small><span>언어 선반이라는 제품</span></a></li></ol>
+      </details>
+    </aside>
+    <main class="main" id="content"><article class="sheet">
+      <div class="meta"><span class="pill">중급</span><span class="pill">40분</span><span class="pill">TypeScript</span></div>
+      <h1>TypeScript로 블록 잇기</h1>
+<h2>도입</h2>
+<p>이 장은 samsepi0l이 언어 제안을 해시로 잇는 목록으로 정리한 노트입니다. 결제나 자산 이동을 다루지 않습니다. 각 블록은 언어 제안 하나를 기록하고, 바로 앞 블록의 해시를 가리킵니다.</p>
+<p>제안은 <code>language</code>, <code>title</code>, <code>text</code> 세 필드입니다. 예를 들면 Dart의 널 안전이나 TypeScript의 타입 소거에 대한 짧은 문장입니다. 블록을 추가할 때 난이도를 맞추는 퍼즐은 풀지 않습니다. <code>chain.ts</code>의 한 줄 주석이 말하듯 작업 증명은 의도적으로 생략합니다.</p>
+<p>예제는 <code>examples/ts-chain</code>에 있습니다. 그 디렉터리에서 다음을 실행합니다.</p>
+<p><code>node --experimental-strip-types chain.test.ts</code></p>
+<p>의존 패키지는 없습니다. 해시는 <code>node:crypto</code>의 sha256입니다.</p>
+<h2>이 장을 끝내면</h2>
+<ul>
+<li>블록의 필드와, 해시가 자기 자신을 제외한 이유를 설명합니다.</li>
+<li><code>append</code>가 이전 해시로 블록을 잇는 방식과 <code>validate</code>의 세 검사를 말합니다.</li>
+<li>본문 변조와 링크 변조가 서로 다른 이유로 검증에 실패한다는 점을 구분합니다.</li>
+</ul>
+<h2>블록에 적는 제안</h2>
+<p>블록 필드는 <code>index</code>, <code>timestamp</code>, <code>proposal</code>, <code>previousHash</code>, <code>hash</code>입니다. <code>index</code>는 목록에서의 위치이고 0부터 시작합니다. <code>timestamp</code>는 호출자가 넘기는 문자열입니다. 테스트가 시각을 고정할 수 있게 하려고 클래스 안에서 시계를 읽지 않습니다.</p>
+<p>첫 블록의 <code>previousHash</code>는 64개의 <code>&#39;0&#39;</code>입니다. sha256을 십육진수로 적으면 64자라서 길이를 맞춘 자리 표시이며, 숨은 블록의 해시가 아닙니다. 상수 이름은 <code>emptyPreviousHash</code>입니다. 다음 블록의 <code>previousHash</code>는 바로 앞 블록의 <code>hash</code>입니다.</p>
+<p><code>blocks</code>는 일부러 공개되어 있습니다. 테스트가 필드를 고친 뒤 <code>validate</code>가 거짓이 되는지 보려는 이음새입니다. 라이브러리라면 바깥에서 못 고치게 감싸겠지만, 이 파일의 목적은 변조가 검증에서 드러나는 모습을 보여주는 것입니다.</p>
+<h2>해시를 고정된 순서로 계산합니다</h2>
+<p><code>hash</code>는 <code>hash</code> 필드를 뺀 나머지 필드의 sha256입니다. 해시를 입력에 포함하면 그 값이 자기 자신을 포함해야 하므로 계산이 닫히지 않습니다. <code>canonical</code>은 객체를 새로 만들어 <code>index</code>, <code>timestamp</code>, <code>proposal</code>, <code>previousHash</code> 순서로만 <code>JSON.stringify</code>합니다. <code>proposal</code> 안에서도 <code>language</code>, <code>title</code>, <code>text</code> 순서를 고정합니다.</p>
+<p>호출자가 필드를 다른 순서로 만든 객체라도, 해시 입력의 키 순서는 달라지지 않습니다. 같은 값이면 같은 문자열이 되고, 그 문자열의 sha256 십육진수가 <code>hash</code>입니다. 테스트는 그 길이가 64인지도 확인합니다.</p>
+<h2>잇기와 검증</h2>
+<p><code>append</code>는 현재 길이를 <code>index</code>로 삼고, 마지막 블록이 없으면 <code>emptyPreviousHash</code>를, 있으면 그 블록의 <code>hash</code>를 <code>previousHash</code>로 삼습니다. 그 본문으로 <code>hashBlock</code>을 계산한 다음 배열 끝에 넣습니다. 반환값은 방금 넣은 블록입니다.</p>
+<p><code>validate</code>는 빈 목록을 참으로 봅니다. 블록이 있으면 앞에서부터 세 가지를 봅니다. 첫째, <code>index</code>가 현재 위치와 같은지 봅니다. 둘째, <code>bodyOf</code>로 <code>hash</code>를 제외한 본문을 다시 해시해 저장된 <code>hash</code>와 같은지 봅니다. 셋째, <code>previousHash</code>가 첫 블록이면 0의 열이고, 아니면 바로 앞 블록의 <code>hash</code>와 같은지 봅니다. 하나라도 어긋나면 거짓입니다.</p>
+<p>작업 증명을 넣지 않았으므로 해시 앞에 0이 몇 개인지 보지 않습니다. 정당한 블록을 만드는 비용과 변조를 알아채는 비용은 이 구조에서 해시 계산 한 번으로 같습니다. 수업이 보여 주려는 것은 비용의 비대칭이 아니라 링크입니다.</p>
+<h2>변조</h2>
+<p>제안의 <code>text</code>를 바꾸면 정규화된 JSON이 달라집니다. 저장된 <code>hash</code>는 예전 문자열로 만들어졌으므로 다시 계산한 값과 다릅니다. <code>validate</code>는 거짓입니다. 문장을 되돌리면 다시 참입니다. 이것이 본문 변조입니다.</p>
+<p>링크 변조는 따로 볼 수 있습니다. <code>previousHash</code>를 0의 열로 바꾸고, 그 새 본문에 맞춰 <code>hash</code>까지 다시 계산하면 블록 하나만 보면 해시가 맞습니다. 그래도 두 번째 블록의 <code>previousHash</code>는 첫 블록의 <code>hash</code>가 아니므로 <code>validate</code>는 거짓입니다. 자기 해시만 맞추는 것으로는 목록의 이음이 복구되지 않습니다.</p>
+<p>타입 별칭은 이 검증에 참여하지 않습니다. 실행되는 것은 필드와 해시뿐입니다.</p>
+<h2>타입은 실행 코드에 남지 않습니다</h2>
+<p><code>Proposal</code>, <code>Block</code>, <code>BlockBody</code>는 <code>type</code> 별칭입니다. Node가 타입을 지울 때 이 별칭과 매개변수의 타입 표기는 사라집니다. 열거형 <code>enum</code>은 실행용 객체를 만들어야 해서 지우기만 하는 경로에서는 거절됩니다. 그래서 이 파일은 열거형 대신 별칭과 객체를 사용합니다. 상태가 몇 개로 제한되는 값은 문자열 유니언으로 적는 편이 같은 이유로 안전합니다.</p>
+<p>상대 경로는 <code>./chain.ts</code>입니다. 컴파일 결과인 <code>.js</code>를 만들지 않고, 러너가 TypeScript 파일을 직접 읽기 때문입니다. <code>package.json</code>의 <code>&quot;type&quot;: &quot;module&quot;</code>은 이 디렉터리를 ECMAScript 모듈로 취급합니다. Node는 타입을 검사하지 않습니다. 표기가 틀려도 지워지면 실행될 수 있으므로, 동작은 <code>chain.test.ts</code>의 단언이 확인합니다.</p>
+<h2>예제</h2>
+<p><code>examples/ts-chain/chain.ts</code> 전체입니다.</p>
+<pre><code class="language-typescript">import { createHash } from &quot;node:crypto&quot;;
+
+export const emptyPreviousHash = &quot;0&quot;.repeat(64);
+
+export type Proposal = {
+  language: string;
+  title: string;
+  text: string;
+};
+
+export type Block = {
+  index: number;
+  timestamp: string;
+  proposal: Proposal;
+  previousHash: string;
+  hash: string;
+};
+
+type BlockBody = {
+  index: number;
+  timestamp: string;
+  proposal: Proposal;
+  previousHash: string;
+};
+
+function canonical(body: BlockBody): string {
+  const proposal = body.proposal;
+  return JSON.stringify({
+    index: body.index,
+    timestamp: body.timestamp,
+    proposal: {
+      language: proposal.language,
+      title: proposal.title,
+      text: proposal.text,
+    },
+    previousHash: body.previousHash,
+  });
+}
+
+export function hashBlock(body: BlockBody): string {
+  return createHash(&quot;sha256&quot;).update(canonical(body)).digest(&quot;hex&quot;);
+}
+
+function bodyOf(block: Block): BlockBody {
+  return {
+    index: block.index,
+    timestamp: block.timestamp,
+    proposal: block.proposal,
+    previousHash: block.previousHash,
+  };
+}
+
+// 작업 증명은 의도적으로 생략합니다. 해시로 블록을 잇는 목록만 다룹니다.
+export class Chain {
+  blocks: Block[] = [];
+
+  append(proposal: Proposal, timestamp: string): Block {
+    const previous = this.blocks[this.blocks.length - 1];
+    const body: BlockBody = {
+      index: this.blocks.length,
+      timestamp,
+      proposal,
+      previousHash: previous === undefined ? emptyPreviousHash : previous.hash,
+    };
+    const block: Block = { ...body, hash: hashBlock(body) };
+    this.blocks.push(block);
+    return block;
+  }
+
+  validate(): boolean {
+    for (let index = 0; index &lt; this.blocks.length; index += 1) {
+      const block = this.blocks[index];
+      if (block.index !== index) {
+        return false;
+      }
+      if (hashBlock(bodyOf(block)) !== block.hash) {
+        return false;
+      }
+      const expectedPrevious =
+        index === 0 ? emptyPreviousHash : this.blocks[index - 1].hash;
+      if (block.previousHash !== expectedPrevious) {
+        return false;
+      }
+    }
+    return true;
+  }
+}
+</code></pre>
+<p><code>examples/ts-chain/chain.test.ts</code> 전체입니다.</p>
+<pre><code class="language-typescript">import assert from &quot;node:assert/strict&quot;;
+import { Chain, emptyPreviousHash, hashBlock } from &quot;./chain.ts&quot;;
+
+const chain = new Chain();
+assert.equal(chain.validate(), true);
+
+const first = chain.append(
+  {
+    language: &quot;Dart&quot;,
+    title: &quot;널을 타입에 적는다&quot;,
+    text: &quot;String? 는 값이 없을 수 있음을 타입으로 말합니다.&quot;,
+  },
+  &quot;2026-04-01T00:00:00.000Z&quot;,
+);
+const second = chain.append(
+  {
+    language: &quot;TypeScript&quot;,
+    title: &quot;제안을 블록에 남긴다&quot;,
+    text: &quot;각 블록은 언어 제안 하나와 이전 해시를 가집니다.&quot;,
+  },
+  &quot;2026-04-02T00:00:00.000Z&quot;,
+);
+
+assert.equal(chain.validate(), true);
+assert.equal(first.index, 0);
+assert.equal(second.index, 1);
+assert.equal(first.previousHash, emptyPreviousHash);
+assert.equal(second.previousHash, first.hash);
+assert.equal(first.hash.length, 64);
+assert.notEqual(first.hash, second.hash);
+
+const savedText = first.proposal.text;
+first.proposal.text = &quot;본문을 갈아 끼운 제안&quot;;
+assert.equal(chain.validate(), false);
+first.proposal.text = savedText;
+assert.equal(chain.validate(), true);
+
+second.previousHash = emptyPreviousHash;
+second.hash = hashBlock({
+  index: second.index,
+  timestamp: second.timestamp,
+  proposal: second.proposal,
+  previousHash: second.previousHash,
+});
+assert.notEqual(second.previousHash, first.hash);
+assert.equal(chain.validate(), false);
+
+console.log(&quot;chain.test.ts passed&quot;);
+</code></pre>
+<h2>연습</h2>
+<ol>
+<li>언어 제안을 하나 더 <code>append</code>하고, <code>index</code>가 2이며 <code>previousHash</code>가 두 번째 블록의 <code>hash</code>인지 확인합니다.</li>
+<li>첫 블록의 <code>timestamp</code>만 바꾼 뒤 <code>validate</code>가 거짓이 되는지 보고, 원래 시각으로 되돌립니다.</li>
+<li>두 블록의 제안 문장은 그대로 두고 순서만 바꿨을 때 검증이 실패하는 이유를 <code>index</code>와 <code>previousHash</code>로 설명합니다.</li>
+</ol>
+<h2>스스로 확인</h2>
+<h3>1. <code>hash</code> 필드를 해시 입력에 넣지 않는 이유는 무엇입니까?</h3>
+<p>답: 해시 값이 자기 자신을 입력으로 포함해야 하면 그 입력을 해시하기 전에 결과를 알 수 없기 때문입니다.</p>
+<h3>2. 첫 블록의 <code>previousHash</code>가 0으로만 이루어진 이유는 무엇입니까?</h3>
+<p>답: 앞에 블록이 없다는 표시를 해시와 같은 길이의 문자열로 고정하기 위해서입니다. 숨은 앞 블록이 있는 것은 아닙니다.</p>
+<h3>3. <code>previousHash</code>를 고치고 그 블록의 <code>hash</code>를 다시 계산했는데도 검증이 실패하는 이유는 무엇입니까?</h3>
+<p>답: 블록 내부의 해시는 맞을 수 있어도, <code>previousHash</code>가 실제 이전 블록의 <code>hash</code>와 다르면 링크 검사가 실패하기 때문입니다.</p>
+<h3>4. 왜 해시 앞에 0이 몇 개 필요한지 검사하지 않습니까?</h3>
+<p>답: 작업 증명을 의도적으로 생략했기 때문입니다. 이 구조는 난이도 퍼즐이 아니라 해시로 잇는 목록입니다.</p>
+<h3>5. 테스트가 <code>./chain.js</code>가 아니라 <code>./chain.ts</code>를 불러오는 이유는 무엇입니까?</h3>
+<p>답: 타입을 지우는 실행기가 TypeScript 파일을 직접 읽기 때문입니다. 별도의 컴파일 산출물을 만들지 않습니다.</p>
+
+      <nav class="pager">
+    <a href="webrtc-room.html"><span>이전</span>실시간 스터디룸의 연결</a>
+    <a href="llm-tutor.html"><span>다음</span>언어 튜터 서비스 구조</a>
+  </nav>
+      <footer class="colophon">samsepi0l · 언어 공부장</footer>
+    </article></main>
+  </div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

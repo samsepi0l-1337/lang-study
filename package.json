@@ -1,0 +1,12 @@
+{
+  "name": "lang-study",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-site.mjs",
+    "check": "node scripts/check-examples.mjs"
+  },
+  "devDependencies": {
+    "marked": "^15.0.12"
+  }
+}

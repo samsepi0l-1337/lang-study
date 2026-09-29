@@ -1,0 +1,14 @@
+{
+  "name": "language-doc-pipeline",
+  "private": true,
+  "version": "1.0.0",
+  "description": "언어 노트를 HTML 문서로 감싸는 문서 파이프라인",
+  "type": "module",
+  "scripts": {
+    "build": "gulp",
+    "pipeline": "node pipeline.mjs"
+  },
+  "dependencies": {
+    "gulp": "4.0.2"
+  }
+}

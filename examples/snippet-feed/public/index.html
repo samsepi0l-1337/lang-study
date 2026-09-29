@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>코드 조각 피드</title>
+  <style>
+    body { margin: 0 auto; max-width: 46rem; padding: 1.5rem; font-family: "Iowan Old Style", "Apple SD Gothic Neo", sans-serif; line-height: 1.5; color: #1c1b19; background: #f6f4ef; }
+    h1 { font-size: 1.7rem; margin-bottom: 0.3rem; }
+    form, article { background: #fff; border: 1px solid #d9d3c7; padding: 1rem; margin: 1rem 0; }
+    label { display: block; margin: 0.6rem 0 0.2rem; }
+    input, select, textarea, button { font: inherit; }
+    input, select, textarea { width: 100%; box-sizing: border-box; }
+    textarea { min-height: 7rem; }
+    button { margin-top: 0.8rem; }
+    pre { overflow: auto; padding: 0.8rem; background: #221f1b; color: #f6f4ef; }
+    .row { display: flex; gap: 0.6rem; align-items: end; }
+    .row > * { flex: 1; }
+    #status { min-height: 1.4rem; }
+  </style>
+</head>
+<body>
+  <h1>코드 조각 피드</h1>
+  <p>언어별 짧은 코드를 시간 순이 아니라 id 순으로 읽고, 같은 이름으로 추천을 토글합니다.</p>
+  <p id="status" role="status"></p>
+
+  <form id="filter">
+    <div class="row">
+      <div>
+        <label for="language">언어</label>
+        <select id="language" name="language">
+          <option value="">전체</option>
+        </select>
+      </div>
+      <div>
+        <label for="user">추천에 쓸 이름</label>
+        <input id="user" name="user" maxlength="40" placeholder="samsepi0l">
+      </div>
+    </div>
+    <button type="submit">이 조건으로 다시 불러오기</button>
+  </form>
+
+  <section id="list"></section>
+  <button id="more" type="button" hidden>다음 커서 불러오기</button>
+
+  <form id="composer">
+    <h2>조각 올리기</h2>
+    <label for="post-language">언어</label>
+    <select id="post-language" name="language"></select>
+    <label for="title">제목</label>
+    <input id="title" name="title" maxlength="80" required>
+    <label for="author">작성자</label>
+    <input id="author" name="author" maxlength="40" value="samsepi0l" required>
+    <label for="code">코드</label>
+    <textarea id="code" name="code" required></textarea>
+    <button type="submit">등록</button>
+  </form>
+
+  <script>
+    const languages = ['Python', 'JavaScript', 'Go', 'Rust', 'TypeScript', 'Kotlin', 'Elixir', 'Zig', 'Dart', 'Haskell'];
+    const languageSelect = document.querySelector('#language');
+    const postLanguage = document.querySelector('#post-language');
+    const list = document.querySelector('#list');
+    const more = document.querySelector('#more');
+    const status = document.querySelector('#status');
+    const userInput = document.querySelector('#user');
+    let nextCursor = null;
+
+    for (const name of languages) {
+      languageSelect.add(new Option(name, name));
+      postLanguage.add(new Option(name, name));
+    }
+
+    function setStatus(message) {
+      status.textContent = message;
+    }
+
+    async function requestJson(path, options = {}) {
+      const response = await fetch(path, {
+        ...options,
+        headers: { accept: 'application/json', ...(options.headers ?? {}) },
+      });
+      const body = await response.json();
+      if (!response.ok) {
+        throw new Error(body.error || '요청이 거절되었습니다.');
+      }
+      return body;
+    }
+
+    function renderPost(post) {
+      const article = document.createElement('article');
+      const heading = document.createElement('h2');
+      heading.textContent = post.title;
+      const meta = document.createElement('p');
+      meta.textContent = `${post.language} · ${post.author} · 추천 ${post.likes}`;
+      const code = document.createElement('pre');
+      code.textContent = post.code;
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = '추천 토글';
+      button.addEventListener('click', () => toggleLike(post.id));
+      article.append(heading, meta, code, button);
+      return article;
+    }
+
+    async function loadPage(reset) {
+      const params = new URLSearchParams();
+      params.set('limit', '10');
+      if (languageSelect.value) {
+        params.set('language', languageSelect.value);
+      }
+      if (!reset && nextCursor !== null) {
+        params.set('cursor', String(nextCursor));
+      }
+      const page = await requestJson(`/api/posts?${params.toString()}`);
+      if (reset) {
+        list.replaceChildren();
+      }
+      for (const post of page.items) {
+        list.append(renderPost(post));
+      }
+      nextCursor = page.nextCursor;
+      more.hidden = nextCursor === null;
+      if (reset && page.items.length === 0) {
+        const empty = document.createElement('p');
+        empty.textContent = '아직 조각이 없습니다.';
+        list.append(empty);
+      }
+      setStatus(nextCursor === null ? '마지막 페이지입니다.' : `다음 커서는 ${nextCursor}입니다.`);
+    }
+
+    async function toggleLike(id) {
+      const user = userInput.value.trim();
+      if (!user) {
+        setStatus('추천에 쓸 이름을 입력합니다.');
+        return;
+      }
+      try {
+        const result = await requestJson(`/api/posts/${id}/like`, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ user }),
+        });
+        setStatus(result.liked ? '추천을 추가했습니다.' : '추천을 취소했습니다.');
+        nextCursor = null;
+        await loadPage(true);
+      } catch (error) {
+        setStatus(error.message);
+      }
+    }
+
+    document.querySelector('#filter').addEventListener('submit', (event) => {
+      event.preventDefault();
+      nextCursor = null;
+      loadPage(true).catch((error) => setStatus(error.message));
+    });
+
+    more.addEventListener('click', () => {
+      loadPage(false).catch((error) => setStatus(error.message));
+    });
+
+    document.querySelector('#composer').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const payload = {
+        language: form.language.value,
+        title: form.title.value,
+        author: form.author.value,
+        code: form.code.value,
+      };
+      try {
+        await requestJson('/api/posts', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        form.title.value = '';
+        form.code.value = '';
+        nextCursor = null;
+        await loadPage(true);
+      } catch (error) {
+        setStatus(error.message);
+      }
+    });
+
+    loadPage(true).catch((error) => setStatus(error.message));
+  </script>
+</body>
+</html>

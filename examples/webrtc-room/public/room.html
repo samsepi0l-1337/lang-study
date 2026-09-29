@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>실시간 스터디룸</title>
+  <style>
+    body { font-family: sans-serif; margin: 1.5rem; max-width: 40rem; line-height: 1.5; }
+    textarea { width: 100%; min-height: 8rem; font-family: monospace; }
+    pre { background: #f3f3f3; padding: 0.75rem; min-height: 4rem; white-space: pre-wrap; }
+    button { margin-right: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>실시간 스터디룸</h1>
+  <p>같은 브라우저의 다른 탭에서 이 페이지를 한 번 더 여십시오. BroadcastChannel은 같은 출처의 탭끼리만 닿는 수업용 신호 대역이며, 이 페이지는 외부 서버로 접속하지 않습니다.</p>
+  <p id="status">대기</p>
+  <label for="snippet">코드 조각</label>
+  <textarea id="snippet">fn main() {}</textarea>
+  <p>
+    <button id="offer" type="button">제안 보내기</button>
+    <button id="send" type="button">조각 보내기</button>
+  </p>
+  <h2>받은 조각</h2>
+  <pre id="log"></pre>
+  <script>
+    "use strict";
+
+    const channel = new BroadcastChannel("study-snippet-room");
+    const selfId = String(Date.now()) + "-" + Math.random().toString(16).slice(2);
+    const statusEl = document.querySelector("#status");
+    const snippetEl = document.querySelector("#snippet");
+    const logEl = document.querySelector("#log");
+    let pc = null;
+    let dataChannel = null;
+    let phase = "idle";
+    const iceQueue = [];
+
+    function setStatus(text) {
+      statusEl.textContent = text;
+    }
+
+    function log(text) {
+      logEl.textContent += String(text) + "\n";
+    }
+
+    function post(type, extra) {
+      channel.postMessage(Object.assign({ type: type, from: selfId }, extra || {}));
+    }
+
+    function hasWebRtc() {
+      return "RTCPeerConnection" in window;
+    }
+
+    function connection() {
+      if (!hasWebRtc()) {
+        return null;
+      }
+      if (pc) {
+        return pc;
+      }
+      pc = new RTCPeerConnection({ iceServers: [] });
+      pc.onicecandidate = function (event) {
+        if (event.candidate) {
+          post("ice", { candidate: event.candidate.toJSON() });
+        }
+      };
+      pc.ondatachannel = function (event) {
+        if (event.channel.label === "snippet") {
+          bindChannel(event.channel);
+        }
+      };
+      return pc;
+    }
+
+    function bindChannel(next) {
+      dataChannel = next;
+      dataChannel.onopen = function () {
+        setStatus("데이터 채널 snippet 이 열렸습니다");
+      };
+      dataChannel.onmessage = function (event) {
+        log(event.data);
+      };
+    }
+
+    async function addIce(candidate) {
+      const peer = connection();
+      if (!peer) {
+        return;
+      }
+      if (!peer.remoteDescription) {
+        iceQueue.push(candidate);
+        return;
+      }
+      await peer.addIceCandidate(candidate);
+    }
+
+    async function flushIce() {
+      const peer = connection();
+      if (!peer) {
+        return;
+      }
+      while (iceQueue.length > 0) {
+        await peer.addIceCandidate(iceQueue.shift());
+      }
+    }
+
+    function sendSnippet() {
+      const text = snippetEl.value;
+      post("snippet", { text: text });
+      if (dataChannel && dataChannel.readyState === "open") {
+        dataChannel.send(text);
+        setStatus("데이터 채널과 BroadcastChannel로 보냈습니다");
+        return;
+      }
+      setStatus("BroadcastChannel로 조각을 보냈습니다");
+    }
+
+    async function sendOffer() {
+      const peer = connection();
+      if (!peer) {
+        sendSnippet();
+        setStatus("WebRTC가 없어 BroadcastChannel만 사용합니다");
+        return;
+      }
+      if (phase !== "idle") {
+        setStatus("제안은 한 번만 보냅니다");
+        return;
+      }
+      phase = "have-offer";
+      try {
+        bindChannel(peer.createDataChannel("snippet"));
+        const offer = await peer.createOffer();
+        await peer.setLocalDescription(offer);
+        post("offer", {
+          description: { type: peer.localDescription.type, sdp: peer.localDescription.sdp },
+        });
+        setStatus("SDP 제안을 보냈습니다");
+      } catch (error) {
+        phase = "idle";
+        throw error;
+      }
+    }
+
+    async function onOffer(description) {
+      if (phase !== "idle") {
+        log("double-offer는 받아들이지 않습니다");
+        return;
+      }
+      const peer = connection();
+      if (!peer) {
+        return;
+      }
+      phase = "have-offer";
+      try {
+        await peer.setRemoteDescription(description);
+        const answer = await peer.createAnswer();
+        await peer.setLocalDescription(answer);
+        post("answer", {
+          description: { type: peer.localDescription.type, sdp: peer.localDescription.sdp },
+        });
+        phase = "connected";
+        await flushIce();
+        setStatus("SDP 응답을 보냈습니다");
+      } catch (error) {
+        phase = "idle";
+        throw error;
+      }
+    }
+
+    async function onAnswer(description) {
+      if (phase !== "have-offer") {
+        return;
+      }
+      const peer = connection();
+      if (!peer) {
+        return;
+      }
+      await peer.setRemoteDescription(description);
+      phase = "connected";
+      await flushIce();
+      setStatus("상대의 응답을 반영했습니다");
+    }
+
+    async function handle(message) {
+      if (!message || message.from === selfId) {
+        return;
+      }
+      if (message.type === "snippet") {
+        log(message.text);
+        return;
+      }
+      if (!hasWebRtc()) {
+        setStatus("WebRTC가 없어 조각 교환만 표시합니다");
+        return;
+      }
+      if (message.type === "offer") {
+        await onOffer(message.description);
+        return;
+      }
+      if (message.type === "answer") {
+        await onAnswer(message.description);
+        return;
+      }
+      if (message.type === "ice" && message.candidate) {
+        await addIce(message.candidate);
+      }
+    }
+
+    channel.onmessage = function (event) {
+      handle(event.data).catch(function (error) {
+        log(error);
+      });
+    };
+
+    document.querySelector("#offer").addEventListener("click", function () {
+      sendOffer().catch(function (error) {
+        log(error);
+      });
+    });
+    document.querySelector("#send").addEventListener("click", sendSnippet);
+    setStatus(hasWebRtc() ? "WebRTC 사용 가능" : "WebRTC 없음, BroadcastChannel만 사용");
+  </script>
+</body>
+</html>

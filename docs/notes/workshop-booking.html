@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>워크숍 좌석 예약 · 언어 공부장</title>
+  <meta name="description" content="시작 시각과 이름, 좌석 수 규칙을 서비스에 두고 언어 워크숍 좌석을 예약합니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#content">본문으로</a>
+  <div class="shell">
+    <aside class="nav">
+      <a class="brand" href="../index.html"><strong>언어 공부장</strong><span>samsepi0l</span></a>
+      <input class="search" data-filter placeholder="노트 찾기" aria-label="노트 찾기">
+      <details class="toc" open>
+        <summary>목차</summary>
+        <div class="group">기초</div><ol><li data-item="1 Git과 GitHub 임시 저장소에서 커밋과 충돌 병합을 따라 하고 원격과 풀 리퀘스트는 개념으로 구분합니다. Git GitHub Python JavaScript TypeScript Go Rust"><a href="../notes/git-github.html"><small>01</small><span>Git과 GitHub</span></a></li><li data-item="2 SQL로 언어 데이터를 다루기 SQLite로 언어와 구현체와 릴리스를 거르고 묶고, 잘못된 연도는 트랜잭션으로 되돌립니다. SQL SQLite Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/sql.html"><small>02</small><span>SQL로 언어 데이터를 다루기</span></a></li><li data-item="3 Python으로 문서 수집기 만들기 표준 라이브러리만으로 로컬 HTML 픽스처를 읽어 언어 목록 JSON을 만듭니다. Python html.parser Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/python-collector.html"><small>03</small><span>Python으로 문서 수집기 만들기</span></a></li><li data-item="4 Gulp로 문서 파이프라인 만들기 Gulp의 스트림 태스크와 같은 HTML 변환을 Node 표준 모듈만으로도 확인합니다. Gulp Node.js Python JavaScript Go Rust SQL"><a href="../notes/gulp.html"><small>04</small><span>Gulp로 문서 파이프라인 만들기</span></a></li></ol><div class="group">브라우저와 React</div><ol><li data-item="5 브라우저 확장 프로그램 Manifest V3 팝업으로 오늘의 언어를 고르고, 루프백 데모에서만 언어 이름을 표시합니다. JavaScript Chrome Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/chrome-extension.html"><small>05</small><span>브라우저 확장 프로그램</span></a></li><li data-item="6 Canvas로 언어 지도 그리기 언어 카드의 좌표를 모델로 두고, 포인터로 옮긴 뒤 실행 취소로 직전 배치를 복원합니다. JavaScript Canvas Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/canvas-sketch.html"><small>06</small><span>Canvas로 언어 지도 그리기</span></a></li><li data-item="7 React로 언어 사전 만들기 이름 검색과 선택 상태를 부모에 두고, 목록과 상세는 props로만 언어 데이터를 받습니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-dictionary.html"><small>07</small><span>React로 언어 사전 만들기</span></a></li><li data-item="8 React Hooks 언어 메모 화면에서 상태, 효과, ref, 메모, 디바운스 훅의 호출 순서와 의존성을 맞춥니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-hooks.html"><small>08</small><span>React Hooks</span></a></li></ol><div class="group">상태와 GraphQL</div><ol><li data-item="9 Redux로 상태 설계하기 언어 목록, 선택, 즐겨찾기를 스토어 하나와 순수 리듀서 전이로 고정합니다. Redux Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/redux.html"><small>09</small><span>Redux로 상태 설계하기</span></a></li><li data-item="10 Next.js로 언어 문서 사이트 App Router의 파일 경로로 언어 문서 목록과 상세를 나누고, 검색만 클라이언트 상태로 둡니다. Next.js Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell Next.js"><a href="../notes/nextjs.html"><small>10</small><span>Next.js로 언어 문서 사이트</span></a></li><li data-item="11 GraphQL 서버 언어 카탈로그를 스키마와 리졸버로 나누고, 포트를 열지 않은 채 graphql()로 쿼리와 뮤테이션을 실행합니다. GraphQL Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell GraphQL"><a href="../notes/graphql-server.html"><small>11</small><span>GraphQL 서버</span></a></li><li data-item="12 GraphQL 클라이언트 executeAgainst가 data를 반환하거나 errors를 던지고, normalize가 언어를 id 맵으로 접습니다. GraphQL Python Haskell GraphQL"><a href="../notes/graphql-client.html"><small>12</small><span>GraphQL 클라이언트</span></a></li></ol><div class="group">서버</div><ol><li data-item="13 NestJS로 언어 등록 API 모듈과 생성자 주입, DTO 검증으로 언어 열 개를 등록하는 HTTP API를 조립합니다. NestJS Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/nestjs.html"><small>13</small><span>NestJS로 언어 등록 API</span></a></li><li data-item="14 Go로 작은 HTTP 서버 표준 라이브러리와 뮤텍스로 언어 목록을 조회하고 추가하는 HTTP 서버를 테스트합니다. Go Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/go.html"><small>14</small><span>Go로 작은 HTTP 서버</span></a></li><li data-item="15 워크숍 좌석 예약 시작 시각과 이름, 좌석 수 규칙을 서비스에 두고 언어 워크숍 좌석을 예약합니다. JavaScript Rust Haskell"><a href="../notes/workshop-booking.html" aria-current="page"><small>15</small><span>워크숍 좌석 예약</span></a></li><li data-item="16 코드 조각 피드 언어별 코드 조각을 id 커서로 나누고, 사용자 이름 단위로 추천을 토글합니다. JavaScript Python Go Rust"><a href="../notes/snippet-feed.html"><small>16</small><span>코드 조각 피드</span></a></li></ol><div class="group">모바일과 연결</div><ol><li data-item="17 Dart 언어의 기본 널 안전, final과 const, Future를 한 파일의 언어 카드 보고서로 확인합니다. Dart Kotlin Dart Haskell"><a href="../notes/dart.html"><small>17</small><span>Dart 언어의 기본</span></a></li><li data-item="18 Flutter로 언어 카드 메모리 속 즐겨찾기와 상세 경로를 Flutter 3 위젯으로 구성합니다. Flutter Rust Dart Haskell Flutter"><a href="../notes/flutter.html"><small>18</small><span>Flutter로 언어 카드</span></a></li><li data-item="19 React Native로 언어 카드 복습 규칙만 순수 함수로 두고, 언어 카드 화면은 네이티브 뷰로 분리합니다. React Native Rust Dart Haskell React"><a href="../notes/react-native.html"><small>19</small><span>React Native로 언어 카드</span></a></li><li data-item="20 실시간 스터디룸의 연결 두 탭이 코드 조각을 주고받도록 신호, SDP, ICE를 역할로 나눕니다. WebRTC "><a href="../notes/webrtc-room.html"><small>20</small><span>실시간 스터디룸의 연결</span></a></li><li data-item="21 TypeScript로 블록 잇기 언어 제안을 해시로 잇는 목록을 TypeScript로 만들고 변조를 검증으로 찾습니다. TypeScript TypeScript Dart"><a href="../notes/ts-chain.html"><small>21</small><span>TypeScript로 블록 잇기</span></a></li></ol><div class="group">에이전트와 제품</div><ol><li data-item="22 언어 튜터 서비스 구조 로컬 카탈로그에서 언어 설명을 고르고, 역할이 나뉜 메시지를 화면에 나누어 그립니다. LLM Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/llm-tutor.html"><small>22</small><span>언어 튜터 서비스 구조</span></a></li><li data-item="23 도구를 쓰는 에이전트 루프 목표를 받은 뒤 로컬 도구의 결과를 관찰로 쌓고, 최종 답이나 네 걸음에서 멈춥니다. 에이전트 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/ai-agents.html"><small>23</small><span>도구를 쓰는 에이전트 루프</span></a></li><li data-item="24 n8n 워크플로 웹훅으로 받은 언어 이름을 Set 노드가 카드의 제목과 요약으로 바꿉니다. n8n Rust Zig"><a href="../notes/n8n.html"><small>24</small><span>n8n 워크플로</span></a></li><li data-item="25 직접 설계하는 Supabase 스타터 프로필과 언어와 학습 노트를 RLS로 나누고, 서비스 롤은 서버에만 둡니다. Supabase Python Haskell SQL"><a href="../notes/supabase-starter.html"><small>25</small><span>직접 설계하는 Supabase 스타터</span></a></li><li data-item="26 언어 선반이라는 제품 언어 선반은 배우는 이유와 다음 연습을 남기는 기록이고, 지표는 주간 노트 수입니다. 제품 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/maker.html"><small>26</small><span>언어 선반이라는 제품</span></a></li></ol>
+      </details>
+    </aside>
+    <main class="main" id="content"><article class="sheet">
+      <div class="meta"><span class="pill">중급</span><span class="pill">40분</span><span class="pill">JavaScript</span></div>
+      <h1>워크숍 좌석 예약</h1>
+<p>이 노트는 samsepi0l이 프로그래밍 언어 워크숍의 좌석 예약을 정리한 것입니다. 좌석은 메모리에 둡니다. 워크숍은 언어, 제목, 시작 시각, 좌석 수를 가집니다. 시작 시각 <code>startsAt</code>은 유닉스 에폭 밀리초 정수입니다. 예약은 워크숍 id와 이름으로 이루어집니다.</p>
+<p>화면이 버튼을 숨기는 것만으로는 규칙이 되지 않습니다. <code>curl</code>이나 테스트는 그 버튼을 거치지 않습니다. <code>examples/workshop-booking/booking.js</code>의 <code>createService</code>가 성공과 실패를 결정하고, <code>server.js</code>는 그 결과의 <code>code</code>를 상태 코드로 바꿉니다. 테스트는 HTTP를 열지 않습니다.</p>
+<h2>이 장을 끝내면</h2>
+<ul>
+<li>지난 시작 시각, 같은 이름, 초과 좌석이 각각 다른 <code>code</code>로 거절되는 순서를 설명합니다.</li>
+<li>한 워크숍 안에서의 신원이 계정이 아니라 이름 문자열인 이유와 한계를 말합니다.</li>
+<li>그 규칙이 서비스에 있어야 하는 이유를 화면과 테스트의 차이로 설명합니다.</li>
+</ul>
+<h2>거절 순서는 한 함수에 고정합니다</h2>
+<p><code>reserve(workshopId, name)</code>의 검사는 순서가 고정입니다.</p>
+<ol>
+<li>워크숍이 없으면 <code>not_found</code>입니다.</li>
+<li><code>startsAt &lt; now</code>이면 <code>past</code>입니다. 시작 시각이 시계와 같으면 아직 지난 것이 아니므로 예약할 수 있습니다.</li>
+<li>이름이 없거나 공백이거나 40자를 넘으면 <code>invalid</code>입니다.</li>
+<li>같은 워크숍에 같은 이름이 있으면 <code>duplicate</code>입니다.</li>
+<li>그 워크숍의 예약 수가 <code>seats</code> 이상이면 <code>full</code>입니다.</li>
+</ol>
+<p>지난 워크숍이 동시에 만석이어도 <code>past</code>가 먼저입니다. 호출자는 시간이 지났다는 이유를 좌석 부족보다 먼저 봅니다. <code>addWorkshop</code>은 지난 시각도 기록으로 남깁니다. 등록과 예약은 다른 규칙입니다. 좌석 수는 1 이상 500 이하의 정수입니다.</p>
+<p><code>listWorkshops</code>의 <code>reserved</code>는 예약 배열을 세어 만듭니다. 인원 필드를 따로 저장하지 않으므로 두 수가 어긋나지 않습니다. <code>open</code>은 <code>startsAt &gt;= now</code>인 표시일 뿐이고, 예약 허용을 대신하지 않습니다. 목록을 믿는 클라이언트도 <code>reserve</code>를 다시 통과합니다.</p>
+<h2>신원은 워크숍과 이름의 쌍입니다</h2>
+<p>예약 행의 키는 예약 id입니다. 사람의 신원은 <code>(workshopId, name)</code>입니다. 이름 앞뒤 공백은 제거합니다. 대소문자는 구분합니다. <code>samsepi0l</code>과 <code>SamSepi0l</code>은 이 연습에서 다른 참가자입니다. 같은 이름은 다른 워크숍에 각각 한 번씩 예약할 수 있습니다. 전역 금지가 아닙니다.</p>
+<p>계정, 비밀번호, 좌석 번호는 없습니다. 좌석은 개수만 셉니다. 누가 몇 번 자리인지는 범위 밖입니다. 같은 이름을 쓰는 두 사람을 이 서비스는 구분하지 못합니다. 그 한계를 화면 문구로 숨기지 않습니다. 이름 중복을 좌석 검사보다 먼저 보는 이유는, 같은 표기가 남은 좌석을 두 번 차지하면 <code>reserved</code>가 사람 수처럼 보이기 때문입니다.</p>
+<h2>규칙은 서비스에 있고 화면은 클라이언트일 뿐입니다</h2>
+<p>비활성화된 버튼은 그 브라우저의 클릭만 막습니다. <code>node:http</code>로 같은 함수를 호출하는 다른 프로그램은 버튼을 모릅니다. <code>booking.test.js</code>는 <code>createService</code>만 불러 성공, 중복, 만석, 과거를 확인합니다. 규칙을 핸들러나 화면에만 두면 이 테스트가 회귀를 잡지 못합니다.</p>
+<p>서버의 상태 코드는 규칙을 다시 적지 않습니다. <code>invalid</code>는 400, <code>not_found</code>는 404, <code>past</code>와 <code>duplicate</code>와 <code>full</code>은 409입니다. 성공한 워크숍과 예약은 201이고 본문은 만들어진 객체입니다.</p>
+<p><code>createService(now = Date.now)</code>의 기본값은 시각이 아니라 <code>Date.now</code> 함수입니다. 기본 인자는 호출 때 평가되므로 <code>Date.now</code>는 함수 참조로 들어가고, <code>clock</code>이 예약마다 <code>now()</code>를 호출합니다. <code>Date.now()</code>를 기본값으로 두면 서비스를 만든 시각에 시계가 고정됩니다. 테스트는 <code>() =&gt; current</code>를 넘겨 그 변수를 앞으로 옮깁니다. 시스템 시계를 되돌리지 않습니다.</p>
+<p>서버는 <code>import.meta.url</code>이 실행 파일과 같을 때만 <code>listen</code>합니다. 테스트를 위해 모듈을 import해도 포트가 열리지 않습니다. 직접 실행하면 기본 포트는 8091이고, 열 개 언어의 미래 워크숍을 시드합니다. 시드는 <code>server.js</code>에만 있으므로 테스트의 빈 서비스와 섞이지 않습니다.</p>
+<h2>한 번의 예약이 지나가는 순서</h2>
+<p>좌석이 2인 Rust 워크숍의 <code>startsAt</code>이 시계보다 한 시간 뒤라고 둡니다. <code>samsepi0l</code>의 첫 <code>reserve</code>는 예약 행을 만들고 <code>ok</code>가 true입니다. 같은 이름에 앞뒤 공백을 붙여 다시 부르면 <code>text</code>가 공백을 자른 뒤 <code>duplicate</code>를 반환합니다. <code>ada</code>는 두 번째 좌석이라 성공하고, <code>grace</code>는 <code>full</code>입니다.</p>
+<p>시작 시각을 1밀리초 전으로 둔 Haskell 워크숍은 좌석이 남아 있어도 <code>past</code>입니다. 시계를 그 Rust 워크숍의 시작 시각보다 뒤로 옮기면, 이미 만석인 그 워크숍도 먼저 <code>past</code>를 반환합니다. 이 순서는 <code>booking.test.js</code>가 고정합니다. 서버를 띄우면 같은 함수가 <code>POST /reservations</code>의 201 또는 409가 됩니다.</p>
+<h2>예제</h2>
+<p>파일은 <code>examples/workshop-booking/booking.js</code>, <code>server.js</code>, <code>booking.test.js</code>입니다. <code>package.json</code>의 <code>&quot;type&quot;</code>은 <code>module</code>입니다.</p>
+<p><code>examples/workshop-booking/booking.js</code>의 시계와 시그니처입니다.</p>
+<pre><code class="language-javascript">export function createService(now = Date.now) {
+  const workshops = [];
+  const reservations = [];
+  let nextWorkshopId = 1;
+  let nextReservationId = 1;
+
+  function clock() {
+    const value = typeof now === &#39;function&#39; ? now() : now;
+    const time = Number(value);
+    if (!Number.isFinite(time)) {
+      throw new Error(&#39;시계가 올바른 밀리초를 반환하지 않습니다.&#39;);
+    }
+    return time;
+  }
+</code></pre>
+<p><code>examples/workshop-booking/booking.js</code>의 <code>reserve</code>입니다. 분기는 위에서 아래로만 통과합니다.</p>
+<pre><code class="language-javascript">  function reserve(workshopId, name) {
+    const id = Number(workshopId);
+    const workshop = workshops.find((row) =&gt; row.id === id);
+    if (!workshop) {
+      return { ok: false, code: &#39;not_found&#39;, error: &#39;없는 워크숍입니다.&#39; };
+    }
+    const time = clock();
+    if (workshop.startsAt &lt; time) {
+      return { ok: false, code: &#39;past&#39;, error: &#39;시작 시각이 지난 워크숍은 예약할 수 없습니다.&#39; };
+    }
+    const attendee = text(name, 40);
+    if (!attendee) {
+      return { ok: false, code: &#39;invalid&#39;, error: &#39;예약자 이름이 필요합니다.&#39; };
+    }
+    const duplicate = reservations.some((row) =&gt; row.workshopId === workshop.id &amp;&amp; row.name === attendee);
+    if (duplicate) {
+      return { ok: false, code: &#39;duplicate&#39;, error: &#39;같은 이름은 이 워크숍에 한 번만 예약할 수 있습니다.&#39; };
+    }
+    const taken = reservations.filter((row) =&gt; row.workshopId === workshop.id).length;
+    if (taken &gt;= workshop.seats) {
+      return { ok: false, code: &#39;full&#39;, error: &#39;좌석이 모두 찼습니다.&#39; };
+    }
+</code></pre>
+<p><code>examples/workshop-booking/booking.test.js</code>는 주입한 시계로 네 가지 결과를 고정합니다.</p>
+<pre><code class="language-javascript">const first = service.reserve(rust.workshop.id, &#39;samsepi0l&#39;);
+assert.equal(first.ok, true);
+assert.equal(first.reservation.name, &#39;samsepi0l&#39;);
+assert.equal(service.listWorkshops().find((row) =&gt; row.id === rust.workshop.id).reserved, 1);
+
+const duplicate = service.reserve(rust.workshop.id, &#39; samsepi0l &#39;);
+assert.equal(duplicate.ok, false);
+assert.equal(duplicate.code, &#39;duplicate&#39;);
+</code></pre>
+<p>같은 디렉터리에서 <code>node booking.test.js</code>를 실행합니다. 의존성 설치는 없습니다. 서버를 띄우면 <code>GET /workshops</code>, <code>POST /workshops</code>, <code>GET /reservations</code>, <code>POST /reservations</code>를 사용할 수 있습니다.</p>
+<pre><code class="language-bash">node booking.test.js
+PORT=8091 node server.js
+</code></pre>
+<p>예약 본문은 <code>{&quot;workshopId&quot;:1,&quot;name&quot;:&quot;samsepi0l&quot;}</code>입니다. 성공은 201, 같은 이름의 재요청은 409와 <code>duplicate</code>입니다.</p>
+<h2>연습</h2>
+<ol>
+<li>좌석이 1이고 <code>startsAt</code>이 현재 시계와 같은 워크숍을 만든 뒤 한 명을 예약합니다. 시계를 1밀리초 앞으로 옮기고 다른 이름으로 다시 예약해 <code>code</code>가 <code>past</code>인지 확인합니다.</li>
+<li>같은 이름을 다른 <code>workshopId</code>에 예약합니다. 성공하면 신원이 전역 이름이 아니라는 점을 <code>duplicate</code> 조건의 <code>workshopId</code> 비교에서 확인합니다.</li>
+<li><code>seats</code>가 0인 <code>addWorkshop</code>과 공백 이름의 <code>reserve</code>가 모두 <code>invalid</code>인지 확인합니다. 만석인 <code>full</code>과 입력 오류가 다른 분기인 이유를 적습니다.</li>
+</ol>
+<h2>스스로 확인</h2>
+<ol>
+<li>지난 워크숍의 예약 버튼을 숨기면 규칙이 끝난 것입니까?</li>
+</ol>
+<p>아닙니다. 숨김은 그 화면의 클릭만 줄입니다. <code>reserve</code>를 직접 부르는 테스트와 HTTP 클라이언트는 버튼을 보지 않습니다. 허용 여부는 <code>startsAt &lt; now</code>를 서비스가 계산해야 합니다.</p>
+<ol start="2">
+<li>startsAt과 now가 같으면 왜 예약이 됩니까?</li>
+</ol>
+<p>거절 조건은 시작 시각이 시계보다 작은 경우입니다. 같은 밀리초는 아직 과거가 아닙니다. <code>open</code>도 <code>startsAt &gt;= now</code>라서 목록 표시와 예약 판정이 이 경계에서 일치합니다.</p>
+<ol start="3">
+<li>같은 이름이 다른 워크숍에서는 왜 됩니까?</li>
+</ol>
+<p>중복 검사는 <code>workshopId</code>와 잘라 낸 이름이 둘 다 같을 때만 참입니다. 워크숍마다 명단이 따로 있습니다. 언어 공부 모임 전체를 한 계정으로 묶는 기능은 이 장에 없습니다.</p>
+<ol start="4">
+<li>기본 인자 Date.now와 Date.now()는 어떻게 다릅니까?</li>
+</ol>
+<p>괄호가 없으면 함수가 전달되어 예약마다 현재 시각을 읽습니다. 괄호가 있으면 서비스를 만드는 순간의 숫자가 기본값이 되어 이후 예약이 그 시각에 고정됩니다. 테스트가 시계를 주입할 수 있는 형태는 함수입니다.</p>
+<ol start="5">
+<li>만석인 지난 워크숍의 code는 무엇입니까?</li>
+</ol>
+<p><code>past</code>입니다. 존재 확인 다음, 이름과 중복과 좌석보다 앞에 시각을 검사하기 때문입니다. 좌석이 남아 있어도 지난 워크숍은 같은 <code>code</code>입니다. 서버는 그 값을 409로 보냅니다.</p>
+
+      <nav class="pager">
+    <a href="go.html"><span>이전</span>Go로 작은 HTTP 서버</a>
+    <a href="snippet-feed.html"><span>다음</span>코드 조각 피드</a>
+  </nav>
+      <footer class="colophon">samsepi0l · 언어 공부장</footer>
+    </article></main>
+  </div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

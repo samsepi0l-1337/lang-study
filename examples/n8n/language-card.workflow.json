@@ -1,0 +1,54 @@
+{
+  "name": "언어 카드",
+  "active": false,
+  "nodes": [
+    {
+      "id": "webhook-language-card",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "language-card",
+        "responseMode": "lastNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "set-language-card",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [520, 300],
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "title",
+              "value": "={{ $json.body.language }}"
+            },
+            {
+              "name": "summary",
+              "value": "={{ $json.body.language }} 학습 카드"
+            }
+          ]
+        },
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

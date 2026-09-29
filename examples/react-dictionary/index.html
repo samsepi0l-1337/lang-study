@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>언어 사전</title>
+  <style>
+    body { margin: 24px; color: #1c1917; font: 16px/1.5 sans-serif; }
+    main { max-width: 720px; }
+    h1 { margin: 0 0 12px; font-size: 22px; }
+    .layout { display: grid; grid-template-columns: 220px 1fr; gap: 16px; margin-top: 16px; }
+    input { margin-left: 8px; font: inherit; }
+    button { font: inherit; }
+    ul { margin: 0; padding-left: 18px; }
+    li { margin: 4px 0; }
+    button[aria-pressed="true"] { outline: 2px solid #243e73; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <!-- 브라우저는 JSX를 컴파일하지 않습니다. createElement로 그대로 실행합니다. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "react": "https://esm.sh/react@18.3.1",
+      "react-dom/client": "https://esm.sh/react-dom@18.3.1/client"
+    }
+  }
+  </script>
+  <script type="module">
+    import React, { useState } from "react";
+    import { createRoot } from "react-dom/client";
+
+    const LANGUAGES = [
+      { name: "Python", year: 1991, paradigm: "다중 패러다임", summary: "들여쓰기로 블록을 나타냅니다." },
+      { name: "JavaScript", year: 1995, paradigm: "다중 패러다임", summary: "브라우저에서 동작하는 기본 언어입니다." },
+      { name: "Go", year: 2009, paradigm: "절차형", summary: "고루틴으로 동시 작업을 나눕니다." },
+      { name: "Rust", year: 2010, paradigm: "시스템", summary: "소유권으로 메모리 안전을 검사합니다." },
+      { name: "TypeScript", year: 2012, paradigm: "정적 타입", summary: "JavaScript에 타입 표기를 더합니다." },
+      { name: "Kotlin", year: 2011, paradigm: "객체지향", summary: "널 가능성을 타입으로 구분합니다." },
+      { name: "Elixir", year: 2011, paradigm: "함수형", summary: "프로세스 단위로 실패를 격리합니다." },
+      { name: "Zig", year: 2016, paradigm: "시스템", summary: "할당자를 호출자가 넘깁니다." },
+      { name: "Dart", year: 2011, paradigm: "객체지향", summary: "UI를 염두에 둔 AOT 컴파일을 지원합니다." },
+      { name: "Haskell", year: 1990, paradigm: "순수 함수형", summary: "부작용을 타입으로 분리합니다." }
+    ];
+
+    function h(type, props, ...children) {
+      return React.createElement(type, props, ...children);
+    }
+
+    function SearchBox({ query, onQuery }) {
+      return h("label", null, "이름 검색", h("input", {
+        value: query,
+        onChange: (event) => onQuery(event.target.value)
+      }));
+    }
+
+    function LanguageList({ items, selectedName, onSelect }) {
+      if (items.length === 0) return h("p", null, "일치하는 이름이 없습니다.");
+      return h("ul", null, items.map((lang) => h("li", { key: lang.name }, h("button", {
+        type: "button",
+        onClick: () => onSelect(lang.name),
+        "aria-pressed": selectedName === lang.name
+      }, lang.name))));
+    }
+
+    function LanguageDetail({ lang }) {
+      if (!lang) return h("p", null, "이름을 고르면 설명이 나옵니다.");
+      return h("article", null,
+        h("h2", null, lang.name),
+        h("p", null, lang.year + " · " + lang.paradigm),
+        h("p", null, lang.summary)
+      );
+    }
+
+    function App() {
+      const [query, setQuery] = useState("");
+      const [selectedName, setSelectedName] = useState(null);
+      const visible = LANGUAGES.filter((lang) => {
+        return lang.name.toLowerCase().includes(query.trim().toLowerCase());
+      });
+      const selected = LANGUAGES.find((lang) => lang.name === selectedName) || null;
+      return h("main", null,
+        h("h1", null, "언어 사전"),
+        h(SearchBox, { query: query, onQuery: setQuery }),
+        h("div", { className: "layout" },
+          h(LanguageList, { items: visible, selectedName: selectedName, onSelect: setSelectedName }),
+          h(LanguageDetail, { lang: selected })
+        )
+      );
+    }
+
+    createRoot(document.querySelector("#root")).render(h(App));
+  </script>
+</body>
+</html>

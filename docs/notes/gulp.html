@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gulp로 문서 파이프라인 만들기 · 언어 공부장</title>
+  <meta name="description" content="Gulp의 스트림 태스크와 같은 HTML 변환을 Node 표준 모듈만으로도 확인합니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#content">본문으로</a>
+  <div class="shell">
+    <aside class="nav">
+      <a class="brand" href="../index.html"><strong>언어 공부장</strong><span>samsepi0l</span></a>
+      <input class="search" data-filter placeholder="노트 찾기" aria-label="노트 찾기">
+      <details class="toc" open>
+        <summary>목차</summary>
+        <div class="group">기초</div><ol><li data-item="1 Git과 GitHub 임시 저장소에서 커밋과 충돌 병합을 따라 하고 원격과 풀 리퀘스트는 개념으로 구분합니다. Git GitHub Python JavaScript TypeScript Go Rust"><a href="../notes/git-github.html"><small>01</small><span>Git과 GitHub</span></a></li><li data-item="2 SQL로 언어 데이터를 다루기 SQLite로 언어와 구현체와 릴리스를 거르고 묶고, 잘못된 연도는 트랜잭션으로 되돌립니다. SQL SQLite Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/sql.html"><small>02</small><span>SQL로 언어 데이터를 다루기</span></a></li><li data-item="3 Python으로 문서 수집기 만들기 표준 라이브러리만으로 로컬 HTML 픽스처를 읽어 언어 목록 JSON을 만듭니다. Python html.parser Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/python-collector.html"><small>03</small><span>Python으로 문서 수집기 만들기</span></a></li><li data-item="4 Gulp로 문서 파이프라인 만들기 Gulp의 스트림 태스크와 같은 HTML 변환을 Node 표준 모듈만으로도 확인합니다. Gulp Node.js Python JavaScript Go Rust SQL"><a href="../notes/gulp.html" aria-current="page"><small>04</small><span>Gulp로 문서 파이프라인 만들기</span></a></li></ol><div class="group">브라우저와 React</div><ol><li data-item="5 브라우저 확장 프로그램 Manifest V3 팝업으로 오늘의 언어를 고르고, 루프백 데모에서만 언어 이름을 표시합니다. JavaScript Chrome Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/chrome-extension.html"><small>05</small><span>브라우저 확장 프로그램</span></a></li><li data-item="6 Canvas로 언어 지도 그리기 언어 카드의 좌표를 모델로 두고, 포인터로 옮긴 뒤 실행 취소로 직전 배치를 복원합니다. JavaScript Canvas Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/canvas-sketch.html"><small>06</small><span>Canvas로 언어 지도 그리기</span></a></li><li data-item="7 React로 언어 사전 만들기 이름 검색과 선택 상태를 부모에 두고, 목록과 상세는 props로만 언어 데이터를 받습니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-dictionary.html"><small>07</small><span>React로 언어 사전 만들기</span></a></li><li data-item="8 React Hooks 언어 메모 화면에서 상태, 효과, ref, 메모, 디바운스 훅의 호출 순서와 의존성을 맞춥니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-hooks.html"><small>08</small><span>React Hooks</span></a></li></ol><div class="group">상태와 GraphQL</div><ol><li data-item="9 Redux로 상태 설계하기 언어 목록, 선택, 즐겨찾기를 스토어 하나와 순수 리듀서 전이로 고정합니다. Redux Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/redux.html"><small>09</small><span>Redux로 상태 설계하기</span></a></li><li data-item="10 Next.js로 언어 문서 사이트 App Router의 파일 경로로 언어 문서 목록과 상세를 나누고, 검색만 클라이언트 상태로 둡니다. Next.js Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell Next.js"><a href="../notes/nextjs.html"><small>10</small><span>Next.js로 언어 문서 사이트</span></a></li><li data-item="11 GraphQL 서버 언어 카탈로그를 스키마와 리졸버로 나누고, 포트를 열지 않은 채 graphql()로 쿼리와 뮤테이션을 실행합니다. GraphQL Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell GraphQL"><a href="../notes/graphql-server.html"><small>11</small><span>GraphQL 서버</span></a></li><li data-item="12 GraphQL 클라이언트 executeAgainst가 data를 반환하거나 errors를 던지고, normalize가 언어를 id 맵으로 접습니다. GraphQL Python Haskell GraphQL"><a href="../notes/graphql-client.html"><small>12</small><span>GraphQL 클라이언트</span></a></li></ol><div class="group">서버</div><ol><li data-item="13 NestJS로 언어 등록 API 모듈과 생성자 주입, DTO 검증으로 언어 열 개를 등록하는 HTTP API를 조립합니다. NestJS Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/nestjs.html"><small>13</small><span>NestJS로 언어 등록 API</span></a></li><li data-item="14 Go로 작은 HTTP 서버 표준 라이브러리와 뮤텍스로 언어 목록을 조회하고 추가하는 HTTP 서버를 테스트합니다. Go Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/go.html"><small>14</small><span>Go로 작은 HTTP 서버</span></a></li><li data-item="15 워크숍 좌석 예약 시작 시각과 이름, 좌석 수 규칙을 서비스에 두고 언어 워크숍 좌석을 예약합니다. JavaScript Rust Haskell"><a href="../notes/workshop-booking.html"><small>15</small><span>워크숍 좌석 예약</span></a></li><li data-item="16 코드 조각 피드 언어별 코드 조각을 id 커서로 나누고, 사용자 이름 단위로 추천을 토글합니다. JavaScript Python Go Rust"><a href="../notes/snippet-feed.html"><small>16</small><span>코드 조각 피드</span></a></li></ol><div class="group">모바일과 연결</div><ol><li data-item="17 Dart 언어의 기본 널 안전, final과 const, Future를 한 파일의 언어 카드 보고서로 확인합니다. Dart Kotlin Dart Haskell"><a href="../notes/dart.html"><small>17</small><span>Dart 언어의 기본</span></a></li><li data-item="18 Flutter로 언어 카드 메모리 속 즐겨찾기와 상세 경로를 Flutter 3 위젯으로 구성합니다. Flutter Rust Dart Haskell Flutter"><a href="../notes/flutter.html"><small>18</small><span>Flutter로 언어 카드</span></a></li><li data-item="19 React Native로 언어 카드 복습 규칙만 순수 함수로 두고, 언어 카드 화면은 네이티브 뷰로 분리합니다. React Native Rust Dart Haskell React"><a href="../notes/react-native.html"><small>19</small><span>React Native로 언어 카드</span></a></li><li data-item="20 실시간 스터디룸의 연결 두 탭이 코드 조각을 주고받도록 신호, SDP, ICE를 역할로 나눕니다. WebRTC "><a href="../notes/webrtc-room.html"><small>20</small><span>실시간 스터디룸의 연결</span></a></li><li data-item="21 TypeScript로 블록 잇기 언어 제안을 해시로 잇는 목록을 TypeScript로 만들고 변조를 검증으로 찾습니다. TypeScript TypeScript Dart"><a href="../notes/ts-chain.html"><small>21</small><span>TypeScript로 블록 잇기</span></a></li></ol><div class="group">에이전트와 제품</div><ol><li data-item="22 언어 튜터 서비스 구조 로컬 카탈로그에서 언어 설명을 고르고, 역할이 나뉜 메시지를 화면에 나누어 그립니다. LLM Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/llm-tutor.html"><small>22</small><span>언어 튜터 서비스 구조</span></a></li><li data-item="23 도구를 쓰는 에이전트 루프 목표를 받은 뒤 로컬 도구의 결과를 관찰로 쌓고, 최종 답이나 네 걸음에서 멈춥니다. 에이전트 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/ai-agents.html"><small>23</small><span>도구를 쓰는 에이전트 루프</span></a></li><li data-item="24 n8n 워크플로 웹훅으로 받은 언어 이름을 Set 노드가 카드의 제목과 요약으로 바꿉니다. n8n Rust Zig"><a href="../notes/n8n.html"><small>24</small><span>n8n 워크플로</span></a></li><li data-item="25 직접 설계하는 Supabase 스타터 프로필과 언어와 학습 노트를 RLS로 나누고, 서비스 롤은 서버에만 둡니다. Supabase Python Haskell SQL"><a href="../notes/supabase-starter.html"><small>25</small><span>직접 설계하는 Supabase 스타터</span></a></li><li data-item="26 언어 선반이라는 제품 언어 선반은 배우는 이유와 다음 연습을 남기는 기록이고, 지표는 주간 노트 수입니다. 제품 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/maker.html"><small>26</small><span>언어 선반이라는 제품</span></a></li></ol>
+      </details>
+    </aside>
+    <main class="main" id="content"><article class="sheet">
+      <div class="meta"><span class="pill">초급</span><span class="pill">40분</span><span class="pill">Gulp</span><span class="pill">Node.js</span></div>
+      <h1>Gulp로 문서 파이프라인 만들기</h1>
+<p>문서 파이프라인은 입력 파일을 읽어 같은 규칙으로 바꾸고 다른 디렉터리에 쓰는 경로입니다. 이 장은 <code>examples/gulp/src</code>의 마크다운 노트를 작은 HTML 문서로 감쌉니다. 본문을 제목과 단락으로 해석하지는 않습니다. 첫 제목을 고르고, 본문의 특수문자를 이스케이프한 뒤 <code>&lt;pre&gt;</code>에 넣습니다. 복사가 아니라 내용이 바뀌는 변환입니다. <code>gulpfile.js</code>와 <code>pipeline.mjs</code>가 둘 다 있습니다. <code>pipeline.mjs</code>는 같은 파이프라인 생각을 의존성 없이 살펴보려고 둔 짝입니다. 작성자는 samsepi0l입니다.</p>
+<h2>이 장을 끝내면</h2>
+<ul>
+<li>Vinyl 파일, <code>src</code>, <code>dest</code>가 디스크의 파일과 어떻게 다른지 설명합니다.</li>
+<li><code>series</code>, <code>parallel</code>, <code>watch</code>가 태스크를 어떤 순서로 부르는지 코드에서 가리킵니다.</li>
+<li><code>pipeline.mjs</code>만으로 HTML을 만들고, Gulp를 설치했을 때 같은 HTML이 나오는지 비교합니다.</li>
+</ul>
+<h2>Vinyl 파일</h2>
+<p>Vinyl은 Gulp 스트림이 다루는 가상 파일입니다. 경로와 내용 버퍼, 그리고 기준 디렉터리 같은 정보를 한 객체에 담습니다. 스트림에 올라온 순간에는 아직 출력 파일이 아닙니다. 변환이 <code>contents</code>와 확장자를 바꾼 뒤에야 쓸 내용이 정해집니다.</p>
+<p>Gulp의 <code>src</code>는 글자 조각이 아니라 Vinyl 객체를 흘려보냅니다. Node의 <code>Transform</code>은 그때 <code>objectMode</code>가 켜져 있어야 합니다. 꺼져 있으면 스트림은 객체가 아니라 바이트를 기대합니다. 예제의 <code>wrapMarkdown</code>은 그래서 <code>objectMode: true</code>로 만듭니다. 내용이 스트림이면 오류를 알리고, 버퍼가 아니면 바꾸지 않고 다음으로 넘깁니다.</p>
+<p>실수: 태스크 함수 안에서 <code>src().pipe(dest())</code>를 호출만 하고 반환하지 않는 일입니다. Gulp는 반환된 스트림이 끝나야 그 태스크가 끝났다고 봅니다. 반환하지 않으면 쓰기가 끝나기 전에 다음 태스크로 넘어갈 수 있습니다. <code>documents</code>는 파이프의 결과를 <code>return</code>합니다.</p>
+<h2>src와 dest</h2>
+<p><code>src</code>는 읽기 끝입니다. 패턴에 맞는 파일마다 Vinyl을 하나 만듭니다. <code>dest</code>는 쓰기 끝입니다. Vinyl의 경로에서 기준 디렉터리를 뺀 상대 경로로 파일을 놓습니다. 예제는 확장자를 <code>.html</code>로 바꾼 뒤 <code>dist</code>에 씁니다. <code>python.md</code>는 <code>dist/python.html</code>이 됩니다.</p>
+<p>패턴과 출력 디렉터리는 gulpfile이 있는 디렉터리로 계산합니다. 작업 디렉터리에 의존하지 않으려고 파일의 절대 경로로 글로브를 만듭니다.</p>
+<pre><code class="language-javascript">const SRC = path.join(srcDir, &quot;*.md&quot;);
+</code></pre>
+<p><code>pipeline.mjs</code>에는 <code>src</code>와 <code>dest</code>라는 함수가 없습니다. 같은 일을 <code>node:fs</code>의 <code>readdir</code>, <code>readFile</code>, <code>writeFile</code>로 합니다. 읽는 디렉터리와 쓰는 디렉터리는 <code>import.meta.url</code>에서 자기 파일 위치를 구해 정합니다. <code>node:url</code> 모듈은 import하지 않습니다. import는 <code>node:fs</code>와 <code>node:path</code>뿐입니다. 그래서 Gulp를 설치하지 않아도 변환을 실행할 수 있습니다.</p>
+<p>실수: 상대 경로 <code>src/*.md</code>만 적어 두고 다른 디렉터리에서 실행하는 일입니다. 그때의 현재 디렉터리에 <code>src</code>가 없으면 입력을 찾지 못합니다. 두 파일 모두 자기 위치를 기준으로 경로를 잡습니다.</p>
+<h2>감싸기 변환</h2>
+<p>변환 규칙은 <code>pipeline.mjs</code>의 함수 두 개입니다. <code>titleOf</code>는 <code># </code>로 시작하는 첫 줄에서 제목을 가져옵니다. 그런 줄이 없으면 파일 이름을 씁니다. <code>renderDocument</code>는 제목과 본문을 이스케이프한 뒤 HTML 껍데기에 넣습니다. gulpfile은 이 함수를 import하므로, 마크다운에서 HTML로 가는 규칙은 한곳에만 있습니다.</p>
+<p>이스케이프 순서는 <code>&amp;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&quot;</code>입니다. <code>&amp;</code>를 나중에 바꾸면 방금 만든 <code>&amp;lt;</code>의 <code>&amp;</code>까지 <code>&amp;amp;lt;</code>가 됩니다. 본문은 마크다운으로 해석하지 않고 <code>&lt;pre&gt;</code> 안에 그대로 둡니다. 따라서 <code>src/python.md</code>의 <code>n &lt; 0</code>은 결과에서 <code>n &amp;lt; 0</code>이 되고, <code>src/rust.md</code>의 <code>&amp;value</code>는 <code>&amp;amp;value</code>가 됩니다. 제목은 파일 이름이 아니라 첫 제목이라 <code>&lt;title&gt;</code>과 <code>&lt;h1&gt;</code>은 <code>Python</code>, <code>JavaScript</code>, <code>Go</code>, <code>Rust</code>입니다. 출력 파일 이름은 여전히 원본의 파일 이름입니다.</p>
+<p>이 입력은 언어 노트 네 개입니다. SQL 장과 수집기 장의 열 언어를 모두 담지는 않습니다. 파이프라인이 여러 파일에 같은 함수를 적용하는지만 보면 되기 때문입니다.</p>
+<p>실수: 마크다운의 <code>#</code>이 HTML에서도 제목 태그로 바뀐다고 생각하는 일입니다. 예제는 첫 <code># </code> 줄의 글자만 제목으로 복제하고, 본문 쪽 <code>#</code>은 <code>&lt;pre&gt;</code> 안의 글자로 남습니다.</p>
+<h2>series와 parallel</h2>
+<p><code>series</code>는 앞 태스크가 끝나야 다음 태스크를 시작합니다. <code>parallel</code>은 여러 태스크를 같이 시작하고, 모두 끝나야 그 묶음이 끝납니다. 예제의 기본 태스크는 둘을 겹쳐 둡니다.</p>
+<pre><code class="language-javascript">export const build = series(ensureDist, parallel(documents, manifest));
+export default build;
+</code></pre>
+<p><code>ensureDist</code>는 <code>dist</code> 디렉터리를 만듭니다. 그 다음에 <code>documents</code>와 <code>manifest</code>가 동시에 달립니다. <code>documents</code>는 HTML을 쓰고, <code>manifest</code>는 HTML 파일 이름을 정렬해 <code>dist/manifest.txt</code>에 한 줄씩 씁니다. 서로 다른 경로를 쓰므로 같이 실행해도 한 파일을 두 태스크가 덮어쓰지 않습니다. 네 개의 입력이면 목록은 다음 순서입니다.</p>
+<pre><code class="language-text">go.html
+javascript.html
+python.html
+rust.html
+</code></pre>
+<p><code>build</code>와 <code>default</code>는 같은 함수입니다. <code>npx gulp</code>는 기본 태스크를 실행합니다. Gulp 4에서 태스크 이름은 내보낸 함수 이름입니다. 이 gulpfile은 ESM이라 <code>export function documents</code>처럼 적습니다.</p>
+<p>실수: 같은 출력 경로를 쓰는 두 태스크를 <code>parallel</code>에 넣는 일입니다. 어느 쓰기가 나중에 끝나는지에 따라 결과가 달라집니다. 예제는 HTML과 목록 파일을 나눠 그 경쟁을 피합니다. 순서가 꼭 필요하면 <code>series</code>를 씁니다.</p>
+<h2>watch</h2>
+<p><code>watch</code>는 패턴의 파일이 바뀌면 지정한 태스크를 다시 실행합니다. 예제에서는 <code>src</code>의 마크다운이 바뀔 때 <code>documents</code>를 다시 부릅니다.</p>
+<pre><code class="language-javascript">export function watchDocuments() {
+  watch(SRC, documents);
+}
+</code></pre>
+<p>감시 대상에 <code>dist</code>를 넣지 않습니다. 출력이 바뀔 때마다 태스크가 다시 돌면 쓰기가 감시를 깨우는 순환이 됩니다. <code>watchDocuments</code>는 기본 태스크가 아닙니다. <code>npx gulp</code>만으로는 감시가 시작되지 않고, 한 번 빌드하고 프로세스가 끝납니다. 감시를 켜면 프로세스는 멈추기 전까지 남아 있습니다.</p>
+<p>실수: 개발 중 편하다고 기본 태스크를 감시로 바꾸는 일입니다. 그러면 한 번 만들고 끝나야 하는 빌드가 끝나지 않습니다. 예제는 빌드와 감시를 다른 함수로 나눕니다.</p>
+<h2>의존성 없는 짝</h2>
+<p><code>pipeline.mjs</code>는 Gulp 없이 같은 <code>titleOf</code>와 <code>renderDocument</code>로 <code>src/*.md</code>를 읽어 <code>dist/*.html</code>을 씁니다. 목록 파일은 만들지 않고, 파일을 감시하지도 않습니다. Gulp 쪽의 추가분은 태스크를 묶고 나열하고 감시하는 일이지 HTML 규칙이 아닙니다. 두 경로로 만든 같은 이름의 HTML은 바이트가 같습니다.</p>
+<p>Gulp를 실행하려면 <code>examples/gulp</code>에서 의존성을 설치합니다. <code>package.json</code>은 이 디렉터리에만 있고, 저장소 루트의 패키지 파일이 아닙니다. <code>gulp</code>는 4.0.2입니다. 설치 도중 오래된 전달 의존성 경고가 나올 수 있습니다. 경고와 별도로 <code>npx gulp</code>가 기본 태스크를 끝내면 HTML과 <code>manifest.txt</code>가 생긴 것입니다. 변환만 확인할 때는 <code>node pipeline.mjs</code>로 충분합니다.</p>
+<pre><code class="language-bash">node examples/gulp/pipeline.mjs
+</code></pre>
+<pre><code class="language-bash">cd examples/gulp
+npm install
+npx gulp
+</code></pre>
+<p>실수: <code>pipeline.mjs</code>가 <code>manifest.txt</code>까지 만든다고 생각하는 일입니다. 그 파일은 <code>manifest</code> 태스크만 씁니다. HTML 변환을 공부할 때는 짝인 <code>pipeline.mjs</code>를 보고, 태스크 구성은 <code>gulpfile.js</code>를 봅니다.</p>
+<h2>예제</h2>
+<p><code>examples/gulp/package.json</code></p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;language-doc-pipeline&quot;,
+  &quot;private&quot;: true,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;언어 노트를 HTML 문서로 감싸는 문서 파이프라인&quot;,
+  &quot;type&quot;: &quot;module&quot;,
+  &quot;scripts&quot;: {
+    &quot;build&quot;: &quot;gulp&quot;,
+    &quot;pipeline&quot;: &quot;node pipeline.mjs&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;gulp&quot;: &quot;4.0.2&quot;
+  }
+}
+</code></pre>
+<p><code>examples/gulp/pipeline.mjs</code></p>
+<pre><code class="language-javascript">import { promises as fs, realpathSync } from &quot;node:fs&quot;;
+import path from &quot;node:path&quot;;
+
+const root = path.dirname(modulePath(import.meta.url));
+const srcDir = path.join(root, &quot;src&quot;);
+const distDir = path.join(root, &quot;dist&quot;);
+
+export function escapeHtml(text) {
+  return text
+    .replaceAll(&quot;&amp;&quot;, &quot;&amp;amp;&quot;)
+    .replaceAll(&quot;&lt;&quot;, &quot;&amp;lt;&quot;)
+    .replaceAll(&quot;&gt;&quot;, &quot;&amp;gt;&quot;)
+    .replaceAll(&#39;&quot;&#39;, &quot;&amp;quot;&quot;);
+}
+
+export function titleOf(markdown, filename) {
+  const fallback = path.basename(filename, &quot;.md&quot;);
+  for (const line of markdown.split(/\r?\n/)) {
+    if (line.startsWith(&quot;# &quot;)) {
+      const title = line.slice(2).trim();
+      if (title) {
+        return title;
+      }
+    }
+  }
+  return fallback;
+}
+
+export function renderDocument(title, markdown) {
+  const safeTitle = escapeHtml(title);
+  const safeBody = escapeHtml(markdown);
+  return `&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ko&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;${safeTitle}&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;${safeTitle}&lt;/h1&gt;
+  &lt;pre&gt;${safeBody}&lt;/pre&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+`;
+}
+
+export async function build() {
+  await fs.mkdir(distDir, { recursive: true });
+  const names = (await fs.readdir(srcDir)).filter((name) =&gt; name.endsWith(&quot;.md&quot;)).sort();
+  if (names.length === 0) {
+    throw new Error(&quot;src에 마크다운 파일이 없습니다.&quot;);
+  }
+  for (const name of names) {
+    const markdown = await fs.readFile(path.join(srcDir, name), &quot;utf8&quot;);
+    const html = renderDocument(titleOf(markdown, name), markdown);
+    const outName = `${path.basename(name, &quot;.md&quot;)}.html`;
+    await fs.writeFile(path.join(distDir, outName), html, &quot;utf8&quot;);
+  }
+  return names.length;
+}
+
+function modulePath(url) {
+  if (!url.startsWith(&quot;file://&quot;)) {
+    throw new Error(&quot;file URL만 지원합니다.&quot;);
+  }
+  return decodeURIComponent(url.slice(&quot;file://&quot;.length));
+}
+
+function normalizePath(file) {
+  const resolved = path.resolve(file);
+  try {
+    return realpathSync(resolved);
+  } catch {
+    return resolved;
+  }
+}
+
+function runningAsScript() {
+  const entry = process.argv[1];
+  if (!entry) {
+    return false;
+  }
+  return normalizePath(modulePath(import.meta.url)) === normalizePath(entry);
+}
+
+if (runningAsScript()) {
+  build()
+    .then((count) =&gt; {
+      console.log(`wrote ${count} html files to ${distDir}`);
+    })
+    .catch((error) =&gt; {
+      console.error(error);
+      process.exitCode = 1;
+    });
+}
+</code></pre>
+<p><code>examples/gulp/gulpfile.js</code></p>
+<pre><code class="language-javascript">import gulp from &quot;gulp&quot;;
+import { Transform } from &quot;node:stream&quot;;
+import path from &quot;node:path&quot;;
+import { mkdir, readdir, writeFile } from &quot;node:fs/promises&quot;;
+import { fileURLToPath } from &quot;node:url&quot;;
+import { renderDocument, titleOf } from &quot;./pipeline.mjs&quot;;
+
+const { src, dest, series, parallel, watch } = gulp;
+
+const root = path.dirname(fileURLToPath(import.meta.url));
+const srcDir = path.join(root, &quot;src&quot;);
+const distDir = path.join(root, &quot;dist&quot;);
+const SRC = path.join(srcDir, &quot;*.md&quot;);
+
+function wrapMarkdown() {
+  return new Transform({
+    objectMode: true,
+    transform(file, _encoding, callback) {
+      if (file.isStream()) {
+        callback(new Error(&quot;스트림 파일은 이 예제에서 다루지 않습니다.&quot;));
+        return;
+      }
+      if (!file.isBuffer()) {
+        callback(null, file);
+        return;
+      }
+      const markdown = file.contents.toString(&quot;utf8&quot;);
+      const html = renderDocument(titleOf(markdown, file.path), markdown);
+      file.contents = Buffer.from(html, &quot;utf8&quot;);
+      file.extname = &quot;.html&quot;;
+      callback(null, file);
+    },
+  });
+}
+
+export function ensureDist() {
+  return mkdir(distDir, { recursive: true });
+}
+
+export function documents() {
+  return src(SRC).pipe(wrapMarkdown()).pipe(dest(distDir));
+}
+
+export async function manifest() {
+  const names = (await readdir(srcDir)).filter((name) =&gt; name.endsWith(&quot;.md&quot;)).sort();
+  const body = names.map((name) =&gt; `${path.basename(name, &quot;.md&quot;)}.html`).join(&quot;\n&quot;) + &quot;\n&quot;;
+  await mkdir(distDir, { recursive: true });
+  await writeFile(path.join(distDir, &quot;manifest.txt&quot;), body, &quot;utf8&quot;);
+}
+
+export function watchDocuments() {
+  watch(SRC, documents);
+}
+
+export const build = series(ensureDist, parallel(documents, manifest));
+export default build;
+</code></pre>
+<p><code>examples/gulp/src/python.md</code></p>
+<pre><code class="language-markdown"># Python
+
+Python은 1991년에 공개된 언어입니다.
+블록은 들여쓰기로 나타냅니다.
+조건의 예: n &lt; 0 이면 음수입니다.
+</code></pre>
+<p><code>examples/gulp/src/javascript.md</code></p>
+<pre><code class="language-markdown"># JavaScript
+
+JavaScript는 1995년에 브라우저 안에서 처음 쓰였습니다.
+함수도 값이므로 다른 함수에 넘길 수 있습니다.
+첫 원소는 items[0]입니다.
+</code></pre>
+<p><code>examples/gulp/src/go.md</code></p>
+<pre><code class="language-markdown"># Go
+
+Go는 2009년에 공개된 언어입니다.
+에러는 반환 값으로 다루고, 고루틴으로 일을 나눕니다.
+슬라이스의 한 칸은 s[i]입니다.
+</code></pre>
+<p><code>examples/gulp/src/rust.md</code></p>
+<pre><code class="language-markdown"># Rust
+
+Rust는 2010년에 발표된 시스템 언어입니다.
+소유권이 값의 수명을 컴파일할 때 검사합니다.
+빌림은 &amp;value처럼 씁니다.
+</code></pre>
+<h2>연습</h2>
+<ol>
+<li><code>node examples/gulp/pipeline.mjs</code>를 실행하고 <code>dist/python.html</code>에 <code>n &amp;lt; 0</code>이 있는지 확인합니다. 원문은 <code>src/python.md</code>의 <code>n &lt; 0</code>이고, 바꾸는 함수는 <code>escapeHtml</code>입니다.</li>
+<li><code>gulpfile.js</code>에서 <code>build</code>가 <code>ensureDist</code> 다음에 <code>parallel(documents, manifest)</code>를 부르는지 찾습니다. 기본 태스크는 그 <code>build</code>입니다.</li>
+<li><code>pipeline.mjs</code>의 import가 <code>node:fs</code>와 <code>node:path</code>뿐인지 확인합니다. <code>gulpfile.js</code>는 그 파일의 <code>renderDocument</code>와 <code>titleOf</code>를 가져다 HTML을 만듭니다.</li>
+</ol>
+<h2>스스로 확인</h2>
+<ol>
+<li><p>Vinyl 객체는 디스크의 출력 파일인가?
+답: 아닙니다. 경로와 내용을 담은 메모리의 파일이고, <code>dest</code>가 그 내용을 디스크에 씁니다.</p>
+</li>
+<li><p><code>objectMode</code>를 켜는 이유는 무엇인가?
+답: 스트림의 조각이 바이트가 아니라 Vinyl 객체이기 때문입니다.</p>
+</li>
+<li><p><code>series</code>와 <code>parallel</code>의 차이는 무엇인가?
+답: <code>series</code>는 앞 태스크가 끝난 뒤 다음을 시작합니다. <code>parallel</code>은 같이 시작하고 모두 끝나야 끝납니다.</p>
+</li>
+<li><p>왜 감시 대상에 <code>dist</code>를 넣지 않는가?
+답: 출력이 바뀔 때마다 태스크가 다시 실행되는 순환을 피하기 위해서입니다. 예제는 <code>src</code>의 마크다운만 봅니다.</p>
+</li>
+<li><p><code>pipeline.mjs</code>는 무엇을 위한 파일인가?
+답: Gulp 없이 같은 HTML 변환을 실행해 파이프라인의 변환 단계를 보기 위한 짝입니다. 목록 파일과 감시는 gulpfile에만 있습니다.</p>
+</li>
+</ol>
+
+      <nav class="pager">
+    <a href="python-collector.html"><span>이전</span>Python으로 문서 수집기 만들기</a>
+    <a href="chrome-extension.html"><span>다음</span>브라우저 확장 프로그램</a>
+  </nav>
+      <footer class="colophon">samsepi0l · 언어 공부장</footer>
+    </article></main>
+  </div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

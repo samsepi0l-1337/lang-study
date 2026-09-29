@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>언어 지도</title>
+  <style>
+    body { margin: 24px; color: #1c1917; font: 16px/1.5 sans-serif; }
+    h1 { margin: 0 0 8px; font-size: 22px; }
+    p { margin: 0 0 12px; }
+    button { margin-right: 8px; font: inherit; }
+    canvas { display: block; background: #fff; outline: 1px solid #d6d3d1; touch-action: none; }
+  </style>
+</head>
+<body>
+  <h1>언어 지도</h1>
+  <p>카드를 끌어 좌표를 바꿉니다. 지우기는 카드 모델을 비운 뒤 다시 그리고, 실행 취소는 그 직전 좌표를 되돌립니다.</p>
+  <p>
+    <button id="undo" type="button">실행 취소</button>
+    <button id="clear" type="button">지우기</button>
+  </p>
+  <canvas id="board"></canvas>
+  <script>
+    const NAMES = ["Python", "JavaScript", "Go", "Rust", "TypeScript", "Kotlin", "Elixir", "Zig", "Dart", "Haskell"];
+    const COLORS = ["#243e73", "#9a3412", "#0f766e", "#6b3fa0", "#9f1239", "#1d4ed8", "#b45309", "#3f6212", "#0e7490", "#4c1d95"];
+    const COLS = 5;
+    const CARD_W = 132;
+    const CARD_H = 64;
+    const GAP = 12;
+    const ORIGIN = 16;
+    const VIEW_W = ORIGIN * 2 + COLS * CARD_W + (COLS - 1) * GAP;
+    const VIEW_H = ORIGIN * 2 + 2 * CARD_H + GAP;
+
+    const canvas = document.querySelector("#board");
+    const ctx = canvas.getContext("2d");
+    let cards = layout();
+    const undoStack = [];
+    let drag = null;
+
+    function layout() {
+      return NAMES.map((name, index) => {
+        const col = index % COLS;
+        const row = Math.floor(index / COLS);
+        return {
+          name: name,
+          x: ORIGIN + col * (CARD_W + GAP),
+          y: ORIGIN + row * (CARD_H + GAP),
+          w: CARD_W,
+          h: CARD_H,
+          color: COLORS[index]
+        };
+      });
+    }
+
+    function snapshot() {
+      return cards.map((card) => ({ ...card }));
+    }
+
+    function fitCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.style.width = VIEW_W + "px";
+      canvas.style.height = VIEW_H + "px";
+      canvas.width = Math.round(VIEW_W * dpr);
+      canvas.height = Math.round(VIEW_H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, VIEW_W, VIEW_H);
+      cards.forEach((card) => {
+        ctx.beginPath();
+        ctx.rect(card.x, card.y, card.w, card.h);
+        ctx.fillStyle = card.color;
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "#111827";
+        ctx.stroke();
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "15px sans-serif";
+        ctx.textBaseline = "middle";
+        ctx.fillText(card.name, card.x + 10, card.y + card.h / 2);
+      });
+    }
+
+    function pointOf(event) {
+      const rect = canvas.getBoundingClientRect();
+      return {
+        x: (event.clientX - rect.left) * (VIEW_W / rect.width),
+        y: (event.clientY - rect.top) * (VIEW_H / rect.height)
+      };
+    }
+
+    function hitIndex(x, y) {
+      for (let i = cards.length - 1; i >= 0; i -= 1) {
+        const card = cards[i];
+        if (x >= card.x && x < card.x + card.w && y >= card.y && y < card.y + card.h) return i;
+      }
+      return -1;
+    }
+
+    canvas.addEventListener("pointerdown", (event) => {
+      const point = pointOf(event);
+      const index = hitIndex(point.x, point.y);
+      if (index < 0) return;
+      undoStack.push(snapshot());
+      const card = cards.splice(index, 1)[0];
+      cards.push(card);
+      drag = { dx: point.x - card.x, dy: point.y - card.y };
+      canvas.setPointerCapture(event.pointerId);
+      draw();
+    });
+
+    canvas.addEventListener("pointermove", (event) => {
+      if (!drag) return;
+      const point = pointOf(event);
+      const card = cards[cards.length - 1];
+      card.x = point.x - drag.dx;
+      card.y = point.y - drag.dy;
+      draw();
+    });
+
+    function endDrag() {
+      drag = null;
+    }
+
+    canvas.addEventListener("pointerup", endDrag);
+    canvas.addEventListener("pointercancel", endDrag);
+
+    document.querySelector("#undo").addEventListener("click", () => {
+      const previous = undoStack.pop();
+      if (!previous) return;
+      cards = previous;
+      drag = null;
+      draw();
+    });
+
+    document.querySelector("#clear").addEventListener("click", () => {
+      undoStack.push(snapshot());
+      cards = [];
+      drag = null;
+      draw();
+    });
+
+    fitCanvas();
+    draw();
+  </script>
+</body>
+</html>

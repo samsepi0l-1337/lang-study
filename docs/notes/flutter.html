@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flutter로 언어 카드 · 언어 공부장</title>
+  <meta name="description" content="메모리 속 즐겨찾기와 상세 경로를 Flutter 3 위젯으로 구성합니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#content">본문으로</a>
+  <div class="shell">
+    <aside class="nav">
+      <a class="brand" href="../index.html"><strong>언어 공부장</strong><span>samsepi0l</span></a>
+      <input class="search" data-filter placeholder="노트 찾기" aria-label="노트 찾기">
+      <details class="toc" open>
+        <summary>목차</summary>
+        <div class="group">기초</div><ol><li data-item="1 Git과 GitHub 임시 저장소에서 커밋과 충돌 병합을 따라 하고 원격과 풀 리퀘스트는 개념으로 구분합니다. Git GitHub Python JavaScript TypeScript Go Rust"><a href="../notes/git-github.html"><small>01</small><span>Git과 GitHub</span></a></li><li data-item="2 SQL로 언어 데이터를 다루기 SQLite로 언어와 구현체와 릴리스를 거르고 묶고, 잘못된 연도는 트랜잭션으로 되돌립니다. SQL SQLite Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/sql.html"><small>02</small><span>SQL로 언어 데이터를 다루기</span></a></li><li data-item="3 Python으로 문서 수집기 만들기 표준 라이브러리만으로 로컬 HTML 픽스처를 읽어 언어 목록 JSON을 만듭니다. Python html.parser Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/python-collector.html"><small>03</small><span>Python으로 문서 수집기 만들기</span></a></li><li data-item="4 Gulp로 문서 파이프라인 만들기 Gulp의 스트림 태스크와 같은 HTML 변환을 Node 표준 모듈만으로도 확인합니다. Gulp Node.js Python JavaScript Go Rust SQL"><a href="../notes/gulp.html"><small>04</small><span>Gulp로 문서 파이프라인 만들기</span></a></li></ol><div class="group">브라우저와 React</div><ol><li data-item="5 브라우저 확장 프로그램 Manifest V3 팝업으로 오늘의 언어를 고르고, 루프백 데모에서만 언어 이름을 표시합니다. JavaScript Chrome Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/chrome-extension.html"><small>05</small><span>브라우저 확장 프로그램</span></a></li><li data-item="6 Canvas로 언어 지도 그리기 언어 카드의 좌표를 모델로 두고, 포인터로 옮긴 뒤 실행 취소로 직전 배치를 복원합니다. JavaScript Canvas Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/canvas-sketch.html"><small>06</small><span>Canvas로 언어 지도 그리기</span></a></li><li data-item="7 React로 언어 사전 만들기 이름 검색과 선택 상태를 부모에 두고, 목록과 상세는 props로만 언어 데이터를 받습니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-dictionary.html"><small>07</small><span>React로 언어 사전 만들기</span></a></li><li data-item="8 React Hooks 언어 메모 화면에서 상태, 효과, ref, 메모, 디바운스 훅의 호출 순서와 의존성을 맞춥니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-hooks.html"><small>08</small><span>React Hooks</span></a></li></ol><div class="group">상태와 GraphQL</div><ol><li data-item="9 Redux로 상태 설계하기 언어 목록, 선택, 즐겨찾기를 스토어 하나와 순수 리듀서 전이로 고정합니다. Redux Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/redux.html"><small>09</small><span>Redux로 상태 설계하기</span></a></li><li data-item="10 Next.js로 언어 문서 사이트 App Router의 파일 경로로 언어 문서 목록과 상세를 나누고, 검색만 클라이언트 상태로 둡니다. Next.js Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell Next.js"><a href="../notes/nextjs.html"><small>10</small><span>Next.js로 언어 문서 사이트</span></a></li><li data-item="11 GraphQL 서버 언어 카탈로그를 스키마와 리졸버로 나누고, 포트를 열지 않은 채 graphql()로 쿼리와 뮤테이션을 실행합니다. GraphQL Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell GraphQL"><a href="../notes/graphql-server.html"><small>11</small><span>GraphQL 서버</span></a></li><li data-item="12 GraphQL 클라이언트 executeAgainst가 data를 반환하거나 errors를 던지고, normalize가 언어를 id 맵으로 접습니다. GraphQL Python Haskell GraphQL"><a href="../notes/graphql-client.html"><small>12</small><span>GraphQL 클라이언트</span></a></li></ol><div class="group">서버</div><ol><li data-item="13 NestJS로 언어 등록 API 모듈과 생성자 주입, DTO 검증으로 언어 열 개를 등록하는 HTTP API를 조립합니다. NestJS Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/nestjs.html"><small>13</small><span>NestJS로 언어 등록 API</span></a></li><li data-item="14 Go로 작은 HTTP 서버 표준 라이브러리와 뮤텍스로 언어 목록을 조회하고 추가하는 HTTP 서버를 테스트합니다. Go Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/go.html"><small>14</small><span>Go로 작은 HTTP 서버</span></a></li><li data-item="15 워크숍 좌석 예약 시작 시각과 이름, 좌석 수 규칙을 서비스에 두고 언어 워크숍 좌석을 예약합니다. JavaScript Rust Haskell"><a href="../notes/workshop-booking.html"><small>15</small><span>워크숍 좌석 예약</span></a></li><li data-item="16 코드 조각 피드 언어별 코드 조각을 id 커서로 나누고, 사용자 이름 단위로 추천을 토글합니다. JavaScript Python Go Rust"><a href="../notes/snippet-feed.html"><small>16</small><span>코드 조각 피드</span></a></li></ol><div class="group">모바일과 연결</div><ol><li data-item="17 Dart 언어의 기본 널 안전, final과 const, Future를 한 파일의 언어 카드 보고서로 확인합니다. Dart Kotlin Dart Haskell"><a href="../notes/dart.html"><small>17</small><span>Dart 언어의 기본</span></a></li><li data-item="18 Flutter로 언어 카드 메모리 속 즐겨찾기와 상세 경로를 Flutter 3 위젯으로 구성합니다. Flutter Rust Dart Haskell Flutter"><a href="../notes/flutter.html" aria-current="page"><small>18</small><span>Flutter로 언어 카드</span></a></li><li data-item="19 React Native로 언어 카드 복습 규칙만 순수 함수로 두고, 언어 카드 화면은 네이티브 뷰로 분리합니다. React Native Rust Dart Haskell React"><a href="../notes/react-native.html"><small>19</small><span>React Native로 언어 카드</span></a></li><li data-item="20 실시간 스터디룸의 연결 두 탭이 코드 조각을 주고받도록 신호, SDP, ICE를 역할로 나눕니다. WebRTC "><a href="../notes/webrtc-room.html"><small>20</small><span>실시간 스터디룸의 연결</span></a></li><li data-item="21 TypeScript로 블록 잇기 언어 제안을 해시로 잇는 목록을 TypeScript로 만들고 변조를 검증으로 찾습니다. TypeScript TypeScript Dart"><a href="../notes/ts-chain.html"><small>21</small><span>TypeScript로 블록 잇기</span></a></li></ol><div class="group">에이전트와 제품</div><ol><li data-item="22 언어 튜터 서비스 구조 로컬 카탈로그에서 언어 설명을 고르고, 역할이 나뉜 메시지를 화면에 나누어 그립니다. LLM Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/llm-tutor.html"><small>22</small><span>언어 튜터 서비스 구조</span></a></li><li data-item="23 도구를 쓰는 에이전트 루프 목표를 받은 뒤 로컬 도구의 결과를 관찰로 쌓고, 최종 답이나 네 걸음에서 멈춥니다. 에이전트 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/ai-agents.html"><small>23</small><span>도구를 쓰는 에이전트 루프</span></a></li><li data-item="24 n8n 워크플로 웹훅으로 받은 언어 이름을 Set 노드가 카드의 제목과 요약으로 바꿉니다. n8n Rust Zig"><a href="../notes/n8n.html"><small>24</small><span>n8n 워크플로</span></a></li><li data-item="25 직접 설계하는 Supabase 스타터 프로필과 언어와 학습 노트를 RLS로 나누고, 서비스 롤은 서버에만 둡니다. Supabase Python Haskell SQL"><a href="../notes/supabase-starter.html"><small>25</small><span>직접 설계하는 Supabase 스타터</span></a></li><li data-item="26 언어 선반이라는 제품 언어 선반은 배우는 이유와 다음 연습을 남기는 기록이고, 지표는 주간 노트 수입니다. 제품 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/maker.html"><small>26</small><span>언어 선반이라는 제품</span></a></li></ol>
+      </details>
+    </aside>
+    <main class="main" id="content"><article class="sheet">
+      <div class="meta"><span class="pill">중급</span><span class="pill">40분</span><span class="pill">Flutter</span></div>
+      <h1>Flutter로 언어 카드</h1>
+<h2>도입</h2>
+<p>이 장은 samsepi0l이 Flutter 위젯으로 언어 카드 목록과 상세 화면을 정리한 노트입니다. 즐겨찾기는 프로세스 메모리에만 있고, 디스크나 서버에는 저장하지 않습니다.</p>
+<p>코드는 <code>examples/flutter/lib/main.dart</code>와 <code>examples/flutter/pubspec.yaml</code>입니다. 패키지 이름은 <code>language_cards</code>입니다. <code>environment.sdk</code>의 <code>&gt;=3.3.0 &lt;4.0.0</code>은 Dart SDK 범위이고, <code>flutter: sdk: flutter</code>는 pub.dev 패키지가 아니라 Flutter SDK 자체를 의존성으로 선언합니다.</p>
+<h2>이 장을 끝내면</h2>
+<ul>
+<li><code>StatelessWidget</code>과 <code>StatefulWidget</code>이 상태를 나누는 위치를 설명합니다.</li>
+<li><code>build</code>가 자주 불려도 되는 이유와 <code>Key</code>의 역할을 짧게 말합니다.</li>
+<li><code>Column</code>과 <code>ListView</code> 중 하나를 고르고, <code>Navigator.push</code>로 상세 경로를 쌓습니다.</li>
+</ul>
+<h2>StatelessWidget과 StatefulWidget</h2>
+<p>위젯 객체는 불변 설정입니다. <code>StatelessWidget</code>은 그 설정과 상속 위젯만으로 <code>build</code>가 화면을 결정합니다. 바꿔야 할 필드를 위젯 안에 두지 않습니다. <code>LanguageCardsApp</code>과 <code>DetailPage</code>가 이쪽입니다.</p>
+<p><code>StatefulWidget</code>도 설정 자체는 불변입니다. 바뀌는 값은 짝이 되는 <code>State</code>에 있습니다. <code>_DeckPageState</code>의 <code>_favorites</code>가 그 값입니다. 프레임워크는 같은 위치에서 위젯의 런타임 타입과 <code>Key</code>가 같으면 기존 <code>State</code>를 다음 위젯에 다시 붙입니다. 그래서 부모가 다시 <code>build</code>되어 <code>DeckPage</code> 객체가 새로 만들어져도, 즐겨찾기 집합은 <code>State</code>가 살아있는 동안 유지됩니다.</p>
+<p>별 아이콘을 누르면 <code>_toggle</code>이 <code>setState</code>를 호출합니다. 콜백 안에서 집합만 고치고, 화면 조립은 <code>build</code>에 맡깁니다. <code>setState</code>는 그 <code>State</code>의 <code>build</code>를 다시 예약하는 알림입니다. 앱을 다시 시작하면 집합은 비어 있습니다. 저장소가 메모리뿐이기 때문입니다.</p>
+<h2>build</h2>
+<p><code>build</code>는 위젯이 처음 붙을 때, <code>setState</code> 때, 부모가 다시 빌드할 때, 의존하는 상속 위젯이 바뀔 때 호출될 수 있습니다. 자주 불려도 결과가 같아야 하므로 부수 효과를 넣지 않습니다. 즐겨찾기를 토글하거나 경로를 여는 일은 <code>onPressed</code>와 <code>onTap</code>에 둡니다.</p>
+<p>반환값은 다음 프레임에 보여주고 싶은 위젯 트리의 설명입니다. 프레임워크가 이전 트리와 맞춰 필요한 부분만 갱신합니다. <code>build</code>가 직접 픽셀을 칠하지는 않습니다.</p>
+<h2>Key</h2>
+<p>자식의 순서가 바뀌지 않으면 프레임워크는 위치와 런타임 타입으로 이전 원소와 새 원소를 짝짓습니다. <code>ValueKey&lt;String&gt;(item.name)</code>은 그 행에 이름이라는 안정된 신원을 줍니다. 나중에 목록을 걸러도 같은 이름의 행을 같은 원소로 볼 수 있습니다.</p>
+<p>이 예제는 순서를 바꾸지 않습니다. 키는 토글이 동작하려고 꼭 필요해서가 아니라, 행의 신원을 드러내려고 붙어 있습니다. <code>GlobalKey</code>는 다른 위치의 <code>State</code>나 렌더 객체에 접근할 때 쓰는 무거운 키이므로 별 아이콘에는 쓰지 않습니다.</p>
+<h2>Column과 ListView</h2>
+<p>둘 다 기본 주축은 세로입니다. <code>Column</code>은 자식의 높이를 한 번에 잡고 스크롤하지 않습니다. 자식이 화면보다 길어지면 넘칩니다. 상세 화면은 요약 한 줄과 즐겨찾기 문장뿐이라 <code>Padding</code> 안의 <code>Column</code>이 맞습니다. <code>CrossAxisAlignment.start</code>는 가로 방향에서 글을 왼쪽에 붙입니다.</p>
+<p>목록은 늘어날 수 있으므로 <code>ListView.builder</code>를 씁니다. <code>itemCount</code>와 <code>itemBuilder</code>로 인덱스에 해당하는 행만 만들고, 보이는 구간과 그 근처를 유지합니다. 카드 전체를 <code>Column</code>의 자식으로 한 번에 펼치지 않습니다. <code>ListTile</code>이 한 행입니다.</p>
+<h2>두 번째 경로</h2>
+<p><code>MaterialApp</code>의 <code>home</code>이 첫 경로인 <code>DeckPage</code>입니다. 행을 누르면 <code>Navigator.push</code>가 <code>MaterialPageRoute</code>로 <code>DetailPage</code>를 스택 위에 올립니다. 상세 경로가 쌓여 있으므로 앱 바의 뒤로 가기는 그 경로를 <code>pop</code>합니다. 별도의 버튼 위젯을 만들지 않습니다. <code>RaisedButton</code>은 쓰지 않습니다. 누르는 동작은 <code>IconButton</code>과 <code>ListTile</code>의 콜백만 사용합니다.</p>
+<p>상세 페이지는 <code>StatelessWidget</code>입니다. 생성자가 그 순간의 <code>favorite</code> 불리언을 받습니다. 이미 열린 상세 화면은 목록의 이후 <code>setState</code>로 다시 빌드되지 않습니다. 돌아와서 다시 열면 그때의 집합을 읽습니다. 즐겨찾기는 카드 객체의 필드가 아니라 <code>_favorites</code> 집합에 있습니다.</p>
+<p><code>uses-material-design: true</code>가 없으면 <code>Icons.star</code>에 대응하는 글꼴이 빠질 수 있습니다. 아이콘이 보이게 하는 선언입니다.</p>
+<h2>예제</h2>
+<p><code>examples/flutter/pubspec.yaml</code> 전체입니다.</p>
+<pre><code class="language-yaml">name: language_cards
+description: In-memory language cards.
+publish_to: &quot;none&quot;
+version: 0.1.0
+
+environment:
+  sdk: &quot;&gt;=3.3.0 &lt;4.0.0&quot;
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+</code></pre>
+<p><code>examples/flutter/lib/main.dart</code> 전체입니다.</p>
+<pre><code class="language-dart">import &#39;package:flutter/material.dart&#39;;
+
+class LanguageItem {
+  const LanguageItem({required this.name, required this.summary});
+
+  final String name;
+  final String summary;
+}
+
+void main() {
+  runApp(const LanguageCardsApp());
+}
+
+class LanguageCardsApp extends StatelessWidget {
+  const LanguageCardsApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: &#39;언어 카드&#39;,
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
+      home: const DeckPage(),
+    );
+  }
+}
+
+class DeckPage extends StatefulWidget {
+  const DeckPage({super.key});
+
+  @override
+  State&lt;DeckPage&gt; createState() =&gt; _DeckPageState();
+}
+
+class _DeckPageState extends State&lt;DeckPage&gt; {
+  static const List&lt;LanguageItem&gt; _items = &lt;LanguageItem&gt;[
+    LanguageItem(name: &#39;Dart&#39;, summary: &#39;널 안전과 Future를 갖춘 언어&#39;),
+    LanguageItem(name: &#39;Rust&#39;, summary: &#39;소유권으로 메모리 사용을 정하는 언어&#39;),
+    LanguageItem(name: &#39;Haskell&#39;, summary: &#39;순수 함수와 타입으로 짜는 언어&#39;),
+  ];
+
+  final Set&lt;String&gt; _favorites = &lt;String&gt;{};
+
+  bool _isFavorite(String name) =&gt; _favorites.contains(name);
+
+  void _toggle(String name) {
+    setState(() {
+      if (_favorites.contains(name)) {
+        _favorites.remove(name);
+      } else {
+        _favorites.add(name);
+      }
+    });
+  }
+
+  void _open(LanguageItem item) {
+    Navigator.push(
+      context,
+      MaterialPageRoute&lt;void&gt;(
+        builder: (BuildContext context) {
+          return DetailPage(item: item, favorite: _isFavorite(item.name));
+        },
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text(&#39;언어 카드&#39;)),
+      body: ListView.builder(
+        itemCount: _items.length,
+        itemBuilder: (BuildContext context, int index) {
+          final LanguageItem item = _items[index];
+          final bool favorite = _isFavorite(item.name);
+          return ListTile(
+            key: ValueKey&lt;String&gt;(item.name),
+            title: Text(item.name),
+            subtitle: Text(item.summary),
+            onTap: () =&gt; _open(item),
+            trailing: IconButton(
+              tooltip: &#39;즐겨찾기&#39;,
+              onPressed: () =&gt; _toggle(item.name),
+              icon: Icon(favorite ? Icons.star : Icons.star_border_outlined),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class DetailPage extends StatelessWidget {
+  const DetailPage({super.key, required this.item, required this.favorite});
+
+  final LanguageItem item;
+  final bool favorite;
+
+  @override
+  Widget build(BuildContext context) {
+    final String status = favorite ? &#39;즐겨찾기에 있습니다.&#39; : &#39;즐겨찾기에 없습니다.&#39;;
+    return Scaffold(
+      appBar: AppBar(title: Text(item.name)),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: &lt;Widget&gt;[
+            Text(item.summary, style: Theme.of(context).textTheme.titleMedium),
+            const SizedBox(height: 12),
+            Text(status),
+          ],
+        ),
+      ),
+    );
+  }
+}
+</code></pre>
+<h2>연습</h2>
+<ol>
+<li><code>LanguageItem</code>을 하나 더 넣고, <code>ListView</code>의 종류를 바꾸지 않아도 행이 늘어나는지 확인합니다.</li>
+<li>상세 화면 <code>Column</code>에 문장 위젯을 하나 추가하고, 그 정도 길이에서는 왜 <code>ListView</code>가 필요 없는지 설명합니다.</li>
+<li>별을 켠 뒤 상세 경로를 열어 문장을 확인하고, 돌아온 다음 별을 끄고 다시 열었을 때 문장이 바뀌는지 확인합니다.</li>
+</ol>
+<h2>스스로 확인</h2>
+<h3>1. <code>DeckPage</code> 위젯 객체와 즐겨찾기 집합 중 무엇이 다시 만들어져도 남습니까?</h3>
+<p>답: <code>State</code> 안의 <code>_favorites</code>가 남습니다. <code>StatefulWidget</code> 객체는 불변 설정이고, 재빌드 때 새 인스턴스가 되어도 같은 <code>State</code>에 다시 붙을 수 있습니다.</p>
+<h3>2. <code>setState</code> 콜백 안에서 위젯 트리를 조립해야 합니까?</h3>
+<p>답: 아닙니다. 콜백에서는 필드를 고치고, 트리는 이어서 호출되는 <code>build</code>가 반환합니다.</p>
+<h3>3. 이 목록은 순서를 바꾸지 않는데 <code>ValueKey</code>를 둔 이유는 무엇입니까?</h3>
+<p>답: 행의 신원을 이름에 고정한다는 것을 코드에서 보이게 하기 위해서입니다. 토글 자체는 키 없이도 <code>setState</code>로 갱신됩니다.</p>
+<h3>4. 상세 본문이 <code>Column</code>인 이유는 무엇입니까?</h3>
+<p>답: 자식 수가 적고 스크롤이 필요 없기 때문입니다. 길어질 수 있는 목록은 <code>ListView.builder</code>가 맡습니다.</p>
+<h3>5. 상세 화면을 연 채로 목록의 별을 바꾸면 상세 문장도 즉시 바뀝니까?</h3>
+<p>답: 아닙니다. 상세 경로는 열릴 때 받은 불리언으로 빌드된 <code>StatelessWidget</code>입니다. 다시 열 때 현재 집합을 읽습니다.</p>
+
+      <nav class="pager">
+    <a href="dart.html"><span>이전</span>Dart 언어의 기본</a>
+    <a href="react-native.html"><span>다음</span>React Native로 언어 카드</a>
+  </nav>
+      <footer class="colophon">samsepi0l · 언어 공부장</footer>
+    </article></main>
+  </div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

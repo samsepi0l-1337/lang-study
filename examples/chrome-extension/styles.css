@@ -1,0 +1,36 @@
+body.lotd-popup {
+  box-sizing: border-box;
+  width: 280px;
+  margin: 0;
+  padding: 12px 14px 16px;
+  color: #1c1917;
+  background: #faf7f2;
+  font: 14px/1.45 sans-serif;
+}
+
+body.lotd-popup h1,
+body.lotd-popup h2 {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+
+body.lotd-popup h2 {
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+body.lotd-popup p {
+  margin: 0 0 8px;
+}
+
+body.lotd-popup button {
+  margin: 0 6px 0 0;
+  padding: 4px 8px;
+  font: inherit;
+}
+
+mark.lang-hit {
+  padding: 0 0.12em;
+  color: #1c1917;
+  background: #f6e27a;
+}

@@ -1,0 +1,5 @@
+{
+  "name": "language-graphql-client",
+  "private": true,
+  "type": "module"
+}

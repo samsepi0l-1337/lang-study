@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>언어 튜터</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f4f1ea;
+      --ink: #1c1b16;
+      --muted: #5e594e;
+      --line: #d8d1c4;
+      --user: #e7efe9;
+      --assistant: #fffdf8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    main {
+      max-width: 40rem;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3rem;
+    }
+
+    h1 { font-size: 1.75rem; margin: 0 0 0.5rem; }
+
+    .lead { margin: 0 0 1.5rem; color: var(--muted); }
+
+    #log {
+      list-style: none;
+      margin: 0 0 1.25rem;
+      padding: 0;
+      display: grid;
+      gap: 0.75rem;
+      min-height: 8rem;
+    }
+
+    #log li {
+      border: 1px solid var(--line);
+      background: var(--assistant);
+      padding: 0.75rem 0.9rem;
+    }
+
+    #log li[data-role="user"] { background: var(--user); }
+
+    .role {
+      display: block;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    #log p { margin: 0; white-space: pre-wrap; }
+
+    form { display: grid; gap: 0.5rem; }
+
+    label { font-size: 0.9rem; }
+
+    input {
+      font: inherit;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
+      padding: 0.65rem 0.75rem;
+      border: 0;
+      background: #234237;
+      color: #f7f4ee;
+      cursor: pointer;
+    }
+
+    button:disabled { cursor: wait; opacity: 0.7; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>언어 튜터</h1>
+    <p class="lead">열 개 언어의 로컬 카탈로그에서 문장을 고릅니다. 서버와 API 키는 쓰지 않습니다. 답은 먼저 완성된 뒤, 화면에만 나누어 나타납니다.</p>
+    <ol id="log" aria-live="polite"></ol>
+    <form id="ask">
+      <label for="question">질문</label>
+      <input id="question" name="question" autocomplete="off" placeholder="Rust의 메모리 안전은 무엇으로 돕나요?">
+      <button type="submit">보내기</button>
+    </form>
+  </main>
+  <script>
+    // tutor.js와 같은 카탈로그와 answer입니다.
+    // file:// 에서는 모듈 import가 막히므로 본문을 복사해 두었습니다.
+    const catalog = [
+      {
+        name: "Python",
+        keywords: ["python", "파이썬"],
+        fact: "Python은 들여쓰기로 블록을 나타내고, 동적 타입으로 값을 다룹니다.",
+      },
+      {
+        name: "JavaScript",
+        keywords: ["javascript", "js", "자바스크립트"],
+        fact: "JavaScript는 이벤트 루프 위에서 비동기 작업을 이어 갑니다.",
+      },
+      {
+        name: "Go",
+        keywords: ["go", "golang"],
+        fact: "Go는 고루틴으로 가벼운 동시 실행을 표현합니다.",
+      },
+      {
+        name: "Rust",
+        keywords: ["rust", "러스트"],
+        fact: "Rust는 소유권으로 메모리 안전을 돕습니다.",
+      },
+      {
+        name: "TypeScript",
+        keywords: ["typescript", "타입스크립트"],
+        fact: "TypeScript의 타입은 컴파일되면 JavaScript로 지워집니다.",
+      },
+      {
+        name: "Kotlin",
+        keywords: ["kotlin", "코틀린"],
+        fact: "Kotlin은 널 가능 여부를 타입으로 구분합니다.",
+      },
+      {
+        name: "Elixir",
+        keywords: ["elixir", "엘릭서"],
+        fact: "Elixir는 BEAM의 가벼운 프로세스로 상태를 격리합니다.",
+      },
+      {
+        name: "Zig",
+        keywords: ["zig", "지그"],
+        fact: "Zig는 메모리 할당자를 호출하는 쪽에서 넘깁니다.",
+      },
+      {
+        name: "Dart",
+        keywords: ["dart", "다트"],
+        fact: "Dart는 사운드 널 안전성을 타입 시스템에 둡니다.",
+      },
+      {
+        name: "Haskell",
+        keywords: ["haskell", "하스켈"],
+        fact: "Haskell은 순수 함수와 지연 평가를 기본으로 합니다.",
+      },
+    ];
+
+    const SYSTEM =
+      "당신은 열 개 언어의 로컬 카탈로그만 읽는 튜터입니다. 고른 문장만 답하고, 카탈로그 밖 사실은 만들지 않습니다.";
+
+    function mentions(text, keyword) {
+      if (/^[a-z0-9]+$/i.test(keyword)) {
+        const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        return new RegExp(`(^|[^A-Za-z0-9])${escaped}([^A-Za-z0-9]|$)`, "i").test(
+          text,
+        );
+      }
+      return text.toLowerCase().includes(keyword.toLowerCase());
+    }
+
+    function answer(question) {
+      const text = String(question ?? "");
+      const hits = catalog.filter((item) =>
+        item.keywords.some((keyword) => mentions(text, keyword)),
+      );
+      const reply =
+        hits.length === 0
+          ? `카탈로그에서 언어를 찾지 못했습니다. 이름 후보: ${catalog
+              .map((item) => item.name)
+              .join(", ")}.`
+          : hits.map((item) => `${item.name}: ${item.fact}`).join("\n");
+      const messages = [
+        { role: "system", content: SYSTEM },
+        { role: "user", content: text },
+        { role: "assistant", content: reply },
+      ];
+      return { messages, reply };
+    }
+
+    const log = document.querySelector("#log");
+    const form = document.querySelector("#ask");
+    const input = document.querySelector("#question");
+    const button = form.querySelector("button");
+    let showedSystem = false;
+
+    function addMessage(role, text) {
+      const item = document.createElement("li");
+      item.dataset.role = role;
+      const roleEl = document.createElement("span");
+      roleEl.className = "role";
+      roleEl.textContent = role;
+      const body = document.createElement("p");
+      body.textContent = text;
+      item.append(roleEl, body);
+      log.append(item);
+      return body;
+    }
+
+    function streamInto(node, text) {
+      const size = 12;
+      let index = 0;
+      node.textContent = "";
+      return new Promise((resolve) => {
+        const timer = setInterval(() => {
+          index += size;
+          node.textContent = text.slice(0, index);
+          if (index >= text.length) {
+            clearInterval(timer);
+            node.textContent = text;
+            resolve();
+          }
+        }, 40);
+      });
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const question = input.value.trim();
+      if (!question) return;
+      const result = answer(question);
+      button.disabled = true;
+      for (const message of result.messages) {
+        if (message.role === "system" && showedSystem) continue;
+        if (message.role === "system") showedSystem = true;
+        if (message.role === "assistant") {
+          const body = addMessage(message.role, "");
+          await streamInto(body, result.reply);
+        } else {
+          addMessage(message.role, message.content);
+        }
+      }
+      input.value = "";
+      button.disabled = false;
+      input.focus();
+    });
+  </script>
+</body>
+</html>

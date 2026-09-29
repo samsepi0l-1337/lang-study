@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Canvas로 언어 지도 그리기 · 언어 공부장</title>
+  <meta name="description" content="언어 카드의 좌표를 모델로 두고, 포인터로 옮긴 뒤 실행 취소로 직전 배치를 복원합니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#content">본문으로</a>
+  <div class="shell">
+    <aside class="nav">
+      <a class="brand" href="../index.html"><strong>언어 공부장</strong><span>samsepi0l</span></a>
+      <input class="search" data-filter placeholder="노트 찾기" aria-label="노트 찾기">
+      <details class="toc" open>
+        <summary>목차</summary>
+        <div class="group">기초</div><ol><li data-item="1 Git과 GitHub 임시 저장소에서 커밋과 충돌 병합을 따라 하고 원격과 풀 리퀘스트는 개념으로 구분합니다. Git GitHub Python JavaScript TypeScript Go Rust"><a href="../notes/git-github.html"><small>01</small><span>Git과 GitHub</span></a></li><li data-item="2 SQL로 언어 데이터를 다루기 SQLite로 언어와 구현체와 릴리스를 거르고 묶고, 잘못된 연도는 트랜잭션으로 되돌립니다. SQL SQLite Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/sql.html"><small>02</small><span>SQL로 언어 데이터를 다루기</span></a></li><li data-item="3 Python으로 문서 수집기 만들기 표준 라이브러리만으로 로컬 HTML 픽스처를 읽어 언어 목록 JSON을 만듭니다. Python html.parser Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/python-collector.html"><small>03</small><span>Python으로 문서 수집기 만들기</span></a></li><li data-item="4 Gulp로 문서 파이프라인 만들기 Gulp의 스트림 태스크와 같은 HTML 변환을 Node 표준 모듈만으로도 확인합니다. Gulp Node.js Python JavaScript Go Rust SQL"><a href="../notes/gulp.html"><small>04</small><span>Gulp로 문서 파이프라인 만들기</span></a></li></ol><div class="group">브라우저와 React</div><ol><li data-item="5 브라우저 확장 프로그램 Manifest V3 팝업으로 오늘의 언어를 고르고, 루프백 데모에서만 언어 이름을 표시합니다. JavaScript Chrome Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/chrome-extension.html"><small>05</small><span>브라우저 확장 프로그램</span></a></li><li data-item="6 Canvas로 언어 지도 그리기 언어 카드의 좌표를 모델로 두고, 포인터로 옮긴 뒤 실행 취소로 직전 배치를 복원합니다. JavaScript Canvas Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/canvas-sketch.html" aria-current="page"><small>06</small><span>Canvas로 언어 지도 그리기</span></a></li><li data-item="7 React로 언어 사전 만들기 이름 검색과 선택 상태를 부모에 두고, 목록과 상세는 props로만 언어 데이터를 받습니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-dictionary.html"><small>07</small><span>React로 언어 사전 만들기</span></a></li><li data-item="8 React Hooks 언어 메모 화면에서 상태, 효과, ref, 메모, 디바운스 훅의 호출 순서와 의존성을 맞춥니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-hooks.html"><small>08</small><span>React Hooks</span></a></li></ol><div class="group">상태와 GraphQL</div><ol><li data-item="9 Redux로 상태 설계하기 언어 목록, 선택, 즐겨찾기를 스토어 하나와 순수 리듀서 전이로 고정합니다. Redux Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/redux.html"><small>09</small><span>Redux로 상태 설계하기</span></a></li><li data-item="10 Next.js로 언어 문서 사이트 App Router의 파일 경로로 언어 문서 목록과 상세를 나누고, 검색만 클라이언트 상태로 둡니다. Next.js Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell Next.js"><a href="../notes/nextjs.html"><small>10</small><span>Next.js로 언어 문서 사이트</span></a></li><li data-item="11 GraphQL 서버 언어 카탈로그를 스키마와 리졸버로 나누고, 포트를 열지 않은 채 graphql()로 쿼리와 뮤테이션을 실행합니다. GraphQL Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell GraphQL"><a href="../notes/graphql-server.html"><small>11</small><span>GraphQL 서버</span></a></li><li data-item="12 GraphQL 클라이언트 executeAgainst가 data를 반환하거나 errors를 던지고, normalize가 언어를 id 맵으로 접습니다. GraphQL Python Haskell GraphQL"><a href="../notes/graphql-client.html"><small>12</small><span>GraphQL 클라이언트</span></a></li></ol><div class="group">서버</div><ol><li data-item="13 NestJS로 언어 등록 API 모듈과 생성자 주입, DTO 검증으로 언어 열 개를 등록하는 HTTP API를 조립합니다. NestJS Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/nestjs.html"><small>13</small><span>NestJS로 언어 등록 API</span></a></li><li data-item="14 Go로 작은 HTTP 서버 표준 라이브러리와 뮤텍스로 언어 목록을 조회하고 추가하는 HTTP 서버를 테스트합니다. Go Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/go.html"><small>14</small><span>Go로 작은 HTTP 서버</span></a></li><li data-item="15 워크숍 좌석 예약 시작 시각과 이름, 좌석 수 규칙을 서비스에 두고 언어 워크숍 좌석을 예약합니다. JavaScript Rust Haskell"><a href="../notes/workshop-booking.html"><small>15</small><span>워크숍 좌석 예약</span></a></li><li data-item="16 코드 조각 피드 언어별 코드 조각을 id 커서로 나누고, 사용자 이름 단위로 추천을 토글합니다. JavaScript Python Go Rust"><a href="../notes/snippet-feed.html"><small>16</small><span>코드 조각 피드</span></a></li></ol><div class="group">모바일과 연결</div><ol><li data-item="17 Dart 언어의 기본 널 안전, final과 const, Future를 한 파일의 언어 카드 보고서로 확인합니다. Dart Kotlin Dart Haskell"><a href="../notes/dart.html"><small>17</small><span>Dart 언어의 기본</span></a></li><li data-item="18 Flutter로 언어 카드 메모리 속 즐겨찾기와 상세 경로를 Flutter 3 위젯으로 구성합니다. Flutter Rust Dart Haskell Flutter"><a href="../notes/flutter.html"><small>18</small><span>Flutter로 언어 카드</span></a></li><li data-item="19 React Native로 언어 카드 복습 규칙만 순수 함수로 두고, 언어 카드 화면은 네이티브 뷰로 분리합니다. React Native Rust Dart Haskell React"><a href="../notes/react-native.html"><small>19</small><span>React Native로 언어 카드</span></a></li><li data-item="20 실시간 스터디룸의 연결 두 탭이 코드 조각을 주고받도록 신호, SDP, ICE를 역할로 나눕니다. WebRTC "><a href="../notes/webrtc-room.html"><small>20</small><span>실시간 스터디룸의 연결</span></a></li><li data-item="21 TypeScript로 블록 잇기 언어 제안을 해시로 잇는 목록을 TypeScript로 만들고 변조를 검증으로 찾습니다. TypeScript TypeScript Dart"><a href="../notes/ts-chain.html"><small>21</small><span>TypeScript로 블록 잇기</span></a></li></ol><div class="group">에이전트와 제품</div><ol><li data-item="22 언어 튜터 서비스 구조 로컬 카탈로그에서 언어 설명을 고르고, 역할이 나뉜 메시지를 화면에 나누어 그립니다. LLM Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/llm-tutor.html"><small>22</small><span>언어 튜터 서비스 구조</span></a></li><li data-item="23 도구를 쓰는 에이전트 루프 목표를 받은 뒤 로컬 도구의 결과를 관찰로 쌓고, 최종 답이나 네 걸음에서 멈춥니다. 에이전트 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/ai-agents.html"><small>23</small><span>도구를 쓰는 에이전트 루프</span></a></li><li data-item="24 n8n 워크플로 웹훅으로 받은 언어 이름을 Set 노드가 카드의 제목과 요약으로 바꿉니다. n8n Rust Zig"><a href="../notes/n8n.html"><small>24</small><span>n8n 워크플로</span></a></li><li data-item="25 직접 설계하는 Supabase 스타터 프로필과 언어와 학습 노트를 RLS로 나누고, 서비스 롤은 서버에만 둡니다. Supabase Python Haskell SQL"><a href="../notes/supabase-starter.html"><small>25</small><span>직접 설계하는 Supabase 스타터</span></a></li><li data-item="26 언어 선반이라는 제품 언어 선반은 배우는 이유와 다음 연습을 남기는 기록이고, 지표는 주간 노트 수입니다. 제품 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/maker.html"><small>26</small><span>언어 선반이라는 제품</span></a></li></ol>
+      </details>
+    </aside>
+    <main class="main" id="content"><article class="sheet">
+      <div class="meta"><span class="pill">초급</span><span class="pill">40분</span><span class="pill">JavaScript</span><span class="pill">Canvas</span></div>
+      <h1>Canvas로 언어 지도 그리기</h1>
+<p>이 노트는 samsepi0l이 캔버스에 언어 카드 열 개의 배치를 그리는 방법을 정리한 것입니다. 카드의 이름과 좌표가 상태이고, 화면은 그 상태를 다시 그린 결과입니다. 외부 라이브러리는 쓰지 않습니다. <code>examples/canvas-sketch/index.html</code> 하나만 열면 됩니다.</p>
+<h2>이 장을 끝내면</h2>
+<ul>
+<li>캔버스의 원점, 논리 좌표, 장치 픽셀 비율을 구분해 클릭 위치를 맞춥니다.</li>
+<li>경로를 채워 카드를 그리고, 사각형 비교로 어떤 카드를 집었는지 판정합니다.</li>
+<li>좌표 복사본을 스택에 넣어 드래그와 지우기를 한 단계 되돌립니다.</li>
+</ul>
+<h2>좌표계는 왼쪽 위가 원점입니다</h2>
+<p>x는 오른쪽으로, y는 아래로 증가합니다. <code>canvas.width</code>와 <code>canvas.height</code>는 비트맵 픽셀 수이고, CSS로 보이는 크기와 다를 수 있습니다. 예제는 <code>devicePixelRatio</code>만큼 비트맵을 키운 뒤 변환으로 논리 좌표를 유지합니다. 카드의 <code>x</code>, <code>y</code>는 논리 좌표입니다. 포인터는 <code>getBoundingClientRect</code>의 CSS 픽셀을 논리 너비에 맞춰 나눕니다.</p>
+<pre><code class="language-javascript">const dpr = window.devicePixelRatio || 1;
+canvas.width = Math.round(VIEW_W * dpr);
+canvas.height = Math.round(VIEW_H * dpr);
+ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+</code></pre>
+<p><code>canvas.width</code>에 다시 숫자를 넣으면 비트맵과 변환 행렬이 초기화됩니다. 크기를 정한 다음에 <code>setTransform</code>을 호출합니다. 테두리 대신 <code>outline</code>을 쓰는 이유는 테두리가 박스에 포함되어 클릭 좌표가 밀리기 때문입니다. 논리 크기는 가로 740, 세로 172입니다. 5열 2행이고 카드는 132×64입니다.</p>
+<p>실수: CSS <code>width</code>만 키우고 속성 <code>width</code>는 300에 둡니다. 그림이 늘어나 흐려지고, 이벤트 좌표를 논리 너비로 환산하지 않으면 히트 테스트가 빗나갑니다.</p>
+<h2>경로를 채우고 같은 경로를 따라 긋습니다</h2>
+<p>카드 하나는 <code>beginPath</code>, <code>rect</code>, <code>fill</code>, <code>stroke</code>입니다. <code>fill</code>은 현재 경로를 지우지 않으므로 같은 사각형을 이어서 그을 수 있습니다. 글자는 <code>fillText</code>이며 경로가 아닙니다. 매 프레임 <code>clearRect(0, 0, VIEW_W, VIEW_H)</code>로 논리 화면을 비운 뒤 배열 전체를 다시 그립니다. 변환이 걸린 <code>clearRect</code>도 논리 좌표로 동작합니다. 이전 위치만 부분적으로 지우지 않습니다.</p>
+<pre><code class="language-javascript">ctx.beginPath();
+ctx.rect(card.x, card.y, card.w, card.h);
+ctx.fill();
+ctx.stroke();
+</code></pre>
+<p>실수: <code>beginPath</code> 없이 <code>rect</code>를 반복합니다. 이전 카드의 경로가 남아 다음 <code>fill</code>이 합쳐집니다. 예제는 카드마다 경로를 새로 엽니다.</p>
+<h2>히트 테스트는 픽셀 색을 읽지 않습니다</h2>
+<p>점이 카드 안인지는 사각형 부등식입니다. 오른쪽과 아래 변은 <code>&lt;</code>로 두어 경계가 맞닿아도 한 카드만 집히게 합니다. 검사는 배열의 끝에서 시작합니다. 나중에 그린 카드가 위에 있으므로 겹치면 그쪽을 집습니다.</p>
+<pre><code class="language-javascript">for (let i = cards.length - 1; i &gt;= 0; i -= 1) {
+  const card = cards[i];
+  if (x &gt;= card.x &amp;&amp; x &lt; card.x + card.w &amp;&amp; y &gt;= card.y &amp;&amp; y &lt; card.y + card.h) return i;
+}
+</code></pre>
+<p><code>pointerdown</code>에서 집은 카드를 배열 끝으로 옮기면 다음 프레임에 위에 그려집니다. 그 전에 스냅샷을 넣습니다. <code>setPointerCapture</code>가 있어야 포인터가 캔버스 밖으로 나가도 <code>pointermove</code>와 <code>pointerup</code>이 옵니다. <code>touch-action: none</code>이 없으면 브라우저가 드래그를 스크롤로 가져가 포인터가 취소됩니다. 빈 곳을 누르면 스택에 넣지 않습니다.</p>
+<p>실수: <code>getImageData</code>로 색을 읽어 카드를 구분합니다. 가장자리 픽셀이 흔들리고, 되돌릴 좌표가 남지 않습니다.</p>
+<h2>모델이 진실이고 픽셀은 출력입니다</h2>
+<p>상태는 <code>cards</code>와 <code>undoStack</code>입니다. 스택에는 카드마다 얕게 복사한 새 배열을 넣습니다. 같은 배열을 그대로 넣으면 이후 좌표 변경이 과거 기록까지 바꿉니다. 필드는 원시 값이므로 얕은 복사로 충분합니다.</p>
+<pre><code class="language-javascript">function snapshot() {
+  return cards.map((card) =&gt; ({ ...card }));
+}
+</code></pre>
+<p>드래그 시작과 지우기 직전에 <code>push</code>합니다. 실행 취소는 <code>pop</code>한 배열로 <code>cards</code>를 바꾸고 <code>draw</code>를 다시 호출합니다. 지우기는 픽셀만 문지르는 일이 아닙니다. <code>cards</code>를 빈 배열로 둔 뒤 다시 그립니다. 직전 스냅샷이 있으므로 한 번 실행 취소하면 비우기 전의 좌표와 순서가 돌아옵니다. 스택이 비어 있으면 아무 일도 하지 않습니다. 드래그 중에 실행 취소를 누르면 <code>drag</code>도 끊어 이후 <code>pointermove</code>가 옛 인덱스를 밀지 않게 합니다.</p>
+<p>실수: 캔버스를 이미지 주소로 저장했다가 되돌립니다. 이미지에는 이름과 히트 영역이 분리되어 있지 않아 다음 드래그를 이을 수 없습니다.</p>
+<h2>예제</h2>
+<p><code>examples/canvas-sketch/index.html</code></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ko&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;언어 지도&lt;/title&gt;
+  &lt;style&gt;
+    body { margin: 24px; color: #1c1917; font: 16px/1.5 sans-serif; }
+    h1 { margin: 0 0 8px; font-size: 22px; }
+    p { margin: 0 0 12px; }
+    button { margin-right: 8px; font: inherit; }
+    canvas { display: block; background: #fff; outline: 1px solid #d6d3d1; touch-action: none; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;언어 지도&lt;/h1&gt;
+  &lt;p&gt;카드를 끌어 좌표를 바꿉니다. 지우기는 카드 모델을 비운 뒤 다시 그리고, 실행 취소는 그 직전 좌표를 되돌립니다.&lt;/p&gt;
+  &lt;p&gt;
+    &lt;button id=&quot;undo&quot; type=&quot;button&quot;&gt;실행 취소&lt;/button&gt;
+    &lt;button id=&quot;clear&quot; type=&quot;button&quot;&gt;지우기&lt;/button&gt;
+  &lt;/p&gt;
+  &lt;canvas id=&quot;board&quot;&gt;&lt;/canvas&gt;
+  &lt;script&gt;
+    const NAMES = [&quot;Python&quot;, &quot;JavaScript&quot;, &quot;Go&quot;, &quot;Rust&quot;, &quot;TypeScript&quot;, &quot;Kotlin&quot;, &quot;Elixir&quot;, &quot;Zig&quot;, &quot;Dart&quot;, &quot;Haskell&quot;];
+    const COLORS = [&quot;#243e73&quot;, &quot;#9a3412&quot;, &quot;#0f766e&quot;, &quot;#6b3fa0&quot;, &quot;#9f1239&quot;, &quot;#1d4ed8&quot;, &quot;#b45309&quot;, &quot;#3f6212&quot;, &quot;#0e7490&quot;, &quot;#4c1d95&quot;];
+    const COLS = 5;
+    const CARD_W = 132;
+    const CARD_H = 64;
+    const GAP = 12;
+    const ORIGIN = 16;
+    const VIEW_W = ORIGIN * 2 + COLS * CARD_W + (COLS - 1) * GAP;
+    const VIEW_H = ORIGIN * 2 + 2 * CARD_H + GAP;
+
+    const canvas = document.querySelector(&quot;#board&quot;);
+    const ctx = canvas.getContext(&quot;2d&quot;);
+    let cards = layout();
+    const undoStack = [];
+    let drag = null;
+
+    function layout() {
+      return NAMES.map((name, index) =&gt; {
+        const col = index % COLS;
+        const row = Math.floor(index / COLS);
+        return {
+          name: name,
+          x: ORIGIN + col * (CARD_W + GAP),
+          y: ORIGIN + row * (CARD_H + GAP),
+          w: CARD_W,
+          h: CARD_H,
+          color: COLORS[index]
+        };
+      });
+    }
+
+    function snapshot() {
+      return cards.map((card) =&gt; ({ ...card }));
+    }
+
+    function fitCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.style.width = VIEW_W + &quot;px&quot;;
+      canvas.style.height = VIEW_H + &quot;px&quot;;
+      canvas.width = Math.round(VIEW_W * dpr);
+      canvas.height = Math.round(VIEW_H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, VIEW_W, VIEW_H);
+      cards.forEach((card) =&gt; {
+        ctx.beginPath();
+        ctx.rect(card.x, card.y, card.w, card.h);
+        ctx.fillStyle = card.color;
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = &quot;#111827&quot;;
+        ctx.stroke();
+        ctx.fillStyle = &quot;#ffffff&quot;;
+        ctx.font = &quot;15px sans-serif&quot;;
+        ctx.textBaseline = &quot;middle&quot;;
+        ctx.fillText(card.name, card.x + 10, card.y + card.h / 2);
+      });
+    }
+
+    function pointOf(event) {
+      const rect = canvas.getBoundingClientRect();
+      return {
+        x: (event.clientX - rect.left) * (VIEW_W / rect.width),
+        y: (event.clientY - rect.top) * (VIEW_H / rect.height)
+      };
+    }
+
+    function hitIndex(x, y) {
+      for (let i = cards.length - 1; i &gt;= 0; i -= 1) {
+        const card = cards[i];
+        if (x &gt;= card.x &amp;&amp; x &lt; card.x + card.w &amp;&amp; y &gt;= card.y &amp;&amp; y &lt; card.y + card.h) return i;
+      }
+      return -1;
+    }
+
+    canvas.addEventListener(&quot;pointerdown&quot;, (event) =&gt; {
+      const point = pointOf(event);
+      const index = hitIndex(point.x, point.y);
+      if (index &lt; 0) return;
+      undoStack.push(snapshot());
+      const card = cards.splice(index, 1)[0];
+      cards.push(card);
+      drag = { dx: point.x - card.x, dy: point.y - card.y };
+      canvas.setPointerCapture(event.pointerId);
+      draw();
+    });
+
+    canvas.addEventListener(&quot;pointermove&quot;, (event) =&gt; {
+      if (!drag) return;
+      const point = pointOf(event);
+      const card = cards[cards.length - 1];
+      card.x = point.x - drag.dx;
+      card.y = point.y - drag.dy;
+      draw();
+    });
+
+    function endDrag() {
+      drag = null;
+    }
+
+    canvas.addEventListener(&quot;pointerup&quot;, endDrag);
+    canvas.addEventListener(&quot;pointercancel&quot;, endDrag);
+
+    document.querySelector(&quot;#undo&quot;).addEventListener(&quot;click&quot;, () =&gt; {
+      const previous = undoStack.pop();
+      if (!previous) return;
+      cards = previous;
+      drag = null;
+      draw();
+    });
+
+    document.querySelector(&quot;#clear&quot;).addEventListener(&quot;click&quot;, () =&gt; {
+      undoStack.push(snapshot());
+      cards = [];
+      drag = null;
+      draw();
+    });
+
+    fitCanvas();
+    draw();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2>연습</h2>
+<ol>
+<li>카드 모서리를 둥글게 그리되 히트 테스트는 사각형으로 유지합니다. 둥근 모서리 밖을 집는 경우가 생기는 이유를 한 줄로 적습니다.</li>
+<li>스택이 비어 있을 때 실행 취소 버튼을 비활성화합니다. 드래그 시작, 드래그 종료, 지우기, 실행 취소 중 언제 <code>disabled</code>를 다시 계산하는지도 적습니다.</li>
+<li>두 카드가 겹칠 때 나중에 집은 카드가 위에 보이는 이유를 배열 순서로 설명합니다.</li>
+</ol>
+<h2>스스로 확인</h2>
+<ol>
+<li>캔버스에서 y가 증가하는 방향은 어디입니까?</li>
+</ol>
+<p>아래입니다. 원점은 왼쪽 위이고, 수학 좌표처럼 위가 아닙니다.</p>
+<ol start="2">
+<li><code>devicePixelRatio</code>가 2일 때 카드의 <code>x</code>는 비트맵 픽셀입니까?</li>
+</ol>
+<p>아닙니다. <code>x</code>는 논리 좌표입니다. <code>setTransform</code>이 그 값을 비트맵 픽셀로 늘립니다.</p>
+<ol start="3">
+<li>왜 <code>fill</code> 뒤에 바로 <code>stroke</code>를 호출할 수 있습니까?</li>
+</ol>
+<p><code>fill</code>이 현재 경로를 제거하지 않기 때문입니다. 그 전에 <code>beginPath</code>와 <code>rect</code>로 사각형을 만들어 둡니다.</p>
+<ol start="4">
+<li>히트 테스트는 왜 배열의 뒤에서 시작합니까?</li>
+</ol>
+<p>뒤에 있는 카드가 나중에 그려져 위에 보이기 때문입니다. 겹친 지점의 클릭은 보이는 카드를 집어야 합니다.</p>
+<ol start="5">
+<li>실행 취소 스택에 <code>cards</code>를 그대로 <code>push</code>하면 무엇이 깨집니까?</li>
+</ol>
+<p>이후의 좌표 변경이 스택 안의 같은 객체를 바꿉니다. 되돌릴 과거 좌표가 남지 않습니다.</p>
+
+      <nav class="pager">
+    <a href="chrome-extension.html"><span>이전</span>브라우저 확장 프로그램</a>
+    <a href="react-dictionary.html"><span>다음</span>React로 언어 사전 만들기</a>
+  </nav>
+      <footer class="colophon">samsepi0l · 언어 공부장</footer>
+    </article></main>
+  </div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

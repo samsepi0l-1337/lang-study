@@ -1,0 +1,11 @@
+{
+  "name": "snippet-feed",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "언어별 코드 조각 피드",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node feed.test.js"
+  }
+}

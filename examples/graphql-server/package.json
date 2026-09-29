@@ -1,0 +1,8 @@
+{
+  "name": "language-graphql-server",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "graphql": "16.14.2"
+  }
+}

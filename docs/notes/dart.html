@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dart 언어의 기본 · 언어 공부장</title>
+  <meta name="description" content="널 안전, final과 const, Future를 한 파일의 언어 카드 보고서로 확인합니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#content">본문으로</a>
+  <div class="shell">
+    <aside class="nav">
+      <a class="brand" href="../index.html"><strong>언어 공부장</strong><span>samsepi0l</span></a>
+      <input class="search" data-filter placeholder="노트 찾기" aria-label="노트 찾기">
+      <details class="toc" open>
+        <summary>목차</summary>
+        <div class="group">기초</div><ol><li data-item="1 Git과 GitHub 임시 저장소에서 커밋과 충돌 병합을 따라 하고 원격과 풀 리퀘스트는 개념으로 구분합니다. Git GitHub Python JavaScript TypeScript Go Rust"><a href="../notes/git-github.html"><small>01</small><span>Git과 GitHub</span></a></li><li data-item="2 SQL로 언어 데이터를 다루기 SQLite로 언어와 구현체와 릴리스를 거르고 묶고, 잘못된 연도는 트랜잭션으로 되돌립니다. SQL SQLite Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/sql.html"><small>02</small><span>SQL로 언어 데이터를 다루기</span></a></li><li data-item="3 Python으로 문서 수집기 만들기 표준 라이브러리만으로 로컬 HTML 픽스처를 읽어 언어 목록 JSON을 만듭니다. Python html.parser Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell SQL"><a href="../notes/python-collector.html"><small>03</small><span>Python으로 문서 수집기 만들기</span></a></li><li data-item="4 Gulp로 문서 파이프라인 만들기 Gulp의 스트림 태스크와 같은 HTML 변환을 Node 표준 모듈만으로도 확인합니다. Gulp Node.js Python JavaScript Go Rust SQL"><a href="../notes/gulp.html"><small>04</small><span>Gulp로 문서 파이프라인 만들기</span></a></li></ol><div class="group">브라우저와 React</div><ol><li data-item="5 브라우저 확장 프로그램 Manifest V3 팝업으로 오늘의 언어를 고르고, 루프백 데모에서만 언어 이름을 표시합니다. JavaScript Chrome Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/chrome-extension.html"><small>05</small><span>브라우저 확장 프로그램</span></a></li><li data-item="6 Canvas로 언어 지도 그리기 언어 카드의 좌표를 모델로 두고, 포인터로 옮긴 뒤 실행 취소로 직전 배치를 복원합니다. JavaScript Canvas Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/canvas-sketch.html"><small>06</small><span>Canvas로 언어 지도 그리기</span></a></li><li data-item="7 React로 언어 사전 만들기 이름 검색과 선택 상태를 부모에 두고, 목록과 상세는 props로만 언어 데이터를 받습니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-dictionary.html"><small>07</small><span>React로 언어 사전 만들기</span></a></li><li data-item="8 React Hooks 언어 메모 화면에서 상태, 효과, ref, 메모, 디바운스 훅의 호출 순서와 의존성을 맞춥니다. JavaScript React Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell React"><a href="../notes/react-hooks.html"><small>08</small><span>React Hooks</span></a></li></ol><div class="group">상태와 GraphQL</div><ol><li data-item="9 Redux로 상태 설계하기 언어 목록, 선택, 즐겨찾기를 스토어 하나와 순수 리듀서 전이로 고정합니다. Redux Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/redux.html"><small>09</small><span>Redux로 상태 설계하기</span></a></li><li data-item="10 Next.js로 언어 문서 사이트 App Router의 파일 경로로 언어 문서 목록과 상세를 나누고, 검색만 클라이언트 상태로 둡니다. Next.js Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell Next.js"><a href="../notes/nextjs.html"><small>10</small><span>Next.js로 언어 문서 사이트</span></a></li><li data-item="11 GraphQL 서버 언어 카탈로그를 스키마와 리졸버로 나누고, 포트를 열지 않은 채 graphql()로 쿼리와 뮤테이션을 실행합니다. GraphQL Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell GraphQL"><a href="../notes/graphql-server.html"><small>11</small><span>GraphQL 서버</span></a></li><li data-item="12 GraphQL 클라이언트 executeAgainst가 data를 반환하거나 errors를 던지고, normalize가 언어를 id 맵으로 접습니다. GraphQL Python Haskell GraphQL"><a href="../notes/graphql-client.html"><small>12</small><span>GraphQL 클라이언트</span></a></li></ol><div class="group">서버</div><ol><li data-item="13 NestJS로 언어 등록 API 모듈과 생성자 주입, DTO 검증으로 언어 열 개를 등록하는 HTTP API를 조립합니다. NestJS Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/nestjs.html"><small>13</small><span>NestJS로 언어 등록 API</span></a></li><li data-item="14 Go로 작은 HTTP 서버 표준 라이브러리와 뮤텍스로 언어 목록을 조회하고 추가하는 HTTP 서버를 테스트합니다. Go Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/go.html"><small>14</small><span>Go로 작은 HTTP 서버</span></a></li><li data-item="15 워크숍 좌석 예약 시작 시각과 이름, 좌석 수 규칙을 서비스에 두고 언어 워크숍 좌석을 예약합니다. JavaScript Rust Haskell"><a href="../notes/workshop-booking.html"><small>15</small><span>워크숍 좌석 예약</span></a></li><li data-item="16 코드 조각 피드 언어별 코드 조각을 id 커서로 나누고, 사용자 이름 단위로 추천을 토글합니다. JavaScript Python Go Rust"><a href="../notes/snippet-feed.html"><small>16</small><span>코드 조각 피드</span></a></li></ol><div class="group">모바일과 연결</div><ol><li data-item="17 Dart 언어의 기본 널 안전, final과 const, Future를 한 파일의 언어 카드 보고서로 확인합니다. Dart Kotlin Dart Haskell"><a href="../notes/dart.html" aria-current="page"><small>17</small><span>Dart 언어의 기본</span></a></li><li data-item="18 Flutter로 언어 카드 메모리 속 즐겨찾기와 상세 경로를 Flutter 3 위젯으로 구성합니다. Flutter Rust Dart Haskell Flutter"><a href="../notes/flutter.html"><small>18</small><span>Flutter로 언어 카드</span></a></li><li data-item="19 React Native로 언어 카드 복습 규칙만 순수 함수로 두고, 언어 카드 화면은 네이티브 뷰로 분리합니다. React Native Rust Dart Haskell React"><a href="../notes/react-native.html"><small>19</small><span>React Native로 언어 카드</span></a></li><li data-item="20 실시간 스터디룸의 연결 두 탭이 코드 조각을 주고받도록 신호, SDP, ICE를 역할로 나눕니다. WebRTC "><a href="../notes/webrtc-room.html"><small>20</small><span>실시간 스터디룸의 연결</span></a></li><li data-item="21 TypeScript로 블록 잇기 언어 제안을 해시로 잇는 목록을 TypeScript로 만들고 변조를 검증으로 찾습니다. TypeScript TypeScript Dart"><a href="../notes/ts-chain.html"><small>21</small><span>TypeScript로 블록 잇기</span></a></li></ol><div class="group">에이전트와 제품</div><ol><li data-item="22 언어 튜터 서비스 구조 로컬 카탈로그에서 언어 설명을 고르고, 역할이 나뉜 메시지를 화면에 나누어 그립니다. LLM Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/llm-tutor.html"><small>22</small><span>언어 튜터 서비스 구조</span></a></li><li data-item="23 도구를 쓰는 에이전트 루프 목표를 받은 뒤 로컬 도구의 결과를 관찰로 쌓고, 최종 답이나 네 걸음에서 멈춥니다. 에이전트 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/ai-agents.html"><small>23</small><span>도구를 쓰는 에이전트 루프</span></a></li><li data-item="24 n8n 워크플로 웹훅으로 받은 언어 이름을 Set 노드가 카드의 제목과 요약으로 바꿉니다. n8n Rust Zig"><a href="../notes/n8n.html"><small>24</small><span>n8n 워크플로</span></a></li><li data-item="25 직접 설계하는 Supabase 스타터 프로필과 언어와 학습 노트를 RLS로 나누고, 서비스 롤은 서버에만 둡니다. Supabase Python Haskell SQL"><a href="../notes/supabase-starter.html"><small>25</small><span>직접 설계하는 Supabase 스타터</span></a></li><li data-item="26 언어 선반이라는 제품 언어 선반은 배우는 이유와 다음 연습을 남기는 기록이고, 지표는 주간 노트 수입니다. 제품 Python JavaScript TypeScript Go Rust Kotlin Elixir Zig Dart Haskell"><a href="../notes/maker.html"><small>26</small><span>언어 선반이라는 제품</span></a></li></ol>
+      </details>
+    </aside>
+    <main class="main" id="content"><article class="sheet">
+      <div class="meta"><span class="pill">중급</span><span class="pill">40분</span><span class="pill">Dart</span></div>
+      <h1>Dart 언어의 기본</h1>
+<h2>도입</h2>
+<p>이 장은 samsepi0l이 Dart의 타입과 비동기 값을 언어 카드로 정리한 노트입니다. 문장은 세미콜론으로 끝나고, 이름에는 타입을 붙일 수 있습니다. 화면 프레임워크는 다루지 않습니다. 카드는 언어의 이름, 계통, 발표 연도, 태그를 갖고, 프로그램은 그 카드로 짧은 보고서를 만듭니다.</p>
+<p>예제는 <code>examples/dart/languages.dart</code> 한 파일입니다. 외부 패키지 없이 코어 라이브러리만 사용합니다. <code>Future</code>, <code>List</code>, <code>Map</code>, <code>Set</code>, <code>StringBuffer</code>는 <code>dart:core</code>에 있습니다. 최상위 <code>main</code>이 보고서를 출력합니다. <code>examples/dart</code>에서 <code>dart run languages.dart</code>를 실행합니다.</p>
+<p>파일이나 네트워크를 기다리지 않습니다. 같은 입력이면 오프라인에서도 같은 보고서가 나옵니다.</p>
+<h2>이 장을 끝내면</h2>
+<ul>
+<li><code>String</code>과 <code>String?</code>의 차이, 그리고 널 검사 뒤의 타입 프로모션을 설명합니다.</li>
+<li><code>final</code>과 <code>const</code>가 고정하는 시점이 다르다는 점을 예제에서 구분합니다.</li>
+<li><code>Future.value</code>와 <code>async</code>/<code>await</code>로 이미 있는 값을 비동기 함수에 넣습니다.</li>
+</ul>
+<h2>소리 나는 널 안전</h2>
+<p>소리 나는 널 안전은 널이 아닌 타입의 자리에 널이 들어갈 수 없다고 컴파일러가 보장하는 규칙입니다. 보장은 한 함수 안만의 검사가 아닙니다. 널 안전으로 컴파일된 프로그램 전체에서, 정적 타입이 널을 포함하지 않으면 실행 중 값도 널이 아닙니다. <code>!</code>로 널이 아니라고 억지 단언하는 경우는 그 단언이 틀리면 실행이 실패합니다.</p>
+<p><code>String</code>은 문자열만 담습니다. <code>String?</code>은 문자열 또는 널을 담습니다. <code>Language.family</code>는 <code>String?</code>입니다. Haskell 카드처럼 계통을 적지 않은 값이 널이며, 그 널은 오류가 아니라 정상적인 값입니다. 널일 수 있는 식을 <code>String</code>이 필요한 자리에 그대로 넘기면 컴파일이 거절합니다.</p>
+<p>예제는 널을 다루는 두 길을 일부러 같이 둡니다. <code>label</code>은 <code>??</code>를 사용합니다. 왼쪽이 널일 때만 오른쪽을 고르므로, 식의 결과는 널이 아닌 <code>String</code>입니다. <code>buildReport</code>는 조건을 사용합니다. <code>family == null</code>이면 이름을 계통 미상 집합에 넣고 <code>continue</code>합니다. 그 아래의 <code>family</code>는 <code>String</code>으로 좁혀집니다. 검사로 널 가능성을 제거해 타입을 좁히는 일을 프로모션이라고 합니다. 지역 변수가 <code>final</code>이라 이후에 다시 대입되지 않으므로 프로모션이 유지됩니다.</p>
+<p><code>!</code>는 컴파일러에게 이 값은 널이 아니라고 우기는 연산자입니다. 우김이 틀리면 실행 중에 즉시 실패합니다. 예제는 <code>!</code>를 쓰지 않습니다.</p>
+<h2>final과 const</h2>
+<p><code>final</code> 이름과 <code>final</code> 필드는 한 번만 대입됩니다. 그 시점은 실행 중일 수 있습니다. <code>MemorySource.cards</code>는 생성자가 받은 리스트로 정해지고, 이후 다른 리스트로 바꿀 수 없습니다.</p>
+<p><code>const</code>는 컴파일할 때 값이 확정됩니다. 같은 상수는 하나의 객체로 공유됩니다. <code>const</code> 생성자를 호출하려면 필드가 모두 <code>final</code>이어야 하고, 인수도 상수여야 합니다. <code>Language</code>가 그 조건에 맞습니다. <code>main</code>의 <code>languages</code>는 <code>const</code> 리스트이므로 원소 생성도 상수입니다. Haskell에서 <code>family</code>를 생략한 것은 기본값 널이고, 널도 상수입니다.</p>
+<p><code>const</code> 이름에 다른 값을 다시 넣을 수 없다는 점은 <code>final</code>과 같습니다. 차이는 고정되는 시각과, 안쪽까지 고정되는가입니다. <code>final</code> 리스트는 리스트 자체는 못 바꾸지만, 수정 불가로 감싸지 않았다면 원소는 바꿀 수 있습니다. <code>const</code> 리스트는 원소 변경도 거절합니다.</p>
+<p><code>StudyCard</code>는 <code>const</code>가 아닙니다. 태그를 <code>List.unmodifiable</code>로 실행 중에 복사하기 때문입니다. 호출자가 나중에 원본 리스트를 고쳐도 카드의 태그는 유지됩니다. 그래서 카드 목록은 <code>final</code>이지만 <code>const</code>는 아닙니다. 이름은 한 번만 대입되고, 복사본이 만들어지는 시점은 실행 중입니다.</p>
+<h2>mixin과 interface</h2>
+<p><code>Language</code>는 불변 필드와 <code>label</code>을 한 타입에 둡니다. 객체가 만들어진 뒤 이름, 계통, 연도는 바뀌지 않습니다.</p>
+<p><code>Taggable</code>은 mixin입니다. mixin은 구현을 다른 클래스에 섞지만, 그 자체로 객체를 만들지는 않습니다. 이 mixin은 <code>tags</code> 게터를 구현하지 않고 요구만 합니다. <code>tagLine</code>은 태그가 비어 있으면 <code>(태그 없음)</code>을, 아니면 <code>#</code>을 붙인 한 줄을 반환합니다. <code>StudyCard</code>는 <code>with Taggable</code>로 그 구현을 받고, <code>final</code> 필드로 <code>tags</code>를 채웁니다.</p>
+<p><code>CardSource</code>는 <code>abstract interface class</code>입니다. Dart 3의 interface 클래스는 <code>implements</code>로 계약을 맞출 수 있고, <code>extend</code>로 구현을 물려받지는 못합니다. 계약은 <code>loadCards</code>가 카드 리스트의 <code>Future</code>를 반환한다는 한 가지입니다. <code>MemorySource</code>가 메모리 리스트로 그 계약을 지킵니다. 읽는 쪽을 나중에 바꿔도 <code>buildReport</code>가 의존하는 타입은 그대로입니다.</p>
+<h2>컬렉션</h2>
+<p>보고서는 컬렉션을 역할로 나눕니다. <code>List</code>는 카드 순서와 출력 줄을 유지합니다. <code>Map</code>은 계통 문자열을 그 계통의 언어 이름 목록으로 보냅니다. <code>Set</code>은 계통이 널인 이름을 중복 없이 모읍니다.</p>
+<p><code>putIfAbsent</code>는 키가 없을 때만 빈 리스트를 만들고, 있을 때는 이미 있는 리스트를 돌려줍니다. 이 구현의 <code>Map</code>과 <code>Set</code>은 넣은 순서를 유지합니다. <code>StringBuffer</code>는 그 줄들을 하나의 문자열로 잇습니다. 카드 수, 카드별 설명, 계통별 이름, 마지막으로 <code>계통 미상: Haskell</code>이 보고서에 포함됩니다.</p>
+<h2>Future</h2>
+<p><code>Future&lt;T&gt;</code>는 T 값이 나중에 한 번 준비된다는 약속입니다. <code>async</code> 함수는 그 약속을 반환합니다. <code>await</code>는 그 함수 안에서 남은 문장을 미룹니다. 그동안 이벤트 루프는 다른 작업을 처리할 수 있습니다. 프로그램 전체가 그 자리에서 멈추는 문법이 아닙니다.</p>
+<p><code>loadCards</code>는 <code>Future.value</code>를 반환합니다. 인자는 이미 만든 수정 불가 리스트입니다. 기다릴 소켓이 없습니다. 다만 이 약속은 마이크로태스크로 완료되므로, <code>await</code>를 만난 <code>buildReport</code>는 현재 실행 흐름이 끝난 뒤에 다음 문장으로 이어집니다. 값이 이미 있다는 뜻이지, <code>await</code>가 일반 함수 호출과 글자 그대로 같다는 뜻은 아닙니다.</p>
+<p><code>buildReport</code>의 반환 타입은 <code>Future&lt;String&gt;</code>입니다. <code>main</code>도 <code>await</code>를 쓰므로 <code>Future&lt;void&gt;</code>입니다. <code>main</code>이 보고서를 출력하면 그 <code>Future</code>가 끝나고, <code>dart run</code>은 그때 프로세스를 종료합니다.</p>
+<h2>예제</h2>
+<p><code>examples/dart/languages.dart</code> 전체입니다.</p>
+<pre><code class="language-dart">// 코어 라이브러리만 사용하는 Dart 3 언어 카드 보고서입니다.
+
+class Language {
+  final String name;
+  final String? family;
+  final int year;
+
+  const Language({required this.name, this.family, required this.year});
+
+  String label() {
+    final String shown = family ?? &#39;계통 미상&#39;;
+    return &#39;$name / $shown / $year&#39;;
+  }
+}
+
+mixin Taggable {
+  List&lt;String&gt; get tags;
+
+  String tagLine() {
+    if (tags.isEmpty) {
+      return &#39;(태그 없음)&#39;;
+    }
+    return tags.map((String tag) =&gt; &#39;#$tag&#39;).join(&#39; &#39;);
+  }
+}
+
+class StudyCard with Taggable {
+  final Language language;
+
+  @override
+  final List&lt;String&gt; tags;
+
+  StudyCard({required this.language, required List&lt;String&gt; tags})
+    : tags = List&lt;String&gt;.unmodifiable(tags);
+
+  String describe() =&gt; &#39;${language.label()} ${tagLine()}&#39;;
+}
+
+abstract interface class CardSource {
+  Future&lt;List&lt;StudyCard&gt;&gt; loadCards();
+}
+
+class MemorySource implements CardSource {
+  final List&lt;StudyCard&gt; cards;
+
+  MemorySource(this.cards);
+
+  @override
+  Future&lt;List&lt;StudyCard&gt;&gt; loadCards() {
+    // 이미 가진 값이라 네트워크 없이 곧 완료됩니다.
+    return Future.value(List&lt;StudyCard&gt;.unmodifiable(cards));
+  }
+}
+
+Future&lt;String&gt; buildReport(CardSource source) async {
+  final List&lt;StudyCard&gt; cards = await source.loadCards();
+  final List&lt;String&gt; lines = &lt;String&gt;[];
+  final Map&lt;String, List&lt;String&gt;&gt; byFamily = &lt;String, List&lt;String&gt;&gt;{};
+  final Set&lt;String&gt; unknown = &lt;String&gt;{};
+
+  for (final StudyCard card in cards) {
+    lines.add(card.describe());
+    final String? family = card.language.family;
+    if (family == null) {
+      unknown.add(card.language.name);
+      continue;
+    }
+    final List&lt;String&gt; names = byFamily.putIfAbsent(family, () =&gt; &lt;String&gt;[]);
+    names.add(card.language.name);
+  }
+
+  final StringBuffer buffer = StringBuffer()..writeln(&#39;카드 ${cards.length}장&#39;);
+  for (final String line in lines) {
+    buffer.writeln(line);
+  }
+  for (final MapEntry&lt;String, List&lt;String&gt;&gt; entry in byFamily.entries) {
+    buffer.writeln(&#39;${entry.key}: ${entry.value.join(&#39;, &#39;)}&#39;);
+  }
+  if (unknown.isNotEmpty) {
+    buffer.writeln(&#39;계통 미상: ${unknown.join(&#39;, &#39;)}&#39;);
+  }
+  return buffer.toString();
+}
+
+Future&lt;void&gt; main() async {
+  const List&lt;Language&gt; languages = &lt;Language&gt;[
+    Language(name: &#39;Dart&#39;, family: &#39;C 계열 문법&#39;, year: 2011),
+    Language(name: &#39;Kotlin&#39;, family: &#39;JVM&#39;, year: 2011),
+    Language(name: &#39;Haskell&#39;, year: 1990),
+  ];
+
+  final List&lt;StudyCard&gt; cards = &lt;StudyCard&gt;[
+    StudyCard(language: languages[0], tags: &lt;String&gt;[&#39;널 안전&#39;, &#39;Future&#39;]),
+    StudyCard(language: languages[1], tags: &lt;String&gt;[&#39;널 안전&#39;]),
+    StudyCard(language: languages[2], tags: &lt;String&gt;[&#39;순수 함수&#39;]),
+  ];
+
+  final String report = await buildReport(MemorySource(cards));
+  print(report);
+}
+</code></pre>
+<h2>연습</h2>
+<ol>
+<li>태그가 빈 <code>StudyCard</code>를 하나 추가하고, 보고서에 <code>(태그 없음)</code>이 보이는지 확인한 뒤 원문으로 되돌립니다.</li>
+<li><code>languages</code>의 <code>const</code>를 제거해도 <code>Language.year</code>는 왜 생성 후에 대입할 수 없는지, 필드의 선언을 보고 설명합니다.</li>
+<li><code>loadCards</code>가 빈 리스트의 <code>Future.value</code>를 반환하게 잠깐 바꾸고, 카드 수가 0으로 출력되는지 확인한 뒤 되돌립니다.</li>
+</ol>
+<h2>스스로 확인</h2>
+<h3>1. <code>String?</code> 필드에 널을 저장하는 것은 실행 오류입니까?</h3>
+<p>답: 아닙니다. <code>String?</code>에서 널은 허용된 값입니다. 널이 아닌 <code>String</code>에 널을 넣으려 할 때 컴파일이 거절됩니다.</p>
+<h3>2. <code>family == null</code>인 분기를 <code>continue</code>로 빠져나간 뒤 <code>family</code>의 타입은 무엇입니까?</h3>
+<p>답: <code>String</code>입니다. 널인 경우를 벗어났고 변수가 다시 대입되지 않으므로 프로모션이 적용됩니다.</p>
+<h3>3. <code>const</code> 리스트와 <code>final</code> 리스트는 어떻게 다릅니까?</h3>
+<p>답: 둘 다 다른 리스트로 다시 대입할 수 없습니다. <code>const</code> 리스트는 컴파일 시각에 고정되고 원소도 바꿀 수 없습니다. <code>final</code> 리스트는 실행 중에 만들어질 수 있고, 수정 불가로 감싸지 않았다면 원소는 바뀔 수 있습니다.</p>
+<h3>4. <code>CardSource</code>를 <code>extends</code>하지 않는 이유는 무엇입니까?</h3>
+<p>답: <code>abstract interface class</code>는 구현 상속을 열지 않습니다. <code>MemorySource</code>는 <code>implements</code>로 <code>loadCards</code> 계약만 지킵니다.</p>
+<h3>5. 네트워크가 없는데도 <code>loadCards</code>가 <code>Future</code>를 반환하는 이유는 무엇입니까?</h3>
+<p>답: 호출 쪽인 <code>buildReport</code>가 비동기 계약을 보게 하기 위해서입니다. <code>Future.value</code>는 이미 있는 리스트로 그 약속을 즉시 완료 가능한 형태로 만듭니다.</p>
+
+      <nav class="pager">
+    <a href="snippet-feed.html"><span>이전</span>코드 조각 피드</a>
+    <a href="flutter.html"><span>다음</span>Flutter로 언어 카드</a>
+  </nav>
+      <footer class="colophon">samsepi0l · 언어 공부장</footer>
+    </article></main>
+  </div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>
